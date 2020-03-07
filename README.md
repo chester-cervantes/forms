@@ -42,10 +42,10 @@ NOTES:
 - This is extremely important, as Master is the only one that works. The rest of the other versions of mean.js are incompatible with the latest versions of Node and NPM.
 
 - If you are unable to toggle values using the arrow keys, try using a different terminal. 
-    - MingW64 (comes with GIT) doesn't seem to be supported.
     - For Windows, CMD or the Linux Sub-system Terminal.
     - For Ubuntu, the default terminal.
     - For Mac, the default erminal.
+- Avoid MingW64 (comes with GIT), it is NOT SUPPORTED.
 
 STEP 2:
 
