@@ -34,7 +34,7 @@ After installing the Required Packages, follow the steps below to get the projec
 STEP 1:
 
 ```
-$ yo meanjs
+$ npm install
 ```
 At the Prompt, "What mean.js version would you like to generate? (Use arrow keys)", select the version "Master"
 
