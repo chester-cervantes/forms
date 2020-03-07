@@ -22,6 +22,7 @@ Install MongoDB for your development platform: ```https://www.mongodb.com/downlo
 Then, install the required NPM Packages:
 
 ```
+$ npm install -g angular
 $ npm install -g express
 $ npm install -g yo
 $ npm install -g generator-meanjs
