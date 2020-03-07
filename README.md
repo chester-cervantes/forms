@@ -17,8 +17,9 @@ MEAN: Master
 ```
 
 ### Prerequisites
+Install MongoDB for your development platform: https://www.mongodb.com/download-center/community
 
-Required Packages:
+Required NPM Packages:
 
 ```
 $ npm install -g yo
