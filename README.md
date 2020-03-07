@@ -6,6 +6,16 @@ TO DO: Our project description.
 
 These instructions are based on http://meanjs.org/generator.html, except some details have been modified to fix the incompatibility issues of the official tutorial with the latest Node/NPM releases.
 
+### Versions
+
+Below are the versions needed for our project:
+
+```
+Node: v12.16.1
+NPM: 6.13.4
+MEAN: Master
+```
+
 ### Prerequisites
 
 Required Packages:
