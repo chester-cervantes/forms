@@ -17,11 +17,12 @@ MEAN: Master
 ```
 
 ### Prerequisites
-Install MongoDB for your development platform: https://www.mongodb.com/download-center/community
+Install MongoDB for your development platform: ```https://www.mongodb.com/download-center/community```
 
-Required NPM Packages:
+Then, install the required NPM Packages:
 
 ```
+$ npm install -g express
 $ npm install -g yo
 $ npm install -g generator-meanjs
 $ npm install -g bower
@@ -30,26 +31,19 @@ $ npm install -g gulp
 
 ### Installing
 
-After installing the Required Packages, follow the steps below to get the project running. 
+After installing MongoDB and the Required Packages, follow the steps below to get the project running. 
 
 STEP 1:
-
+In the terminal:
 ```
 $ npm install
 ```
-At the Prompt, "What mean.js version would you like to generate? (Use arrow keys)", select the version "Master"
-
-NOTES: 
-- This is extremely important, as Master is the only one that works. The rest of the other versions of mean.js are incompatible with the latest versions of Node and NPM.
-
-- If you are unable to toggle values using the arrow keys, try using a different terminal. 
-    - For Windows, CMD or the Linux Sub-system Terminal.
-    - For Ubuntu, the default terminal.
-    - For Mac, the default erminal.
-- Avoid MingW64 (comes with GIT), it is NOT SUPPORTED.
+NOTE: 
+* This may take some time ...
+* If running a local MongoDB database, you will need to start mongod.exe.
 
 STEP 2:
-
+Then, type the command below to run the server at localhost:3000.
 ```
 $ gulp
 ```
