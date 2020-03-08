@@ -3,6 +3,9 @@
 module.exports = function (app) {
   // Root routing
   var core = require('../controllers/core.server.controller');
+  var weather = require('../controllers/weather.server.controller');
+
+  //app.route('/api/postweather').get(weather.getWeather);
 
   // Define error pages
   app.route('/server-error').get(core.renderServerError);
