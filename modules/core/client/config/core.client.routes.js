@@ -27,6 +27,12 @@
     });
 
     $stateProvider
+      .state('weather', {
+        url: '/weather',
+        templateUrl: 'modules/core/client/views/weather.client.view.html',
+        controller: 'WeatherController',
+        controllerAs: 'vm'
+      })
       .state('home', {
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
