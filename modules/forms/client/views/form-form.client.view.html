@@ -9,43 +9,85 @@
         <div class="form-group" show-errors>
 
           <label class="control-label" for="project_id">Project ID:</label>
-          <input name="project_id" type="number" ng-model="vm.form.project_id" id="name" class="form-control" placeholder="Project ID" required>
+          <input 
+            type="number" 
+            ng-model="vm.form.project_id" 
+            id="project_id" 
+            class="form-control" 
+            placeholder="Project ID" 
+            required>
           <div ng-messages="vm.form.formForm.project_id.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form project id is required.</p>
           </div>
 
           <label class="control-label" for="dev_company_name">Developer:</label>
-          <input name="dev_company_name" type="text" ng-model="vm.form.dev_company_name" id="name" class="form-control" placeholder="Developer Company" required>
+          <input 
+            type="text" 
+            ng-model="vm.form.dev_company_name" 
+            id="dev_company_name" 
+            class="form-control" 
+            placeholder="Developer Company" 
+            required>
           <div ng-messages="vm.form.formForm.dev_company_name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form dev company name is required.</p>
           </div>
 
           <label class="control-label" for="project_location">Project:</label>
-          <input name="project_location" type="text" ng-model="vm.form.project_location" id="name" class="form-control" placeholder="Project Location" required>
+          <input 
+            type="text" 
+            ng-model="vm.form.project_location" 
+            id="project_location" 
+            class="form-control" 
+            placeholder="Project Location" 
+            required>
           <div ng-messages="vm.form.formForm.project_location.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form project location is required.</p>
           </div>
 
           <label class="control-label" for="contractor_company">Contractor Company:</label>
-          <input name="contractor_company" type="text" ng-model="vm.form.contractor_company" id="name" class="form-control" placeholder="Contractor Company" required>
+          <input
+            type="text"
+            ng-model="vm.form.contractor_company"
+            id="contractor_company"
+            class="form-control"
+            placeholder="Contractor Company"
+            required>
           <div ng-messages="vm.form.formForm.contractor_company.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form contractor company is required.</p>
           </div>
 
           <label class="control-label" for="report_date_time">Date/Time:</label>
-          <input name="report_date_time" type="text" ng-model="vm.form.report_date_time" id="name" class="form-control" placeholder="Report Date Time" required>
+          <input 
+            type="text" 
+            ng-model="vm.form.report_date_time" 
+            id="report_date_time" 
+            class="form-control" 
+            placeholder="Report Date Time" 
+            required>
           <div ng-messages="vm.form.formForm.report_date_time.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
           </div>
 
           <label class="control-label" for="weather">Weather:</label>
-          <input name="weather" type="text" ng-model="vm.form.weather" id="name" class="form-control" placeholder="Weather" required>
+          <input 
+            type="text" 
+            ng-model="vm.form.weather" 
+            id="name" 
+            class="form-control" 
+            placeholder="Weather" 
+            required>
           <div ng-messages="vm.form.formForm.weather.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form weather is required.</p>
           </div>
 
           <label class="control-label" for="temperature">Temperature:</label>
-          <input name="temperature" type="text" ng-model="vm.form.temperature" id="name" class="form-control" placeholder="Temperature" required>
+          <input  
+            type="text" 
+            ng-model="vm.form.temperature" 
+            id="name" 
+            class="form-control" 
+            placeholder="Temperature" 
+            required>
           <div ng-messages="vm.form.formForm.temperature.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
           </div>
@@ -53,40 +95,40 @@
           <fieldset>
             <legend class="control-label">Type of Review:</legend>
 
-            <input type="checkbox" id="footings_review_type" name="review_types_csv" value="Footings">
+            <input type="checkbox" id="footings_review_type" name="review_types_csv" ng-model="vm.form.project_id" value="Footings">
             <label for="footings_review_type"> Footings</label>
 
             <input type="checkbox" id="foundation_walls_review_type" name="review_types_csv" value="Foundation Walls">
-            <label for="footings_review_type"> Foundation Walls</label>
+            <label for="foundation_walls_review_type"> Foundation Walls</label>
 
             <input type="checkbox" id="sheathing_review_type" name="review_types_csv" value="Sheathing">
             <label for="sheathing_review_type"> Sheathing</label>
 
             <input type="checkbox" id="framing_review_type" name="review_types_csv" value="Framing">
-            <label for="sheathing_review_type"> Framing</label><br>
+            <label for="framing_review_type"> Framing</label><br>
 
-            <input type="checkbox" id="other_review_type" name="review_types_csv">
+            <input type="checkbox" id="other_review_type" name="review_types_csv" ng-click="window.alert ('ng-clicked!')">
             <label for="other_review_type"> Other:</label>
-            <input name="review_types_csv" type="text" id="name" class="form-control" placeholder="Other Review Type" required>
+            <input name="review_types_csv" type="text" id="other" class="form-control" placeholder="Other Review Type" required>
             <div ng-messages="vm.form.formForm.review_types_csv.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Form Other Review Types description is required.</p>
             </div>
           </fieldset>
 
-          <fieldset>
+          <!-- <fieldset>
             <legend class="control-label">Concrete:</legend>
             <span>
               <p>rebar in correct position: </p>
               <input type="radio" id="rebar_pos_reviewed" name="rebar_pos" ng-true-value="Reviewed" ng-false-value="" required>
               <label for="rebar_pos_reviewed">Reviewed</label><br>
-              <input type="radio" id="rebar_pos_not_applicable" name="rebar_pos" ng-false-value="Not Applicable">
+              <input type="radio" id="rebar_pos_not_applicable" name="rebar_pos" ng-true-value="" ng-false-value="Not Applicable">
               <label for="rebar_pos_not_applicable">Not Applicable</label><br>
             </span>
             <span>
               <p>rebar right size and spacing: </p>
-              <input type="radio" id="rebar_size_spacing_reviewed" name="rebar_size_spacing" value="Reviewed" required>
+              <input type="radio" id="rebar_size_spacing_reviewed" name="rebar_size_spacing" ng-true-value="Reviewed" ng-false-value="" required>
               <label for="rebar_size_spacing_reviewed">Reviewed</label><br>
-              <input type="radio" id="rebar_size_spacing_not_applicable" name="rebar_size_spacing" value="Not Applicable">
+              <input type="radio" id="rebar_size_spacing_not_applicable" name="rebar_size_spacing" ng-true-value="" ng-false-value="Not Applicable">
               <label for="rebar_size_spacing_not_applicable">Not Applicable</label><br>
             </span>
             <span>
@@ -158,15 +200,7 @@
               <input type="radio" id="wind_girt_reviewed" name="wind_girt" value="Reviewed" required>Reviewed<br>
               <input type="radio" id="wind_girt_not_applicable" name="wind_girt" value="Not Applicable">Not Applicable<br>
             </span>
-          </fieldset>
-
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.form.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.formForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form name is required.</p>
-          </div>
-
-
+          </fieldset> -->
 
         </div>
         <div class="form-group">
