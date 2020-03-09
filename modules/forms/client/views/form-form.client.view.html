@@ -1,0 +1,181 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.form._id ? 'Edit Form' : 'New Form'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.formForm" class="form-horizontal" ng-submit="vm.save(vm.form.formForm.$valid)" novalidate>
+      <fieldset>
+
+        <div class="form-group" show-errors>
+
+          <label class="control-label" for="project_id">Project ID:</label>
+          <input name="project_id" type="number" ng-model="vm.form.project_id" id="name" class="form-control" placeholder="Project ID" required>
+          <div ng-messages="vm.form.formForm.project_id.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form project id is required.</p>
+          </div>
+
+          <label class="control-label" for="dev_company_name">Developer:</label>
+          <input name="dev_company_name" type="text" ng-model="vm.form.dev_company_name" id="name" class="form-control" placeholder="Developer Company" required>
+          <div ng-messages="vm.form.formForm.dev_company_name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form dev company name is required.</p>
+          </div>
+
+          <label class="control-label" for="project_location">Project:</label>
+          <input name="project_location" type="text" ng-model="vm.form.project_location" id="name" class="form-control" placeholder="Project Location" required>
+          <div ng-messages="vm.form.formForm.project_location.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form project location is required.</p>
+          </div>
+
+          <label class="control-label" for="contractor_company">Contractor Company:</label>
+          <input name="contractor_company" type="text" ng-model="vm.form.contractor_company" id="name" class="form-control" placeholder="Contractor Company" required>
+          <div ng-messages="vm.form.formForm.contractor_company.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form contractor company is required.</p>
+          </div>
+
+          <label class="control-label" for="report_date_time">Date/Time:</label>
+          <input name="report_date_time" type="text" ng-model="vm.form.report_date_time" id="name" class="form-control" placeholder="Report Date Time" required>
+          <div ng-messages="vm.form.formForm.report_date_time.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
+          </div>
+
+          <label class="control-label" for="weather">Weather:</label>
+          <input name="weather" type="text" ng-model="vm.form.weather" id="name" class="form-control" placeholder="Weather" required>
+          <div ng-messages="vm.form.formForm.weather.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form weather is required.</p>
+          </div>
+
+          <label class="control-label" for="temperature">Temperature:</label>
+          <input name="temperature" type="text" ng-model="vm.form.temperature" id="name" class="form-control" placeholder="Temperature" required>
+          <div ng-messages="vm.form.formForm.temperature.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
+          </div>
+
+          <fieldset>
+            <legend class="control-label">Type of Review:</legend>
+
+            <input type="checkbox" id="footings_review_type" name="review_types_csv" value="Footings">
+            <label for="footings_review_type"> Footings</label>
+
+            <input type="checkbox" id="foundation_walls_review_type" name="review_types_csv" value="Foundation Walls">
+            <label for="footings_review_type"> Foundation Walls</label>
+
+            <input type="checkbox" id="sheathing_review_type" name="review_types_csv" value="Sheathing">
+            <label for="sheathing_review_type"> Sheathing</label>
+
+            <input type="checkbox" id="framing_review_type" name="review_types_csv" value="Framing">
+            <label for="sheathing_review_type"> Framing</label><br>
+
+            <input type="checkbox" id="other_review_type" name="review_types_csv">
+            <label for="other_review_type"> Other:</label>
+            <input name="review_types_csv" type="text" id="name" class="form-control" placeholder="Other Review Type" required>
+            <div ng-messages="vm.form.formForm.review_types_csv.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Form Other Review Types description is required.</p>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="control-label">Concrete:</legend>
+            <span>
+              <p>rebar in correct position: </p>
+              <input type="radio" id="rebar_pos_reviewed" name="rebar_pos" ng-true-value="Reviewed" ng-false-value="" required>
+              <label for="rebar_pos_reviewed">Reviewed</label><br>
+              <input type="radio" id="rebar_pos_not_applicable" name="rebar_pos" ng-false-value="Not Applicable">
+              <label for="rebar_pos_not_applicable">Not Applicable</label><br>
+            </span>
+            <span>
+              <p>rebar right size and spacing: </p>
+              <input type="radio" id="rebar_size_spacing_reviewed" name="rebar_size_spacing" value="Reviewed" required>
+              <label for="rebar_size_spacing_reviewed">Reviewed</label><br>
+              <input type="radio" id="rebar_size_spacing_not_applicable" name="rebar_size_spacing" value="Not Applicable">
+              <label for="rebar_size_spacing_not_applicable">Not Applicable</label><br>
+            </span>
+            <span>
+              <p>hold down anchorage in place: </p>
+              <input type="radio" id="anchorage_reviewed" name="anchorage" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="anchorage_not_applicable" name="anchorage" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>formwork generally as per plan: </p>
+              <input type="radio" id="form_plan_reviewed" name="form_plan" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="form_plan_not_applicable" name="form_plan" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>formwork generally as per plan: </p>
+              <input type="radio" id="form_plan_reviewed" name="form_plan" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="form_plan_not_applicable" name="form_plan" value="Not Applicable">Not Applicable<br>
+            </span>
+          </fieldset>
+
+          <fieldset>
+            <legend class="control-label">Framing:</legend>
+            <span>
+              <p>conforming with truss spec: </p>
+              <input type="radio" id="conformance_spec_reviewed" name="conformance_spec" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="conformance_spec_not_applicable" name="conformance_spec" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>conformance with l-joist shop drawings: </p>
+              <input type="radio" id="conformance_drawing_spacing_reviewed" name="conformance_drawing" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="conformance_drawing_spacing_not_applicable" name="conformance_drawing" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>beam and girder bearing: </p>
+              <input type="radio" id=beam_girder_bearing_reviewed" name="beam_girder_bearing" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="beam_girder_bearing_not_applicable" name="beam_girder_bearing" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>continuity of top plates: </p>
+              <input type="radio" id="continuity_top_plate_reviewed" name="continuity_top_plate" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="continuity_top_plate_not_applicable" name="continuity_top_plate" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>lintels/openings: </p>
+              <input type="radio" id="lintel_open_reviewed" name="lintel_open" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="lintel_open_not_applicable" name="lintel_open" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>shearwalls/fastening/hold downs: </p>
+              <input type="radio" id="shearwalls_fastening_holddowns_reviewed" name="shearwalls_fastening_holddowns" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="shearwalls_fastening_holddowns_not_applicable" name="shearwalls_fastening_holddowns" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>continuity of tall walls: </p>
+              <input type="radio" id="continuity_tall_walls_reviewed" name="continuity_tall_walls" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="continuity_tall_walls_not_applicable" name="continuity_tall_walls" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>blocking in floor system for point loads: </p>
+              <input type="radio" id="blocking_floor_system_reviewed" name="blocking_floor_system" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="blocking_floor_system_not_applicable" name="blocking_floor_system" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>wall sheathing: </p>
+              <input type="radio" id="wall_shearing_reviewed" name="wall_shearing" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="wall_shearing_not_applicable" name="wall_shearing" value="Not Applicable">Not Applicable<br>
+            </span>
+            <span>
+              <p>wind girts: </p>
+              <input type="radio" id="wind_girt_reviewed" name="wind_girt" value="Reviewed" required>Reviewed<br>
+              <input type="radio" id="wind_girt_not_applicable" name="wind_girt" value="Not Applicable">Not Applicable<br>
+            </span>
+          </fieldset>
+
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.form.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.formForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form name is required.</p>
+          </div>
+
+
+
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.form._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
