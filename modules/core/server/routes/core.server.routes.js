@@ -5,7 +5,7 @@ module.exports = function (app) {
   var core = require('../controllers/core.server.controller');
   var weather = require('../controllers/weather.server.controller');
 
-  //app.route('/api/postweather').get(weather.getWeather);
+  app.route('/api/weather').post(weather.saveWeather);
 
   // Define error pages
   app.route('/server-error').get(core.renderServerError);

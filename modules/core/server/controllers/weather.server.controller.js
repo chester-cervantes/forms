@@ -8,7 +8,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
-exports.getWeather = function (req, res) {
+exports.saveWeather = function (req, res) {
   var data = req.body;
   console.log("GETWEATHER CALLED@@@@@");
   console.log(data.location);

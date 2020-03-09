@@ -22,7 +22,17 @@
         error(function(data, status, headers, config) {
           console.log("failed");
         });
+
+      $http.post('/api/weather', {location = $scope.weather_location}).
+        success(function(data, status, headers, config) {
+          console.log("success");
+
+        }).
+        error(function(data, status, headers, config) {
+          console.log("failed");
+        });
     }
+
     // Weather controller logic
     // ...
 
