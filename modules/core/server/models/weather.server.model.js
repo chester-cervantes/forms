@@ -19,4 +19,4 @@ var WeatherSchema = new Schema({
   }
 });
 
-mongoose.model('Weather', WeatherSchema);
+module.exports = mongoose.model('Weather', WeatherSchema);

@@ -14,18 +14,22 @@ exports.saveWeather = function (req, res) {
   console.log("GETWEATHER CALLED@@@@@");
   console.log(data.location);
 
-  var test = mongoose.model('Weather', WeatherSchema);
-  test.location = data.location;
-
+  var test = new Weather({
+    location: data.location
+  });
   test.save(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
+  }).then(item => {
+    res.send("item saved to database");
 
-    res.json(test);
-  });
+    console.log("saved!!");
+    }).catch(err => {
+      res.status(400).send("unable to save to database");
+    });
 }
 
 /**
