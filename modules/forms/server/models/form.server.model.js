@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Form Schema
  */
 var FormSchema = new Schema({
-  project_id: {
+  form_id: {
     type: Number,
     default: '',
     required: 'Please fill project id',
@@ -49,101 +49,201 @@ var FormSchema = new Schema({
     default: '',
     required: "Please fill temperature (celsius) info"
   },
-  review_types: {
-    type: [ String ],
+  footings_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },
+  foundation_walls_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },
+  sheathing_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },
+  sheathing_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },  
+  framing_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },
+  other_review_type: {
+    type: Boolean,
+    default: '',
+    required: ""
+  },
+  other_review_type_description: {
+    type: String,
     default: '',
     required: "Please fill review type(s)"
-  } //,
-  // rebar_pos: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // rebar_size_spacing: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // anchorage: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // form_plan: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // conformance_spec: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // conformance_drawing: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // beam_girder_bearing: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // continuity_top_plate: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // lintel_open: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // shearwalls_fastening_holddowns: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // continuity_tall_walls: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // blocking_floor_system: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // wall_sheathing: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // wind_girts: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // observation: {
-  //   type: String,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // inspection_status: {
-  //   type: String,
-  //   enum : [ 'Approved' , 'Not Approved' , 'Reinspection Required' ],
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // inspector_user_id: {
-  //   type: Number,
-  //   default: '',
-  //   required: "Please fill"
-  // },
-  // user: {
-  //   type: Schema.ObjectId,
-  //   ref: 'User'
-  // }
+  },
+  rebar_pos_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  rebar_pos_instructions: {
+    type: String,
+    default: 'None',
+    required: "Please fill"
+  },
+  rebar_size_spacing_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  rebar_size_spacing_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  anchorage_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  anchorage_reviewed_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  form_plan_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  form_plan_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  conformance_spec_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  conformance_spec_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  conformance_drawing_reviewed: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  conformance_drawing_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  beam_girder_bearing_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  beam_girder_bearing_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  continuity_top_plate_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  continuity_top_plate_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  lintel_open_reviewed: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  lintel_open_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  shearwalls_fastening_holddowns_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  shearwalls_fastening_holddowns_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  continuity_tall_walls_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  continuity_tall_walls_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  blocking_floor_system_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  blocking_floor_system_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  wall_sheathing_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  wall_sheathing_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  wind_girts_reviewed: {
+    type: Boolean,
+    default: '',
+    required: "Please fill"
+  },
+  wind_girts_instructions: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  observation: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  comments: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  inspection_status: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  },
+  inspector_name: {
+    type: String,
+    default: '',
+    required: "Please fill"
+  }
 });
 
 mongoose.model('Form', FormSchema);

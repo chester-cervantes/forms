@@ -8,7 +8,7 @@
 
   FormsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'formResolve'];
 
-  FormsController = function ($scope, $state, $window, Authentication, form) {
+  function FormsController ($scope, $state, $window, Authentication, form) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,12 +17,6 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
-    $scope.checkBoxEnableInput = function ( checkBoxStatus , inputElementId ) {
-      Console.log ( "HERE" );
-      var inputElement = document.getElementById ( inputElementId );
-      inputElement.disabled = !checkBoxStatus;
-    };
 
     // Remove existing Form
     function remove() {
