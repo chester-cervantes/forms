@@ -27,6 +27,12 @@
     });
 
     $stateProvider
+      .state('send-email', {
+        url: '/email',
+        templateUrl: 'modules/core/client/views/send-email.client.view.html',
+        controller: 'SendEmailController',
+        controllerAs: 'vm'
+      })
       .state('home', {
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
