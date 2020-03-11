@@ -14,8 +14,8 @@ MAINTAINER MEAN.JS
 EXPOSE 80 443 3000 35729 8080
 
 # set port for production
-ENV PORT 8080
-ENV HOST 0.0.0.0
+# ENV PORT 8080
+# ENV HOST 0.0.0.0
 
 # Set development environment as default
 ENV NODE_ENV development
