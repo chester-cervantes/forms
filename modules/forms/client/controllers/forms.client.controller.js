@@ -41,20 +41,21 @@
         return false;
       }
 
-      var formsService = new FormsService ( vm.form );
       if (vm.form._id) {
-        formsService.$update ( successCallback , errorCallback );
+        FormsService.update ( successCallback , errorCallback );
       } else {
-        formsService.$create ( successCallback , errorCallback );
+        FormsService.create ( successCallback , errorCallback );
       }
 
       function successCallback(res) {
+        console.log ( "success res = " + res ); // DEBUG
         $state.go('forms.view', {
           formId: res._id
         });
       }
 
       function errorCallback(res) {
+        console.log ( "error res = " + res.data.message ); // DEBUG
         vm.error = res.data.message;
       }
     }

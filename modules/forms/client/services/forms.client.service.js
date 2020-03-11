@@ -8,16 +8,15 @@
 
   FormsService.$inject = ['$resource'];
 
-  function FormsService($resource) {
+  function FormsService ( $resource ) {
     return $resource (
       'api/forms/:formId',
-      {},
+      {
+        formId: '@_id'
+      },
       {
         update: {
-          method: 'PUT',
-          params: {
-            formId: '@_id'
-          }
+          method: 'PUT'
         },
         create: {
           method: 'PUT',
