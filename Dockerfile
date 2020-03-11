@@ -13,6 +13,10 @@ MAINTAINER MEAN.JS
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
 EXPOSE 80 443 3000 35729 8080
 
+# set port for production
+ENV PORT 8080
+ENV HOST 0.0.0.0
+
 # Set development environment as default
 ENV NODE_ENV development
 
