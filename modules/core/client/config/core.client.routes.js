@@ -27,10 +27,10 @@
     });
 
     $stateProvider
-      .state('send-email', {
-        url: '/email',
-        templateUrl: 'modules/core/client/views/send-email.client.view.html',
-        controller: 'SendEmailController',
+      .state('core', {
+        url: '/core',
+        templateUrl: 'modules/core/client/views/privacy.client.view.html',
+        controller: 'PrivacyControllerController',
         controllerAs: 'vm'
       })
       .state('home', {
@@ -73,6 +73,19 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('privacy', {
+        url: '/privacy',
+        templateUrl: '/modules/core/client/views/privacy.client.view.html',
+        data: {
+          ignoreState: true
+        }
+      })
+      .state('send-email', {
+        url: '/email',
+        templateUrl: 'modules/core/client/views/send-email.client.view.html',
+        controller: 'SendEmailController',
       });
+      
   }
 }());
