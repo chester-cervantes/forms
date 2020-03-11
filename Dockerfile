@@ -38,8 +38,8 @@ RUN sudo apt-get install -yq nodejs \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install MEAN.JS Prerequisites
+RUN sudo npm install -g npm@6.13.4
 RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean
-
 RUN mkdir -p /opt/mean.js/public/lib
 WORKDIR /opt/mean.js
 
@@ -49,7 +49,6 @@ WORKDIR /opt/mean.js
 # when the local package.json file changes.
 # Install npm packages
 COPY package.json /opt/mean.js/package.json
-RUN sudo npm install -g npm@6.13.4
 RUN sudo npm install --quiet && npm cache clean
 
 # Install bower packages
