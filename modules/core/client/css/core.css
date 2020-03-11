@@ -41,3 +41,20 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+
+
+.navbar-inverse, 
+.open, 
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: red;
+  background-image: none;
+  border-color: transparent;
+  user-select: none;
+}
+
+.navbar-brand {
+  color: white;
+}
+.navbar-header {}
