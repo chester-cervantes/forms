@@ -35,6 +35,9 @@ RUN apt-get update -q  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Update vm
+RUN sudo apt-get update
+
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN sudo apt-get install -yq nodejs \
@@ -43,12 +46,11 @@ RUN sudo apt-get install -yq nodejs \
 
 # install other dependences
 RUN sudo npm install -g npm@6.13.4
-RUN sudo apt-get update
 RUN sudo apt-get install libpng16-16
 RUN sudo apt-get install libpng-dev -y --no-install-recommends
 
 # Install MEAN.JS Prerequisites
-RUN sudo npm install
+# RUN sudo npm install
 RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean --force
 RUN mkdir -p /opt/mean.js/public/lib
 WORKDIR /opt/mean.js
