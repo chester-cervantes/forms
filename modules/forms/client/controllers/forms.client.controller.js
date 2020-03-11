@@ -6,9 +6,9 @@
     .module('forms')
     .controller('FormsController', FormsController);
 
-  FormsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'formResolve', '$location'];
+  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService' ];
 
-  function FormsController ($scope, $state, $window, Authentication, form, $location) {
+  function FormsController ($scope, $state, $window, Authentication, form, FormsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -41,11 +41,11 @@
         return false;
       }
 
-      // TODO: move create/update logic to service
+      var formsService = new FormsService ( vm.form );
       if (vm.form._id) {
-        vm.form.$update(successCallback, errorCallback);
+        formsService.$update ( successCallback , errorCallback );
       } else {
-        vm.form.$save(successCallback, errorCallback);
+        formsService.$create ( successCallback , errorCallback );
       }
 
       function successCallback(res) {

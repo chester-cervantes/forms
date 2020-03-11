@@ -9,12 +9,21 @@
   FormsService.$inject = ['$resource'];
 
   function FormsService($resource) {
-    return $resource('api/forms/:formId', {
-      formId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
+    return $resource (
+      'api/forms/:formId',
+      {},
+      {
+        update: {
+          method: 'PUT',
+          params: {
+            formId: '@_id'
+          }
+        },
+        create: {
+          method: 'PUT',
+          url: '/api/forms'
+        }
       }
-    });
+    );
   }
 }());
