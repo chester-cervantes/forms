@@ -8,16 +8,17 @@
 
   FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService' ];
 
-  function FormsController ($scope, $state, $window, Authentication, form, FormsService) {
+  function FormsController ($scope, $state, $window, Authentication, formResolve, FormsService) {
     var vm = this;
 
     vm.authentication = Authentication;
-    vm.form = form;
+    vm.formResolve = formResolve;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
     vm.cancel = cancel;
+    vm.user = Authentication.user;
 
     // Remove existing Form
     function remove() {
@@ -35,16 +36,21 @@
     }
 
     // Save Form
-    function save(isValid) {
+    function save (isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.formForm');
+        $scope.$broadcast('show-errors-check-validity', 'vm.fieldInspectionReviewForm');
         return false;
       }
 
-      if (vm.form._id) {
-        FormsService.update ( successCallback , errorCallback );
+      console.log ( "vm.form = " + JSON.stringify(vm.form) );
+
+      $scope.$broadcast('show-errors-reset', 'vm.form');
+
+      var formsService = new FormsService ( vm.user );
+      if (vm.fieldInspectionReviewForm._id) {
+        formsService.$update ( successCallback , errorCallback );
       } else {
-        FormsService.create ( successCallback , errorCallback );
+        formsService.$create ( successCallback , errorCallback );
       }
 
       function successCallback(res) {

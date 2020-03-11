@@ -51,198 +51,219 @@ var FormSchema = new Schema({
   },
   footings_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },
   foundation_walls_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },
   sheathing_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },
   sheathing_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },  
   framing_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },
   other_review_type: {
     type: Boolean,
-    default: '',
+    default: false,
     required: ""
   },
   other_review_type_description: {
     type: String,
     default: '',
-    required: "Please fill review type(s)"
+    required: "Please fill review type(s)",
+    trim: true
   },
   rebar_pos_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   rebar_pos_instructions: {
     type: String,
     default: 'None',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   rebar_size_spacing_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   rebar_size_spacing_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   anchorage_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   anchorage_reviewed_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   form_plan_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   form_plan_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   conformance_spec_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   conformance_spec_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   conformance_drawing_reviewed: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   conformance_drawing_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   beam_girder_bearing_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   beam_girder_bearing_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   continuity_top_plate_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   continuity_top_plate_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   lintel_open_reviewed: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   lintel_open_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   shearwalls_fastening_holddowns_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   shearwalls_fastening_holddowns_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   continuity_tall_walls_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   continuity_tall_walls_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   blocking_floor_system_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   blocking_floor_system_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   wall_sheathing_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   wall_sheathing_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   wind_girts_reviewed: {
     type: Boolean,
-    default: '',
+    default: false,
     required: "Please fill"
   },
   wind_girts_instructions: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   observation: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   comments: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   inspection_status: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   },
   inspector_name: {
     type: String,
     default: '',
-    required: "Please fill"
+    required: "Please fill",
+    trim: true
   }
 });
 

@@ -95,7 +95,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           createstate = $state.get('forms.create');
-          $templateCache.put('modules/forms/client/views/form-form.client.view.html', '');
+          $templateCache.put('modules/forms/client/views/field-inspection-review-form.client.view.html', '');
 
           // create mock Form
           mockForm = new FormsService();
@@ -130,7 +130,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(createstate.templateUrl).toBe('modules/forms/client/views/form-form.client.view.html');
+          expect(createstate.templateUrl).toBe('modules/forms/client/views/field-inspection-review-form.client.view.html');
         });
       });
 
@@ -141,7 +141,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           editstate = $state.get('forms.edit');
-          $templateCache.put('modules/forms/client/views/form-form.client.view.html', '');
+          $templateCache.put('modules/forms/client/views/field-inspection-review-form.client.view.html', '');
 
           // create mock Form
           mockForm = new FormsService({
@@ -180,7 +180,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('modules/forms/client/views/form-form.client.view.html');
+          expect(editstate.templateUrl).toBe('modules/forms/client/views/field-inspection-review-form.client.view.html');
         });
 
         xit('Should go to unauthorized route', function () {
