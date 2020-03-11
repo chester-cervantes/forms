@@ -102,7 +102,7 @@
     "passport-local": "~1.0.0",
     "passport-paypal-openidconnect": "^0.1.1",
     "passport-twitter": "~1.0.4",
-    "pngquant-bin": "^3.1.1",
+    "pngquant-bin": "^4.0.0",
     "run-sequence": "~2.1.0",
     "serve-favicon": "^2.5.0",
     "snyk": "^1.234.2",
