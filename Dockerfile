@@ -41,8 +41,11 @@ RUN sudo apt-get install -yq nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install MEAN.JS Prerequisites
+# install other dependence
 RUN sudo npm install -g npm@6.13.4
+RUN sudo apt-get install libpng-dev -y --no-install-recommends
+
+# Install MEAN.JS Prerequisites
 RUN sudo npm install
 RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean --force
 RUN mkdir -p /opt/mean.js/public/lib
@@ -62,6 +65,9 @@ COPY .bowerrc /opt/mean.js/.bowerrc
 RUN bower install --quiet --allow-root --config.interactive=false
 
 COPY . /opt/mean.js
+
+# delete the local node_moodules and package.json.lock and re-install once more
+RUN sudo rm -rf node_modules package-lock.json
 
 # Run MEAN.JS server
 CMD sudo npm install && npm start
