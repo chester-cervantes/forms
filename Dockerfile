@@ -41,8 +41,9 @@ RUN sudo apt-get install -yq nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# install other dependence
+# install other dependences
 RUN sudo npm install -g npm@6.13.4
+RUN sudo apt-get install --reinstall libpng16-16=1.6.34-1
 RUN sudo apt-get install libpng-dev -y --no-install-recommends
 
 # Install MEAN.JS Prerequisites
