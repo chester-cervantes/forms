@@ -31,8 +31,7 @@
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
         controller: 'HomeController',
-        controllerAs: 'vm',
-        css: ['form.css', 'https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css']
+        controllerAs: 'vm'
       })
       .state('not-found', {
         url: '/not-found',
