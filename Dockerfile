@@ -13,7 +13,7 @@ MAINTAINER MEAN.JS
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
 EXPOSE 80 443 3000 35729 8080
 
-# set port for production
+# # set port for production
 # ENV PORT 8080
 # ENV HOST 0.0.0.0
 
@@ -35,9 +35,6 @@ RUN apt-get update -q  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Update vm
-RUN sudo apt-get update
-
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN sudo apt-get install -yq nodejs \
@@ -46,6 +43,7 @@ RUN sudo apt-get install -yq nodejs \
 
 # install other dependences
 RUN sudo npm install -g npm@6.13.4
+RUN sudo apt-get update
 RUN sudo apt-get install libpng16-16
 RUN sudo apt-get install libpng-dev -y --no-install-recommends
 
