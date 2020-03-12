@@ -61,11 +61,13 @@ exports.sendEmail = function (req, res) {
   
     transporter.sendMail(mailOptions, function (error, response) {
         if (error) {
-            console.log(error);
-            callback(error);
+          console.log(error);
+          callback(error);
+          res.status(400).send("Error: email not sent");
+            
         }
         else{
-          console.log("mail sent");
+          res.status(200).send("Email sent");          
         }
     });
   });  
