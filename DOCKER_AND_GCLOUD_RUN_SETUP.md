@@ -97,8 +97,8 @@
 9. Select the following options for the Service
     - Choose cloud run fully managed
     - Region: us-west1 Oregon
-    - Number of CPUs: 2
-    - Memory: 2 GB
+    - Number of CPUs: 1
+    - Memory: 1 GB
     - Authentication: Allow unauthenticated invocations //for websites or public api
     - Select the previously pushed docker container image
 
