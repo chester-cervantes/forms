@@ -67,7 +67,7 @@ exports.sendEmail = function (req, res) {
             
         }
         else{
-          res.status(200).send("Email sent");          
+          res.status(400).send("Email sent");          
         }
     });
   });  
