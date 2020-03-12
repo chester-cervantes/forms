@@ -1,6 +1,7 @@
 .content {
   margin-top: 50px;
 }
+
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -41,3 +42,32 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+
+
+.navbar-inverse, 
+.open, 
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #0072c6;
+  background-image: none;
+  border-color: transparent;
+  user-select: none;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+  text-shadow: none;
+}
+
+.button {
+  font-size: 14px;
+}
+
+.input {
+  font-size: 14px;
+}
+
+
+.navbar-header {}
