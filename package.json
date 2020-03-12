@@ -92,12 +92,8 @@
     "morgan": "^1.9.1",
     "multer": "^1.3.1",
     "multer-s3": "^2.9.0",
-<<<<<<< HEAD
     "nodemailer": "~4.0.1",
     "npm-run-path": "^4.0.1",
-=======
-    "nodemailer": "^4.0.1",
->>>>>>> add send email functionality
     "owasp-password-strength-test": "~1.3.0",
     "passport": "~0.3.2",
     "passport-facebook": "~2.1.1",
