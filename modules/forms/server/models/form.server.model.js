@@ -37,6 +37,7 @@ var FormSchema = new Schema({
   report_date_time: {
     type: Date,
     default: Date.now,
+    required: 'Please fill contractor company',
   },
   weather: {
     type: [ String ],

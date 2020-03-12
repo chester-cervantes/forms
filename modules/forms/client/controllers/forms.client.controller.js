@@ -6,9 +6,9 @@
     .module('forms')
     .controller('FormsController', FormsController);
 
-  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService' ];
+  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService', '$http' ];
 
-  function FormsController ($scope, $state, $window, Authentication, formResolve, FormsService) {
+  function FormsController ($scope, $state, $window, Authentication, formResolve, FormsService, $http) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -50,19 +50,34 @@
       if (vm.fieldInspectionReviewForm._id) {
         formsService.$update ( successCallback , errorCallback );
       } else {
-        formsService.$create ( successCallback , errorCallback );
+        //formsService.$create ( successCallback , errorCallback );
+        $http.post (
+          '/api/forms', 
+          vm.form
+        )
+        .success ( function (data, status, headers, config) {
+          console.log ( "success status = " + status ); // DEBUG
+          $state.go('forms.view', {
+            formId: res._id
+          });
+        } )
+        .error ( function (data, status, headers, config) {
+          console.log ( "error status = " + status ); // DEBUG
+          console.log ( "error data = " + data.message ); // DEBUG
+          //vm.error = res.data.message;
+        } );
       }
 
-      function successCallback(res) {
-        console.log ( "success res = " + res ); // DEBUG
+      function successCallback(data, status, headers, config) {
+        console.log ( "success status = " + status ); // DEBUG
         $state.go('forms.view', {
           formId: res._id
         });
       }
 
-      function errorCallback(res) {
-        console.log ( "error res = " + res.data.message ); // DEBUG
-        vm.error = res.data.message;
+      function errorCallback(data, status, headers, config) {
+        console.log ( "error status = " + status ); // DEBUG
+        //vm.error = res.data.message;
       }
     }
   }

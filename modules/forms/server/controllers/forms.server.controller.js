@@ -13,7 +13,7 @@ var path = require('path'),
  * Create a Form
  */
 exports.create = function(req, res) {
-  console.log ( "req = " + req ); // DEBUG
+  console.log ( "in server.create req = " + req ); // DEBUG
 
   var form = new Form(req.body);
   form.user = req.user;
