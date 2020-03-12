@@ -13,6 +13,10 @@ MAINTAINER MEAN.JS
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
 EXPOSE 80 443 3000 35729 8080
 
+# # set port for production
+# ENV PORT 8080
+# ENV HOST 0.0.0.0
+
 # Set development environment as default
 ENV NODE_ENV development
 
@@ -32,14 +36,20 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN sudo apt-get install -yq nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install MEAN.JS Prerequisites
-RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean
+# install other dependences
+RUN sudo npm install -g npm@6.13.4
+RUN sudo apt-get update
+RUN sudo apt-get install libpng16-16
+RUN sudo apt-get install libpng-dev -y --no-install-recommends
 
+# Install MEAN.JS Prerequisites
+# RUN sudo npm install
+RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean --force
 RUN mkdir -p /opt/mean.js/public/lib
 WORKDIR /opt/mean.js
 
@@ -49,7 +59,7 @@ WORKDIR /opt/mean.js
 # when the local package.json file changes.
 # Install npm packages
 COPY package.json /opt/mean.js/package.json
-RUN npm install --quiet && npm cache clean
+RUN sudo npm install --quiet && npm cache clean --force
 
 # Install bower packages
 COPY bower.json /opt/mean.js/bower.json
@@ -58,5 +68,8 @@ RUN bower install --quiet --allow-root --config.interactive=false
 
 COPY . /opt/mean.js
 
+# delete the local node_moodules and package.json.lock and re-install once more
+RUN sudo rm -rf node_modules package-lock.json
+
 # Run MEAN.JS server
-CMD npm install && npm start
+CMD sudo npm install && npm start
