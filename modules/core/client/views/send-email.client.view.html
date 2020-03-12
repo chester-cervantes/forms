@@ -1,3 +1,38 @@
 <section>
-  This is the Send email view
+  <br>
+  <form name="email-form" data-ng-submit="postEmail()">
+    <fieldset>
+      <div class="form-group">
+        <label for="to">To</label>
+        <input required type="email" class="form-control" ng-model="to" id="to" aria-describedby="toHelp">
+        <!-- <small id="toHelp" class="form-text text-muted">Enter email(s)</small> -->
+      </div>
+      <div class="form-group">
+        <label for="Cc">Cc</label>
+        <input type="email" class="form-control" ng-model="Cc" id="Cc" aria-describedby="CcHelp">
+        <!-- <small id="subjectHelp" class="form-text text-muted">Enter email(s)</small> -->
+      </div>
+      <div class="form-group">
+        <label for="Bcc">Bcc</label>
+        <input type="email" class="form-control" ng-model="Bcc" id="Bcc" aria-describedby="BccHelp">
+        <!-- <small id="subjectHelp" class="form-text text-muted">Enter email(s)</small> -->
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control" ng-model="subject" id="subject" aria-describedby="subjectHelp">
+        <!-- <small id="subjectHelp" class="form-text text-muted">Enter email(s)</small> -->
+      </div>
+      <div class="form-group">
+        <label for="subject">Message</label>
+        <textarea class="form-control" ng-model="message" id="message" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="attachment">Attachment</label>
+        <input type="file" ng-model="file" class="-file" id="attachment">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">Send</button>
+      </div>
+    </fieldset>
+  </form>
 </section>
