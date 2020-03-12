@@ -63,7 +63,7 @@ exports.sendEmail = function (req, res) {
         if (error) {
           console.log(error);
           callback(error);
-          res.status(400).send("Error: email not sent");
+          res.status(200).send("Error: email not sent");
             
         }
         else{

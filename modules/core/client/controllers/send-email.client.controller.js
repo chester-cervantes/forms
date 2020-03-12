@@ -12,8 +12,6 @@
     angular.element(document.getElementById('load')).css('display', isDisplay? '' : 'none');
   }
 
-
-  
   function SendEmailController($scope, $http) {
 
     // Send email controller logic
@@ -50,11 +48,11 @@
     init();
 
     function init() {
-      // setDisplayLoad(false)
+      setDisplayLoad(true)
       angular.element(document.getElementById('load')).css('display', 'none')
       angular.element(document.getElementById('email-success')).css('display', 'none')
-      var elementText = angular.element(document.getElementById('#email_error_modal'));
-      elementText.modal('show')
+      // var elementText = angular.element(document.getElementById('#email_error_modal'));
+      // elementText.modal('show')
 
 
     }
