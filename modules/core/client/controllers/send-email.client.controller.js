@@ -12,6 +12,7 @@
     angular.element(document.getElementById('load')).css('display', isDisplay? '' : 'none');
   }
 
+
   
   function SendEmailController($scope, $http) {
 
@@ -30,19 +31,19 @@
         "message": $scope.message,
       }
 
-      $scope.isDisplay = true;
-
       $http.post('/api/send-email', data).
         success(function(data, status, headers, config) {
           setDisplayLoad(false);
+          console.log("email sent");
           angular.element(document.getElementById('email-success')).css('display', '')
           console.log("success");
 
         }).
         error(function(data, status, headers, config) {
+          console.log("email error");
           setDisplayLoad(false);
           console.log("failed");
-          angular.element(document.getElementById('email-success')).css('display', '')
+          
         });
     }
 
@@ -52,6 +53,10 @@
       // setDisplayLoad(false)
       angular.element(document.getElementById('load')).css('display', 'none')
       angular.element(document.getElementById('email-success')).css('display', 'none')
+      var elementText = angular.element(document.getElementById('#email_error_modal'));
+      elementText.modal('show')
+
+
     }
   }
 })();
