@@ -27,6 +27,14 @@
     });
 
     $stateProvider
+<<<<<<< HEAD
+=======
+      .state('send-email', {
+        url: '/email',
+        templateUrl: 'modules/core/client/views/send-email.client.view.html',
+        controller: 'SendEmailController',
+      })
+>>>>>>> 1632e9ef9a9c72738c512033d7214e8c55d9fe05
       .state('core', {
         url: '/core',
         templateUrl: 'modules/core/client/views/privacy.client.view.html',
@@ -80,11 +88,14 @@
         data: {
           ignoreState: true
         }
+<<<<<<< HEAD
       })
       .state('send-email', {
         url: '/email',
         templateUrl: 'modules/core/client/views/send-email.client.view.html',
         controller: 'SendEmailController',
+=======
+>>>>>>> 1632e9ef9a9c72738c512033d7214e8c55d9fe05
       });
       
   }
