@@ -1,4 +1,101 @@
-<section>
+<style>
+  .loader-wrapper {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background-color: #242f3f;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .loader-inner{
+    vertical-align: top; 
+    display: inline-block; 
+    width: 100%; 
+    background-color: #fff; 
+    animation: loader-inner 2s infinite ease-in;
+  }
+
+  .loader {
+    display: inline-block; 
+    width: 30px; height: 30px; 
+    position: relative; 
+    border: 4px solid #Fff; 
+    animation: loader 2s infinite ease
+  }
+
+  @keyframes loader {
+    0% { transform: rotate(0deg);}
+    25% { transform: rotate(180deg);}
+    50% { transform: rotate(180deg);}
+    75% { transform: rotate(360deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  @keyframes loader-inner {
+    0% { height: 0%;}
+    25% { height: 0%;}
+    50% { height: 100%;}
+    75% { height: 100%;}
+    100% { height: 0%;}
+  }
+ 
+  .checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+</style>
+
+
+<section">
   <br>
   <form name="email-form" data-ng-submit="postEmail()">
     <fieldset>
@@ -31,8 +128,26 @@
         <input type="file" ng-model="file" class="-file" id="attachment">
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-default">Send</button>
+        <button ng-click="test()" type="submit" class="btn btn-default">Send</button>
       </div>
     </fieldset>
   </form>
+
+  <div class="loader-wrapper" id="load">
+    <span class="loader" hidden>
+      <span class="loader-inner" hidden></span>
+  </div>
+  
+  <div class="loader-wrapper" id="email-success">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+      <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+    </svg>
+  </div>
+  
+  <div class="load-wrapper" id="email-fail">
+  </div>
+
 </section>
+
+
