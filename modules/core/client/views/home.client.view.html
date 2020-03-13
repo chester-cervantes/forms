@@ -1,6 +1,33 @@
 <section>
-  <form data-ng-submit="getWeatherInfo()">
-    <input type="text" ng-model="weather_location">
-    <button type="submit" class="button is-primary">Send</button>
-  </form>
+  <!-- Weather API Section -->
+	<div class="tile">
+    <h1>Display Weather in console from location name &nbsp;</h1>
+    <form style="padding-top: 20px;" data-ng-submit="getWeatherInfo()">
+      <div class="columns">
+        <div class="column">
+          <div style="min-width: 300px;" class="field">
+            <div class="control">
+              <input class="input" type="text" ng-model="weather_location" placeholder="Location of Weather">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <button type="submit" class="button is-primary">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <br/>
+
+  <!-- load scripts to load google maps API script on element load  -->
+  <div class="tile googlemap-panel" ng-init="loadScript()">
+    <h1>Google Maps Current Location &nbsp;</h1>
+    <br/>
+    <input id="pac-input" class="controls" type="text" placeholder="Manual Set Location Search">
+    <button id="curr-location-btn">
+      <i class="fas fa-location-arrow"></i>
+    </button>
+    <div id="map"></div>
+  </div>
 </section>
