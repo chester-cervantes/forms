@@ -1,0 +1,18 @@
+<section>
+  <h1>
+    Google Map API
+  </h1>
+
+  <!-- load scripts to load google maps API script on element load  -->
+  <h3>Google Maps display current location in maps and in console &nbsp;</h3>
+  <h5>Note: Requires permission to get your location</h5>
+  <div class="tile googlemap-panel" ng-init="loadScript()">
+    <br />
+    <button id="curr-location-btn">
+      <i class="fas fa-location-arrow"></i>
+    </button>
+    <div id="map">
+    </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Manual Set Location Search">
+  </div>
+</section>

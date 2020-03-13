@@ -27,6 +27,18 @@
     });
 
     $stateProvider
+      .state('googlemap-api', {
+        url: '/googlemap-api',
+        templateUrl: 'modules/core/client/views/googlemap-api.client.view.html',
+        controller: 'GooglemapApiController',
+        controllerAs: 'vm'
+      })
+      .state('weather-api', {
+        url: '/weather-api',
+        templateUrl: 'modules/core/client/views/weather-api.client.view.html',
+        controller: 'WeatherApiController',
+        controllerAs: 'vm'
+      })
       .state('core', {
         url: '/core',
         templateUrl: 'modules/core/client/views/privacy.client.view.html',

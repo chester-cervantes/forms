@@ -1,0 +1,33 @@
+<section>
+  <!-- Weather API Section -->
+  <div class="tile">
+    <h1>Display Weather in console from location name &nbsp;</h1>
+    <form style="padding-top: 20px;" data-ng-submit="getWeatherInfo()">
+      <div class="columns">
+        <div class="column">
+          <div style="min-width: 300px;" class="field">
+            <div class="control">
+              <input class="input" type="text" ng-model="weather_location" placeholder="Location of Weather">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <button type="submit" class="button is-primary">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br>
+  <div class="tile">
+    <table class="table" id="weather_table">
+      <thead>
+        <th>Location Name</th>
+        <th>Date Time</th>
+        <th>Weather</th>
+        <th>Temperature (in Celsius)</th>
+      </thead>
+      <tbody id="weather_tbody">
+      </tbody>
+    </table>
+  </div>
+</section>
