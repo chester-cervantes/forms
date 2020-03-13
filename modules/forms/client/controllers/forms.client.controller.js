@@ -58,7 +58,7 @@
         .success ( function (data, status, headers, config) {
           console.log ( "success status = " + status ); // DEBUG
           $state.go('forms.view', {
-            formId: res._id
+            formId: data._id
           });
         } )
         .error ( function (data, status, headers, config) {
@@ -71,7 +71,7 @@
       function successCallback(data, status, headers, config) {
         console.log ( "success status = " + status ); // DEBUG
         $state.go('forms.view', {
-          formId: res._id
+          formId: data._id
         });
       }
 
