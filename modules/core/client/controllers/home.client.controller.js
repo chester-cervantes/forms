@@ -78,6 +78,10 @@
 
       // under google maps object, after document.getElementById, can set settings
       map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      //set info window
+      infoWindow = new google.maps.InfoWindow;
+
       if (navigator.geolocation) {
 
         let googleMapsLoadedPromise = new Promise((resolve, reject) => {
@@ -87,6 +91,10 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+            // infoWindow.open(map);
 
             // set map location marker
             map.setCenter(pos);
@@ -109,7 +117,7 @@
 
             resolve(true)
           }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
+            $scope.handleLocationError(true, infoWindow, map.getCenter());
             resolve(false)
           });
         })
@@ -185,7 +193,7 @@
         })
       } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
+        $scope.handleLocationError(false, infoWindow, map.getCenter());
       }
     }
 
