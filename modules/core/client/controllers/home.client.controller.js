@@ -7,6 +7,20 @@
 
   HomeController.$inject = ['$scope', '$http'];
 
+  function round(value, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+  }
+
+  // Acknowledge from https://scottontechnology.com/temperature/kelvin-to-celsius-javascript-code/
+  function convertKelvinToCelsius(kelvin) {
+    if (kelvin < (0)) {
+      return 'below absolute zero (0 K)';
+    } else {
+      return (kelvin - 273.15);
+    }
+  }
+
   // Acknowledged from https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
   function timeConverter(UNIX_timestamp){
     let date = new Date(UNIX_timestamp * 1000);
@@ -27,14 +41,14 @@
     var row = tbody.insertRow(tbody.rows.length);
 
     var location_name = row.insertCell(0);
-    var date_time = row.insertCell(1)
+    var date_time = row.insertCell(1);
     var weather = row.insertCell(2);
     var temperature = row.insertCell(3);
 
     location_name.innerHTML = weather_data['name'];
     date_time.innerHTML = timeConverter(weather_data['dt']);
     weather.innerHTML = weather_data['weather']['0']['main'];
-    temperature.innerHTML = weather_data['main']['temp'];
+    temperature.innerHTML = round(convertKelvinToCelsius(weather_data['main']['temp']), 2);
   }
 
 
