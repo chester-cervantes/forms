@@ -10,17 +10,20 @@
   function GooglemapApiController($scope) {
     var vm = this;
 
-    // Google Map API Stuff:
+ // Google Map API Stuff:
     // load google maps api upon element loads
     $scope.loadScript = function () {
+      let googleAPIKey = "AIzaSyDzJ-hVPlMpfSgk_VNIQJ0HYikoN1z5Dnk";
+
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDzJ-hVPlMpfSgk_VNIQJ0HYikoN1z5Dnk&libraries=places';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + googleAPIKey + '&libraries=places';
       document.body.appendChild(script);
       setTimeout(function () {
         $scope.initMap();
       }, 100);
     }
+
 
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
