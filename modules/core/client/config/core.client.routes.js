@@ -80,6 +80,11 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('send-email', {
+        url: '/email',
+        templateUrl: 'modules/core/client/views/send-email.client.view.html',
+        controller: 'SendEmailController',
       });
       
   }
