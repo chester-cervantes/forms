@@ -45,8 +45,8 @@ a:hover .header-profile-image {
 
 
 
-.navbar-inverse, 
-.open, 
+.navbar-inverse,
+.open,
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: #0072c6;
@@ -71,3 +71,9 @@ a:hover .header-profile-image {
 
 
 .navbar-header {}
+
+
+/* For fixing navbar-right */
+.navbar > .container {
+	display: inline-block !important
+}
