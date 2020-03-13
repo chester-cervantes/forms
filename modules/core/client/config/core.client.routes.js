@@ -27,6 +27,12 @@
     });
 
     $stateProvider
+      .state('core', {
+        url: '/core',
+        templateUrl: 'modules/core/client/views/privacy.client.view.html',
+        controller: 'PrivacyControllerController',
+        controllerAs: 'vm'
+      })
       .state('home', {
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
@@ -67,6 +73,14 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('privacy', {
+        url: '/privacy',
+        templateUrl: '/modules/core/client/views/privacy.client.view.html',
+        data: {
+          ignoreState: true
+        }
       });
+      
   }
 }());
