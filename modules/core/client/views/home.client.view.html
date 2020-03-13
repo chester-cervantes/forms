@@ -1,6 +1,6 @@
 <section>
   <!-- Weather API Section -->
-	<div class="tile">
+  <div class="tile">
     <h1>Display Weather in console from location name &nbsp;</h1>
     <form style="padding-top: 20px;" data-ng-submit="getWeatherInfo()">
       <div class="columns">
@@ -17,7 +17,19 @@
       </div>
     </form>
   </div>
-
+  <br>
+  <div class="tile">
+    <table class="table" id="weather_table">
+      <thead>
+        <th>Location Name</th>
+        <th>Date Time</th>
+        <th>Weather</th>
+        <th>Temperature (in Celsius)</th>
+      </thead>
+      <tbody id="weather_tbody">
+      </tbody>
+    </table>
+  </div>
   <br/>
 
   <!-- load scripts to load google maps API script on element load  -->
