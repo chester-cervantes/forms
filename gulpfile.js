@@ -24,7 +24,6 @@ var _ = require('lodash'),
   del = require('del'),
   semver = require('semver');
 
-let rename = require("gulp-rename");
 let uglify = require('gulp-uglify-es').default;
 
 // Local settings
