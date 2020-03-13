@@ -48,7 +48,10 @@
     "body-parser": "^1.19.0",
     "bower": "^1.8.8",
     "bulma": "^0.8.0",
+<<<<<<< HEAD
     "cacheable-request": "^7.0.1",
+=======
+>>>>>>> weather-api
     "chalk": "~2.1.0",
     "compression": "^1.7.4",
     "connect-flash": "~0.1.1",
