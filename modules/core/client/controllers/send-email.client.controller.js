@@ -17,6 +17,16 @@
     // Send email controller logic
     // ...
 
+    $scope.showModal = function (visible, elem) {
+      if (!elem)
+          elem = element;
+
+      if (visible)
+          $(elem).modal("show");                     
+      else
+          $(elem).modal("hide");
+        }
+
     $scope.postEmail = function(){
       setDisplayLoad(true);
       angular.element(document.getElementById('load')).css('display', '');
@@ -33,14 +43,19 @@
         success(function(data, status, headers, config) {
           setDisplayLoad(false);
           console.log("email sent");
-          angular.element(document.getElementById('email-success')).css('display', '')
+          angular.element(document.getElementById('email-success')).css('display', '');
+          var delay = 2000;
+          setTimeout(function(){
+            angular.element(document.getElementById('email-success')).css('display', 'none');
+          }, delay);
+          
           console.log("success");
 
         }).
         error(function(data, status, headers, config) {
           console.log("email error");
           setDisplayLoad(false);
-          console.log("failed");
+          alert("Unable to send email");
           
         });
     }
@@ -51,10 +66,7 @@
       setDisplayLoad(true)
       angular.element(document.getElementById('load')).css('display', 'none')
       angular.element(document.getElementById('email-success')).css('display', 'none')
-      // var elementText = angular.element(document.getElementById('#email_error_modal'));
-      // elementText.modal('show')
-
-
+    
     }
   }
 })();

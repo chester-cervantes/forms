@@ -35,7 +35,9 @@ exports.sendEmail = function (req, res) {
 
     var template = handlebars.compile(html);
     var replacements = {
-        message: req.body.message
+        message: req.body.message,
+        name: req.user.displayName
+        // profile: req.user.profileImageURL
     };
     var htmlToSend = template(replacements);
 
@@ -62,12 +64,11 @@ exports.sendEmail = function (req, res) {
     transporter.sendMail(mailOptions, function (error, response) {
         if (error) {
           console.log(error);
-          callback(error);
-          res.status(200).send("Error: email not sent");
+          res.status(422).send("Error: email not sent");
             
         }
         else{
-          res.status(400).send("Email sent");          
+          res.status(200).send("Email sent");          
         }
     });
   });  
