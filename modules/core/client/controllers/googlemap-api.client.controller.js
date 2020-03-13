@@ -13,11 +13,9 @@
     // Google Map API Stuff:
     // load google maps api upon element loads
     $scope.loadScript = function () {
-      let googleAPIKey = "AIzaSyDzJ-hVPlMpfSgk_VNIQJ0HYikoN1z5Dnk";
-
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + googleAPIKey + '&libraries=places';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDzJ-hVPlMpfSgk_VNIQJ0HYikoN1z5Dnk&libraries=places';
       document.body.appendChild(script);
       setTimeout(function () {
         $scope.initMap();
