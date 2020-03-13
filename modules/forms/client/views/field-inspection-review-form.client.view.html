@@ -8,9 +8,9 @@
 
         <div class="form-group" show-errors>
 
-          <label class="control-label" for="project_id">Project ID:</label>
-          <input type="number" ng-model="vm.form.project_id" id="project_id" class="form-control" placeholder="Project ID" required>
-          <div ng-messages="vm.form.project_id.$error" role="alert">
+          <label class="control-label" for="form_id">Project ID:</label>
+          <input type="number" ng-model="vm.form.form_id" id="form_id" class="form-control" placeholder="Form ID" required>
+          <div ng-messages="vm.form.form_id.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form project id is required.</p>
           </div><br>
 
@@ -170,9 +170,16 @@
           <label class="control-label" for="comments">Comments:</label>
           <input type="text" ng-model="vm.form.comments" id="comments" class="form-control" placeholder="Comments"><br>
           
-          <input type="radio" ng-model="vm.form.inspection_status" value="Approved"> Approved
+          <label class="control-label" for="inspector_name">Inspector Name:</label>
+          <input type="radio" ng-model="vm.form.inspection_status" id="Inspection_Status" value="Approved"> Approved
           <input type="radio" ng-model="vm.form.inspection_status" value="Not Approved"> Not Approved
-          <input type="radio" ng-model="vm.form.inspection_status" value="Reinspection Required"> Reinspection Required
+          <input type="radio" ng-model="vm.form.inspection_status" value="Reinspection Required"> Reinspection Required<br>
+
+          <label class="control-label" for="inspector_name">Inspector Name:</label>
+          <input type="text" ng-model="vm.form.inspector_name" id="inspector_name" class="form-control" placeholder="Inspector Name" required>
+          <div ng-messages="vm.form.inspector_name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Form project id is required.</p>
+          </div><br>
           
         </div>
         <div class="form-group">

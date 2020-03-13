@@ -219,4 +219,4 @@ var FormSchema = new Schema({
   }
 });
 
-mongoose.model('Form', FormSchema);
+module.exports = mongoose.model('Form', FormSchema);

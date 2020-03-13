@@ -7,13 +7,19 @@
        ui-sref="forms.view({ formId: form._id })"
        class="list-group-item">
       <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="form.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="form.user" ng-bind="form.user.displayName"></span>
-        <span ng-if="!form.user">Deleted User</span>
+        <label for="form_id"> 
+          Form ID: 
+        </label>
+        <span ng-bind="form.form_id" id="form_id"></span>,   
+        <label for="report_date_time">  
+          Date: 
+        </label>
+        <span ng-bind="form.report_date_time" id="report_date_time"></span>,   
+        <label for="inspector_name"> 
+          By: 
+        </label>
+        <span ng-bind="form.inspector_name" id="inspector_name"></span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="form.name"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.forms.$resolved && !vm.forms.length">
