@@ -24,6 +24,9 @@ var _ = require('lodash'),
   del = require('del'),
   semver = require('semver');
 
+let rename = require("gulp-rename");
+let uglify = require('gulp-uglify-es').default;
+
 // Local settings
 var changedTestFiles = [];
 
@@ -153,7 +156,7 @@ gulp.task('uglify', function () {
 
   return gulp.src(assets)
     .pipe(plugins.ngAnnotate())
-    .pipe(plugins.uglify({
+    .pipe(uglify({
       mangle: true
     }).on('error', function (err) {
       console.log('Uglify error : ', err.toString());
@@ -162,6 +165,7 @@ gulp.task('uglify', function () {
     .pipe(plugins.rev())
     .pipe(gulp.dest('public/dist'));
 });
+
 
 // CSS minifying task
 gulp.task('cssmin', function () {
