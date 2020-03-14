@@ -27,6 +27,24 @@
     });
 
     $stateProvider
+      .state('googlemap-api', {
+        url: '/googlemap-api',
+        templateUrl: 'modules/core/client/views/googlemap-api.client.view.html',
+        controller: 'GooglemapApiController',
+        controllerAs: 'vm'
+      })
+      .state('weather-api', {
+        url: '/weather-api',
+        templateUrl: 'modules/core/client/views/weather-api.client.view.html',
+        controller: 'WeatherApiController',
+        controllerAs: 'vm'
+      })
+      .state('core', {
+        url: '/core',
+        templateUrl: 'modules/core/client/views/privacy.client.view.html',
+        controller: 'PrivacyControllerController',
+        controllerAs: 'vm'
+      })
       .state('home', {
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
@@ -67,6 +85,19 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('privacy', {
+        url: '/privacy',
+        templateUrl: '/modules/core/client/views/privacy.client.view.html',
+        data: {
+          ignoreState: true
+        }
+      })
+      .state('send-email', {
+        url: '/email',
+        templateUrl: 'modules/core/client/views/send-email.client.view.html',
+        controller: 'SendEmailController',
       });
+      
   }
 }());

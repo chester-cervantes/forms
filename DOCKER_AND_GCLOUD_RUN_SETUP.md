@@ -46,11 +46,11 @@
     ```
     $ gcloud components update
     ```
- 5. Set project ID to Google cloud platform project
+5. Set project ID to Google cloud platform project
     ```
     $ gcloud config set project cmpt470-firms
     ```
-5. To build a docker image with google cloud platform use the format: ```docker build -t gcr.io/<gcloud project id>/<Image-name> .```:
+6. To build a docker image with google cloud platform use the format: ```docker build -t gcr.io/<gcloud project id>/<Image-name> .```:
     ```
     $ docker build -t gcr.io/cmpt470-firms/firmsimage .
     ```
@@ -59,13 +59,13 @@
     $ docker build -t gcr.io/cmpt470-firms/firmsimage-production -f Dockerfile-production .
     ```
     
-6. Using docker, tag the image and push it to google cloud
+7. Using docker, tag the image and push it to google cloud
     ```
     $ docker tag gcr.io/cmpt470-firms/firmsimage gcr.io/cmpt470-firms/cmpt470firms/firmsimage
     $ docker push gcr.io/cmpt470-firms/firmsimage
     ```
 
-7. To run container on port 8080 locally run: 
+8. To run container on port 8080 locally run: 
     ```
     $docker run --rm -p 8080:8080 gcr.io/cmpt470-firms/firmsimage
     ```
@@ -97,8 +97,8 @@
 9. Select the following options for the Service
     - Choose cloud run fully managed
     - Region: us-west1 Oregon
-    - Number of CPUs: 2
-    - Memory: 2 GB
+    - Number of CPUs: 1
+    - Memory: 1 GB
     - Authentication: Allow unauthenticated invocations //for websites or public api
     - Select the previously pushed docker container image
 
@@ -115,21 +115,21 @@
     $ gulp
     ```
 
-2. Once updated and confirmed working project, build the docker container:
+3. Once updated master branch and confirmed working project, build the docker container:
     ```
     $ docker build -t gcr.io/cmpt470-firms/firmsimage-production -f Dockerfile-production .
     ```
     
-3. Login to Google Cloud Platform
+4. Login to Google Cloud Platform
     ```
     $ gcloud auth login
     ```
-4. Push the updated docker container image to Google Cloud Platform
+5. Push the updated docker container image to Google Cloud Platform
     ```
     $ docker push gcr.io/cmpt470-firms/firmsimage-production
     ```
-5. Now switch to Google Cloud Platform [Cloud Run Service Page](https://console.cloud.google.com/run/detail/us-west1/firms-service/metrics?folder=&organizationId=&project=cmpt470-firms)
-6. Click on "Edit & Deploy new revision".
-7. Click on container image URL* and select the latest updated production firmsimage-production
-8. Click on Deploy
-9. It should take several minutes to deploy, once it is finished it should re-deploy to the same [URL](https://firms-service-u2hfkqxqka-uw.a.run.app/)
+6. Now switch to Google Cloud Platform [Cloud Run Service Page](https://console.cloud.google.com/run/detail/us-west1/firms-service/metrics?folder=&organizationId=&project=cmpt470-firms)
+7. Click on "Edit & Deploy new revision".
+8. Click on container image URL* and select the latest updated production firmsimage-production
+9. Click on Deploy
+10. It should take several minutes to deploy, once it is finished it should re-deploy to the same [URL](https://firms-service-u2hfkqxqka-uw.a.run.app/)

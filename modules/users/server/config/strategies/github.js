@@ -10,10 +10,11 @@ var passport = require('passport'),
 module.exports = function (config) {
   // Use github strategy
   passport.use(new GithubStrategy({
-    clientID: config.github.clientID,
-    clientSecret: config.github.clientSecret,
+    clientID: "88364660218298def355",
+    clientSecret: "d1b43b1c2ba5325b23a7959fa755f3c2aaa6ac5f",
     callbackURL: config.github.callbackURL,
-    passReqToCallback: true
+    scope: ['user:email'],
+    passReqToCallback: true,
   },
   function (req, accessToken, refreshToken, profile, done) {
     // Set the provider data and include tokens

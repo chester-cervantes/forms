@@ -10,8 +10,8 @@ var passport = require('passport'),
 module.exports = function (config) {
   // Use google strategy
   passport.use(new GoogleStrategy({
-    clientID: config.google.clientID,
-    clientSecret: config.google.clientSecret,
+    clientID: "286508029428-b2bqol5rqtog7gomd5uq97a4s6bkga5i.apps.googleusercontent.com",
+    clientSecret: "JkqkqJvVSyQpzt0CSKUgNMk2",
     callbackURL: config.google.callbackURL,
     passReqToCallback: true,
     scope: ['https://www.googleapis.com/auth/userinfo.profile',
