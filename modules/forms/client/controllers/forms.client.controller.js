@@ -32,7 +32,7 @@
         return;
       }
 
-      $state.go('home', {});
+      $state.go('forms.list', {} );
     }
 
     // Save Form
@@ -57,27 +57,13 @@
         )
         .success ( function (data, status, headers, config) {
           console.log ( "success status = " + status ); // DEBUG
-          $state.go('forms.view', {
-            formId: data._id
-          });
+          $state.go('forms.list', {} );
         } )
         .error ( function (data, status, headers, config) {
           console.log ( "error status = " + status ); // DEBUG
           console.log ( "error data = " + data.message ); // DEBUG
           //vm.error = res.data.message;
         } );
-      }
-
-      function successCallback(data, status, headers, config) {
-        console.log ( "success status = " + status ); // DEBUG
-        $state.go('forms.view', {
-          formId: data._id
-        });
-      }
-
-      function errorCallback(data, status, headers, config) {
-        console.log ( "error status = " + status ); // DEBUG
-        //vm.error = res.data.message;
       }
     }
   }
