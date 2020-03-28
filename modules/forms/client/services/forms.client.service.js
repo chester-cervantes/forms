@@ -19,7 +19,7 @@
           method: 'PUT'
         },
         create: {
-          method: 'PUT',
+          method: 'POST',
           url: '/api/forms'
         }
       }

@@ -8,7 +8,7 @@ var formsPolicy = require('../policies/forms.server.policy'),
 
 module.exports = function(app) {
   // Forms Routes
-  app.route('/api/forms').all(formsPolicy.isAllowed)
+  app.route('/api/forms') //.all(formsPolicy.isAllowed)
     .get(forms.list)
     .post(forms.create);
 
