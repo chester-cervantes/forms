@@ -20,11 +20,13 @@
     vm.user = Authentication.user;
 
     function remove () {
+      if ( vm.form._id === null ) {
+        return;
+      }
+      
       if ( $window.confirm('Are you sure you want to delete this form?' ) ) {
         if ( form ) {
           form.$remove ( $state.go ( 'forms.list' ) );
-
-          vm.forms.splice ( vm.forms.indexOf ( form ) , 1 );
           Notification.success ( 'User deleted successfully!' );
         } 
         else {
@@ -66,7 +68,7 @@
         vm.form.$update ( successCallback (), function ( err ) {});
       } 
       else {
-        vm.form.$create ( successCallback () );
+        vm.form.$create ( successCallback (), function ( err ) {} );
       }
     }
   }

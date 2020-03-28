@@ -21,6 +21,10 @@
         create: {
           method: 'POST',
           url: '/api/forms'
+        },
+        delete: {
+          method: 'DELETE',
+          url: '/api/forms'
         }
       }
     );

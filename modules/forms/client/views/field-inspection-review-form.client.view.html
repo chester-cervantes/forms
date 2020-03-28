@@ -185,7 +185,7 @@
         <div class="form-group">
           <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
           <button type="submit" class="btn btn-success">{{vm.form._id ? 'Save' : 'Create'}}</button>
-          <button type="button" class="btn btn-danger" ng-if="vm.form._id">Delete</button>
+          <button type="button" class="btn btn-danger" ng-if="vm.form._id" ng-click="vm.remove()">Delete</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
