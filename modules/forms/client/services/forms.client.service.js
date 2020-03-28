@@ -16,15 +16,16 @@
       },
       {
         update: {
-          method: 'PUT'
+          method: 'PUT',
+          url: '/api/forms/:formId'
         },
         create: {
           method: 'POST',
           url: '/api/forms'
         },
-        delete: {
+        remove: {
           method: 'DELETE',
-          url: '/api/forms'
+          url: '/api/forms/:formId'
         }
       }
     );

@@ -19,7 +19,8 @@
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'forms', {
       title: 'List Forms',
-      state: 'forms.list'
+      state: 'forms.list',
+      roles: ['user']
     });
 
     // Add the dropdown create item

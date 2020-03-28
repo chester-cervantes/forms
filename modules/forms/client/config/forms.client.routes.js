@@ -38,7 +38,7 @@
       })
       .state('forms.edit', {
         url: '/:formId/edit',
-        templateUrl: 'modules/forms/client/views/form-form.client.view.html',
+        templateUrl: 'modules/forms/client/views/field-inspection-review-form.client.view.html',
         controller: 'FormsController',
         controllerAs: 'vm',
         resolve: {
@@ -51,7 +51,7 @@
       })
       .state('forms.view', {
         url: '/:formId',
-        templateUrl: 'modules/forms/client/views/field-inspection-review-form.client.view.html',
+        templateUrl: 'modules/forms/client/views/view-form.client.view.html',
         controller: 'FormsController',
         controllerAs: 'vm',
         resolve: {
