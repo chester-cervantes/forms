@@ -11,7 +11,7 @@
     $stateProvider
       .state('forms', {
         abstract: true,
-        url: '/forms',
+        url: '',
         template: '<ui-view/>'
       })
       .state('forms.list', {
