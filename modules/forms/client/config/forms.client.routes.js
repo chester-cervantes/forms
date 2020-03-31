@@ -15,7 +15,7 @@
         template: '<ui-view/>'
       })
       .state('forms.list', {
-        url: '',
+        url: '/viewForms',
         templateUrl: 'modules/forms/client/views/list-forms.client.view.html',
         controller: 'FormsListController',
         controllerAs: 'vm',
