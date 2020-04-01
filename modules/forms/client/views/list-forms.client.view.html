@@ -2,25 +2,50 @@
   <div class="page-header">
     <h1>Forms</h1>
   </div>
+  <div class="section">
+    <div>Sort By:</div>
+
+    <div class="dropdown">
+      <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+          <span>ID</span>
+          <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+        <div class="dropdown-content">
+          <a href="#" class="dropdown-item">
+            Overview
+          </a>
+          <a href="#" class="dropdown-item">
+            Modifiers
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <div class="list-group">
     <a ng-repeat="form in vm.forms"
        ui-sref="forms.view({ formId: form._id })"
        class="list-group-item">
       <small class="list-group-item-text">
-        <label for="form_id"> 
-          Form ID: 
+        <label for="form_id">
+          Form ID:
         </label>
-        <span ng-bind="form.form_id" id="form_id"></span>  |  
-        <label for="project_location"> 
-          Location: 
+        <span ng-bind="form.form_id" id="form_id"></span> |
+        <label for="project_location">
+          Location:
         </label>
-        <span ng-bind="form.project_location" id="project_location"></span>  |  
-        <label for="report_date_time">  
-          Date: 
+        <span ng-bind="form.project_location" id="project_location"></span> |
+        <label for="report_date_time">
+          Date:
         </label>
-        <span ng-bind="form.report_date_time" id="report_date_time"></span>  |  
-        <label for="inspector_name"> 
-          By: 
+        <span ng-bind="form.report_date_time" id="report_date_time"></span> |
+        <label for="inspector_name">
+          By:
         </label>
         <span ng-bind="form.inspector_name" id="inspector_name"></span>
       </small>
