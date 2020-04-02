@@ -4,7 +4,12 @@
   </div>
   <div class="section">
     <div>Sort By:</div>
-
+    <div ng-app="" ng-init="firstName=1;">
+      <p>Input something in the input box:</p>
+      <p>Name: <input type="text" ng-model="firstName"></p>
+      <p>You wrote: {{ firstName }}</p>
+      <button ng-click="Sort1()">asdfasdf</button>
+    </div>
     <div class="dropdown">
       <div class="dropdown-trigger">
         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -27,30 +32,24 @@
     </div>
 
   </div>
-  <div class="list-group">
-    <a ng-repeat="form in vm.forms"
-       ui-sref="forms.view({ formId: form._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        <label for="form_id">
-          Form ID:
-        </label>
-        <span ng-bind="form.form_id" id="form_id"></span> |
-        <label for="project_location">
-          Location:
-        </label>
-        <span ng-bind="form.project_location" id="project_location"></span> |
-        <label for="report_date_time">
-          Date:
-        </label>
-        <span ng-bind="form.report_date_time" id="report_date_time"></span> |
-        <label for="inspector_name">
-          By:
-        </label>
-        <span ng-bind="form.inspector_name" id="inspector_name"></span>
-      </small>
-    </a>
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Location</th>
+        <th>Time</th>
+        <th>Played</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="form in vm.forms">
+        <td>{{ form.form_id }}</td>
+        <td>{{ form.project_location }}</td>
+        <td>{{ form.report_date_time }}</td>
+        <td>{{ form.inspector_name }}</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="alert alert-warning text-center" ng-if="vm.forms.$resolved && !vm.forms.length">
     No Forms yet, why don't you <a ui-sref="forms.create">create one</a>?
   </div>
