@@ -48,6 +48,7 @@
         <th>Location</th>
         <th>Time</th>
         <th>Inspector Name</th>
+        <th>More Details</th>
       </tr>
     </thead>
     <tbody id="forms-table-body" >
@@ -56,6 +57,7 @@
         <td>{{ form.project_location }}</td>
         <td>{{ form.report_date_time }}</td>
         <td>{{ form.inspector_name }}</td>
+        <td ui-sref="forms.view({ formId: form._id })"><i class="fas fa-info-circle"></i> </td>
       </tr>
     </tbody>
   </table>
