@@ -77,3 +77,17 @@ a:hover .header-profile-image {
 .navbar > .container {
 	display: inline-block !important
 }
+
+
+.display_none {
+	display: none;
+}
+
+.floatRight {
+	float: right;
+	font-weight: 700;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-left: 20px;
+}
+
