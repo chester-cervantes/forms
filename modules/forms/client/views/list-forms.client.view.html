@@ -2,46 +2,55 @@
   <div class="page-header">
     <h1>Forms</h1>
   </div>
+
+  <div class="section">
+    <div class="search-container">
+      <form data-ng-submit="SearchForms()">
+        <label>
+          <input type="text" placeholder="Search..." name="search" ng-model="searchKeyWord">
+        </label>
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    <p>You wrote: {{ searchKeyWord }}</p>
+  </div>
+
+
   <div class="section">
     <div>Sort By:</div>
-    <div ng-app="" ng-init="firstName=1;">
-      <p>Input something in the input box:</p>
-      <p>Name: <input type="text" ng-model="firstName"></p>
-      <p>You wrote: {{ firstName }}</p>
-      <button ng-click="Sort1()">asdfasdf</button>
-    </div>
-    <div class="dropdown">
+    <div id="dropdown1" class="dropdown">
       <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-          <span>ID</span>
-          <span class="icon is-small">
+        <button class="button" ng-click="ToggleDropDownMenu()" aria-haspopup="true" aria-controls="dropdown-menu1">
+          <span id="dropdown1-span">By ID (Ascending)</span>
+          <span class="icon">
         <i class="fas fa-angle-down" aria-hidden="true"></i>
       </span>
         </button>
       </div>
-      <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+      <div class="dropdown-menu" id="dropdown-menu1" role="menu">
         <div class="dropdown-content">
-          <a href="#" class="dropdown-item">
-            Overview
+          <a ng-click="SortByIdAscending()" class="dropdown-item">
+            By ID (Ascending)
           </a>
-          <a href="#" class="dropdown-item">
-            Modifiers
+          <hr class="dropdown-divider">
+          <a ng-click="SortByIdDescending()" class="dropdown-item">
+            By ID (Descending)
           </a>
         </div>
       </div>
     </div>
 
   </div>
-  <table class="table">
+  <table id="forms-table" class="table">
     <thead>
       <tr>
         <th>ID</th>
         <th>Location</th>
         <th>Time</th>
-        <th>Played</th>
+        <th>Inspector Name</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="forms-table-body" >
       <tr ng-repeat="form in vm.forms">
         <td>{{ form.form_id }}</td>
         <td>{{ form.project_location }}</td>

@@ -23,6 +23,15 @@
           pageTitle: 'Forms List'
         }
       })
+      .state('forms.search', {
+        url: '/viewForms/search',
+        templateUrl: 'modules/forms/client/views/list-forms.client.view.html',
+        controller: 'FormsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Forms List'
+        }
+      })
       .state('forms.create', {
         url: '/create',
         templateUrl: 'modules/forms/client/views/field-inspection-review-form.client.view.html',
