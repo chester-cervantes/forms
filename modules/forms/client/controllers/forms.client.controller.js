@@ -8,6 +8,8 @@
 
   FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService', '$http' , 'Notification'];
 
+
+
   function FormsController ( $scope, $state, $window, Authentication, form, FormsService, $http , Notification ) {
     var vm = this;
 
@@ -23,12 +25,12 @@
       if ( vm.form._id === null ) {
         return;
       }
-      
+
       if ( $window.confirm('Are you sure you want to delete this form?' ) ) {
         if ( form ) {
           form.$remove ( $state.go ( 'forms.list' ) );
           Notification.success ( 'User deleted successfully!' );
-        } 
+        }
         else {
           vm.user.$remove ( function () {
             $state.go ( 'forms.list' );
@@ -66,7 +68,7 @@
 
       if ( vm.form._id ) {
         vm.form.$update ( successCallback (), function ( err ) {});
-      } 
+      }
       else {
         vm.form.$create ( successCallback (), function ( err ) {} );
       }
@@ -95,4 +97,20 @@
     //   }
     // }
 
+
+  //on click of other checkbox
+  // let otherCheckbox = document.getElementById("other");
+  // console.log(otherCheckbox);
+
+  // otherCheckbox.addEventListener("click", () => {
+  //   if (this.classList.contains("display_none")) {
+  //     otherCheckbox.classList.remove("display_none");
+  //     otherCheckbox.disabled = false;
+  //   }
+  //   else {
+  //     otherCheckbox.classList.add("display_none");
+  //     otherCheckbox.disabled = true;
+  //   }
+
+  // });
 }());
