@@ -1,16 +1,16 @@
 <section>
+  <div class="container">
   <div class="page-header">
     <h1>Forms</h1>
   </div>
+</div>
 
-  <div class="section">
-    <input type="text" id="searchString" ng-keyup="SearchForms()" placeholder="Search...">
-  </div>
-
-
-  <div class="section">
-    <div>Sort By:</div>
-    <div id="dropdown1" class="dropdown">
+  <div class="container">
+  <div class="section" style="margin-bottom: 30px">
+    <div class="is-6" style="float:left">
+    <label style="    margin-top: 8px;
+    margin-right: 5px;">Sort By </label>
+    <span id="dropdown1" class="dropdown">
       <div class="dropdown-trigger">
         <button class="button" ng-click="ToggleDropDownMenu()" aria-haspopup="true" aria-controls="dropdown-menu1">
           <span id="dropdown1-span">By ID (Ascending)</span>
@@ -54,9 +54,18 @@
           </a>
         </div>
       </div>
-    </div>
+    </span>
+  </div>
+
+  <div class="is-6" style="float: right">
+    <input class="input" type="text" id="searchString" ng-keyup="SearchForms()" placeholder="Search...">
+  </div>
 
   </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
   <table id="forms-table" class="table">
     <thead>
       <tr>
@@ -64,7 +73,7 @@
         <th>Location</th>
         <th>Date</th>
         <th>Inspector Name</th>
-        <th>More Details</th>
+        <th></th>
       </tr>
     </thead>
     <tbody id="forms-table-body" >
@@ -80,4 +89,6 @@
   <div class="alert alert-warning text-center" ng-if="vm.forms.$resolved && !vm.forms.length">
     No Forms yet, why don't you <a ui-sref="forms.create">create one</a>?
   </div>
+</div>
+</div>
 </section>
