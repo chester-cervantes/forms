@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Form Schema
  */
 var FormSchema = new Schema({
-  form_id: {
+  project_id: {
     type: Number,
     //required: 'Please fill form id',
     trim: true
