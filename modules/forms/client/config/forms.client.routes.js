@@ -29,7 +29,7 @@
         controller: 'FormsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Forms List'
+          pageTitle: 'Forms List Search {{ formResolve.name }}'
         }
       })
       .state('forms.create', {

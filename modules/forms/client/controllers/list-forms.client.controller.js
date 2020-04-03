@@ -21,15 +21,17 @@
     formsTableBody.innerHTML = " ";
     for (let j = 0; j < array.length; j++) {
       var row = formsTableBody.insertRow(j);
+
       var id = row.insertCell(0);
       var location = row.insertCell(1);
       var dateTime = row.insertCell(2);
       var inspectorName = row.insertCell(3);
-
+      var moreDetails = row.insertCell(4);
       id.innerHTML = array[j][0].innerText;
       location.innerHTML = array[j][1].innerText;
       dateTime.innerHTML = array[j][2].innerText;
       inspectorName.innerHTML = array[j][3].innerText;
+      moreDetails.innerHTML = array[j][4].innerHTML;
     }
   }
 
