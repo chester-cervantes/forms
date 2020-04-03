@@ -4,15 +4,7 @@
   </div>
 
   <div class="section">
-    <div class="search-container">
-      <form data-ng-submit="SearchForms()">
-        <label>
-          <input type="text" placeholder="Search..." name="search" ng-model="searchKeyWord">
-        </label>
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
-    <p>You wrote: {{ searchKeyWord }}</p>
+    <input type="text" id="searchString" ng-keyup="SearchForms()" placeholder="Search...">
   </div>
 
 
@@ -29,12 +21,36 @@
       </div>
       <div class="dropdown-menu" id="dropdown-menu1" role="menu">
         <div class="dropdown-content">
-          <a ng-click="SortByIdAscending()" class="dropdown-item">
+          <a ng-click="SortBy('By ID (Ascending)')" class="dropdown-item">
             By ID (Ascending)
           </a>
           <hr class="dropdown-divider">
-          <a ng-click="SortByIdDescending()" class="dropdown-item">
+          <a ng-click="SortBy('By ID (Descending)')" class="dropdown-item">
             By ID (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Location (Ascending)')" class="dropdown-item">
+            By Location (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Location (Descending)')" class="dropdown-item">
+            By Location (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Date (Ascending)')" class="dropdown-item">
+            By Date (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Date (Descending)')" class="dropdown-item">
+            By Date (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Name (Ascending)')" class="dropdown-item">
+            By Name (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Name (Descending)')" class="dropdown-item">
+            By Name (Descending)
           </a>
         </div>
       </div>
@@ -46,7 +62,7 @@
       <tr>
         <th>ID</th>
         <th>Location</th>
-        <th>Time</th>
+        <th>Date</th>
         <th>Inspector Name</th>
         <th>More Details</th>
       </tr>
