@@ -30,16 +30,4 @@
       }
     );
   }
-
-  function GetLatestFormWithID ( form_id ) {
-    if ( form_id == null ) {
-      return null;
-    }
-
-    return {
-      project_location: "Test Location",
-      dev_company_name: "Test Dev",
-      contractor_company: "Test Contractor", 
-    }
-  }
 }());

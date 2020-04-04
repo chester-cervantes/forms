@@ -34,14 +34,6 @@
           setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
 
         }
-        else {
-          vm.user.$remove ( function () {
-            console.log("else")
-
-            $state.go ( 'forms.list' );
-            Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> User deleted successfully!' });
-          });
-        }
       }
     }
 
@@ -83,16 +75,28 @@
         return;
       }
 
-      var recentForm = FormsService.$GetLatestFormWithID ( form.project_id );
+      var recentForm = getLatestFormWithID ( form.project_id );
       if ( recentForm == null ) {
         return;
       }
 
-      vm.form.locationName = recentForm.locationName;
+      vm.form.project_location = recentForm.project_location;
       vm.form.dev_company_name = recentForm.dev_company_name;
       vm.form.contractor_company = recentForm.contractor_company;
       // need to get the latest posted form with the same project ID
       // update modal
+    }
+
+    function getLatestFormWithID ( form_id ) {
+      if ( form_id == null ) {
+        return null;
+      }
+  
+      return {
+        project_location: "Test Location",
+        dev_company_name: "Test Dev",
+        contractor_company: "Test Contractor", 
+      }
     }
 
 
