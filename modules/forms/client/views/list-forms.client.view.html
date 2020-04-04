@@ -2,30 +2,81 @@
   <div class="page-header">
     <h1>Forms</h1>
   </div>
-  <div class="list-group">
-    <a ng-repeat="form in vm.forms"
-       ui-sref="forms.view({ formId: form._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        <label for="form_id"> 
-          Form ID: 
-        </label>
-        <span ng-bind="form.form_id" id="form_id"></span>  |  
-        <label for="project_location"> 
-          Location: 
-        </label>
-        <span ng-bind="form.project_location" id="project_location"></span>  |  
-        <label for="report_date_time">  
-          Date: 
-        </label>
-        <span ng-bind="form.report_date_time" id="report_date_time"></span>  |  
-        <label for="inspector_name"> 
-          By: 
-        </label>
-        <span ng-bind="form.inspector_name" id="inspector_name"></span>
-      </small>
-    </a>
+
+  <div class="section">
+    <input type="text" id="searchString" ng-keyup="SearchForms()" placeholder="Search...">
   </div>
+
+
+  <div class="section">
+    <div>Sort By:</div>
+    <div id="dropdown1" class="dropdown">
+      <div class="dropdown-trigger">
+        <button class="button" ng-click="ToggleDropDownMenu()" aria-haspopup="true" aria-controls="dropdown-menu1">
+          <span id="dropdown1-span">By ID (Ascending)</span>
+          <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu1" role="menu">
+        <div class="dropdown-content">
+          <a ng-click="SortBy('By ID (Ascending)')" class="dropdown-item">
+            By ID (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By ID (Descending)')" class="dropdown-item">
+            By ID (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Location (Ascending)')" class="dropdown-item">
+            By Location (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Location (Descending)')" class="dropdown-item">
+            By Location (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Date (Ascending)')" class="dropdown-item">
+            By Date (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Date (Descending)')" class="dropdown-item">
+            By Date (Descending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Name (Ascending)')" class="dropdown-item">
+            By Name (Ascending)
+          </a>
+          <hr class="dropdown-divider">
+          <a ng-click="SortBy('By Name (Descending)')" class="dropdown-item">
+            By Name (Descending)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <table id="forms-table" class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Inspector Name</th>
+        <th>More Details</th>
+      </tr>
+    </thead>
+    <tbody id="forms-table-body" >
+      <tr ng-repeat="form in vm.forms">
+        <td>{{ form.form_id }}</td>
+        <td>{{ form.project_location }}</td>
+        <td>{{ form.report_date_time }}</td>
+        <td>{{ form.inspector_name }}</td>
+        <td><a ui-sref="forms.view({ formId: form._id })">Details</a></td>
+      </tr>
+    </tbody>
+  </table>
   <div class="alert alert-warning text-center" ng-if="vm.forms.$resolved && !vm.forms.length">
     No Forms yet, why don't you <a ui-sref="forms.create">create one</a>?
   </div>

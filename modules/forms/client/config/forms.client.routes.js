@@ -15,12 +15,21 @@
         template: '<ui-view/>'
       })
       .state('forms.list', {
-        url: '',
+        url: '/viewForms',
         templateUrl: 'modules/forms/client/views/list-forms.client.view.html',
         controller: 'FormsListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Forms List'
+        }
+      })
+      .state('forms.search', {
+        url: '/viewForms/search',
+        templateUrl: 'modules/forms/client/views/list-forms.client.view.html',
+        controller: 'FormsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Forms List Search {{ formResolve.name }}'
         }
       })
       .state('forms.create', {
