@@ -155,6 +155,11 @@
       selectedLocation.value = "";
     }
 
+    vm.recenterLocation = recenterLocation;
+    function recenterLocation() {
+      $scope.goToMyLocation();
+    }
+
 
     $scope.initGoogleMapApi = function (callback) {
       if (!googleMapAPIInit) {
@@ -209,12 +214,6 @@
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
     var map, infoWindow, mapOptions, searchBox;
-
-    // Go to my location button
-    var currLocationBtn = document.getElementById("curr-location-btn");
-    currLocationBtn.addEventListener('click', function () {
-      $scope.goToMyLocation();
-    });
 
     // function to handle recentering of map to current location
     $scope.goToMyLocation = function () {
