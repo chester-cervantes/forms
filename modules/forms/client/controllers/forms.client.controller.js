@@ -18,6 +18,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.cancel = cancel;
+    vm.updateFormOnProjectID = updateFormOnProjectID;
     vm.user = Authentication.user;
 
     function remove () {
@@ -77,28 +78,22 @@
       }
     }
 
+    function updateFormOnProjectID () {
+      if ( form.project_id == null ) {
+        return;
+      }
 
-    // // Save Form
-    // function save(isValid) {
+      var recentForm = FormsService.$GetLatestFormWithID ( form.project_id );
+      if ( recentForm == null ) {
+        return;
+      }
 
-
-    //   // TODO: move create/update logic to service
-    //   if (vm.form._id) {
-    //     vm.form.$update(successCallback, errorCallback);
-    //   } else {
-    //     vm.form.$save(successCallback, errorCallback);
-    //   }
-
-    //   function successCallback(res) {
-    //     $state.go('forms.view', {
-    //       formId: res._id
-    //     });
-    //   }
-
-    //   function errorCallback(res) {
-    //     vm.error = res.data.message;
-    //   }
-    // }
+      vm.form.locationName = recentForm.locationName;
+      vm.form.dev_company_name = recentForm.dev_company_name;
+      vm.form.contractor_company = recentForm.contractor_company;
+      // need to get the latest posted form with the same project ID
+      // update modal
+    }
 
 
 

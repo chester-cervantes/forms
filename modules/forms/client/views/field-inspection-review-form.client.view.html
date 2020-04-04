@@ -64,7 +64,7 @@
             </div>
             <div class="column">
               <label class="control-label" for="project_id">Project ID:</label>
-              <input type="number" ng-model="vm.form.project_id" id="project_id" class="form-control" placeholder="Project ID" required>
+              <input type="number" ng-model="vm.form.project_id" ng-change="vm.updateFormOnProjectID ()" id="project_id" class="form-control" placeholder="Project ID" required>
               <div ng-messages="vm.form.project_id.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Form project id is required.</p>
               </div>
