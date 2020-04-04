@@ -9,6 +9,9 @@
 
         <div class="form-group" show-errors>
 
+          <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
+            <i class="fas fa-map-marker-alt"></i> Update Location
+          </button>
           <h3>
             Inspection Details
           </h3>
@@ -404,7 +407,53 @@
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
         </div>
+
+        <div class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
       </fieldset>
     </form>
   </div>
+
+  <div id="googleMapModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-background"></div>
+      <div class="modal-content google-map-modal">
+        <div class="modal-header">
+          <h1 class="modal-title google-modal-title">Project Location:</h1>
+          <button type="button" class="close google-modal-close-btn" data-dismiss="modal" ng-click="vm.closeGoogleMapModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <span class="google-map-requires-permission display_none">*Google Map requires permission to get location*</span>
+          <!-- load scripts to load google maps API script on element load  -->
+          <div class="tile googlemap-panel">
+            <br />
+            <button id="curr-location-btn">
+              <i class="fas fa-location-arrow"></i>
+            </button>
+            <div id="map">
+            </div>
+            <input id="pac-input" class="controls" type="text" placeholder="Location Search">
+          </div>
+
+          <br/>
+          <label class="control-label">Selected location:</label>
+          <input id="selectedMapLocation" readonly="true" type="text" class="form-control"/>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button is-link is-light" ng-click="vm.closeGoogleMapModal()">Close</button>
+          <button type="button" class="button is-link" ng-click="vm.selectLocation()">Select Location</button>
+        </div>
+    </div>
+  </div>
+
 </section>
