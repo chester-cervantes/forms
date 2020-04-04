@@ -27,11 +27,16 @@
 
       if ( $window.confirm('Are you sure you want to delete this form?' ) ) {
         if ( form ) {
-          form.$remove ( $state.go ( 'forms.list' ) );
+          form.$remove (  );
           Notification.success ( 'User deleted successfully!' );
+          console.log("if")
+          setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
+
         }
         else {
           vm.user.$remove ( function () {
+            console.log("else")
+
             $state.go ( 'forms.list' );
             Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> User deleted successfully!' });
           });
@@ -48,8 +53,7 @@
 
     function successCallback () {
       console.log ( "SUCCESS HERE CALLED" );
-      $state.go('forms.list', {} );
-
+      setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
       Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> Form saved successfully!' });
     }
 

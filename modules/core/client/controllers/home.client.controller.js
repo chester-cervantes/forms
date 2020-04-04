@@ -5,7 +5,10 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$http'];
+  HomeController.$inject = ['$scope', '$http', '$location', '$anchorScroll'];
+
+
+ 
 
   function round(value, precision) {
     var multiplier = Math.pow(10, precision || 0);
@@ -52,9 +55,15 @@
   }
 
 
-  function HomeController($scope, $http) {
+  function HomeController($scope, $http, $location, $anchorScroll) {
     var vm = this;
 
+
+    $scope.scrollTo = function(id) {
+      //$location.hash(id);
+      //$anchorScroll();
+      document.getElementById(id).scrollIntoView({behavior: "smooth", block:"start", inline:"nearest"});
+    }
 
   }
 }());

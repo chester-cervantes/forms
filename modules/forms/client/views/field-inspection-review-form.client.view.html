@@ -3,7 +3,8 @@
     <h1>{{vm.form._id ? 'Edit Field Inspection Report' : 'New Field Inspection Report'}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.fieldInspectionReviewForm" class="form-horizontal" ng-submit="vm.save(vm.fieldInspectionReviewForm.$valid)" validate>
+    <form name="vm.fieldInspectionReviewForm" class="form-horizontal"
+      ng-submit="vm.save(vm.fieldInspectionReviewForm.$valid)" validate>
       <fieldset>
 
         <div class="form-group" show-errors>
@@ -11,185 +12,397 @@
           <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
             <i class="fas fa-map-marker-alt"></i> Update Location
           </button>
+          <h3>
+            Inspection Details
+          </h3>
+          <hr>
 
-          <label class="control-label" for="form_id">Project ID:</label>
-          <input type="number" ng-model="vm.form.form_id" id="form_id" class="form-control" placeholder="Form ID" required>
-          <div ng-messages="vm.form.form_id.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form project id is required.</p>
-          </div><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="inspector_name">Inspector Name:</label>
+              <input type="text" ng-model="vm.form.inspector_name" id="inspector_name" class="form-control"
+                placeholder="Inspector Name" required>
+              <div ng-messages="vm.form.inspector_name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form project id is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="dev_company_name">Developer Company:</label>
+              <input type="text" ng-model="vm.form.dev_company_name" id="dev_company_name" class="form-control input"
+                placeholder="Developer Company" required>
+              <div ng-messages="vm.form.dev_company_name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form developer company name is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="contractor_company">Contractor Company:</label>
+              <input type="text" ng-model="vm.form.contractor_company" id="contractor_company" class="form-control input"
+                placeholder="Contractor Company" required>
+              <div ng-messages="vm.form.contractor_company.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form contractor company is required.</p>
+              </div><br>
+            </div>
+          </div>
 
-          <label class="control-label" for="dev_company_name">Developer:</label>
-          <input type="text" ng-model="vm.form.dev_company_name" id="dev_company_name" class="form-control" placeholder="Developer Company" required>
-          <div ng-messages="vm.form.dev_company_name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form dev company name is required.</p>
-          </div><br>
 
-          <label class="control-label" for="project_location">Project:</label>
-          <input type="text" ng-model="vm.form.project_location" id="project_location" class="form-control" placeholder="Project Location" required>
-          <div ng-messages="vm.form.project_location.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form project location is required.</p>
-          </div><br>
+          <!-- auto fill information -->
+          <h3>
+            Site Information
+          </h3>
+          <hr>
 
-          <label class="control-label" for="contractor_company">Contractor Company:</label>
-          <input type="text" ng-model="vm.form.contractor_company" id="contractor_company" class="form-control" placeholder="Contractor Company" required>
-          <div ng-messages="vm.form.contractor_company.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form contractor company is required.</p>
-          </div><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="project_location">Project Location:</label>
+              <div class="control">
+                <input type="text" ng-model="vm.form.project_location" id="project_location" class="form-control input"
+                  placeholder="Project Location" required />
+              </div>
+              <div ng-messages="vom.form.project_location.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form project location is required.</p>
+              </div>
+            </div>
+            <div class="column">
+              <label class="control-label" for="project_id">Project ID:</label>
+              <input type="number" ng-model="vm.form.project_id" id="project_id" class="form-control" placeholder="Project ID" required>
+              <div ng-messages="vm.form.project_id.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form project id is required.</p>
+              </div>
+              <br>
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-          <label class="control-label" for="report_date_time">Date/Time:</label>
-          <input
-            type="text"
-            ng-model="vm.form.report_date_time"
-            id="report_date_time"
-            class="form-control"
-            placeholder="Report Date Time"
-            required>
-          <div ng-messages="vm.form.report_date_time.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
-          </div><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="report_date_time">Date and Time:</label>
+              <input type="text" ng-model="vm.form.report_date_time" id="report_date_time" class="form-control input"
+                placeholder="Report Date Time" required>
+              <div ng-messages="vm.form.report_date_time.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="temperature">Temperature:</label>
+              <input type="text" ng-model="vm.form.temperature" id="name" class="form-control input" placeholder="Temperature" required>
+              <div ng-messages="vm.form.temperature.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="weather">Location's Weather:</label>
+              <input type="text" ng-model="vm.form.weather" id="name" class="form-control input" placeholder="Weather" required>
+              <div ng-messages="vm.form.weather.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form weather is required.</p>
+              </div><br>
+            </div>
+          </div>
 
-          <label class="control-label" for="weather">Weather:</label>
-          <input
-            type="text"
-            ng-model="vm.form.weather"
-            id="name"
-            class="form-control"
-            placeholder="Weather"
-            required>
-          <div ng-messages="vm.form.weather.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form weather is required.</p>
-          </div><br>
+          <h3>
+            Review Type Information
+          </h3>
+          <hr>
 
-          <label class="control-label" for="temperature">Temperature:</label>
-          <input
-            type="text"
-            ng-model="vm.form.temperature"
-            id="name"
-            class="form-control"
-            placeholder="Temperature"
-            required>
-          <div ng-messages="vm.form.temperature.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
-          </div><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <input type="checkbox" ng-model="vm.form.footings_review_type" id="footings_review_type" ng-click="alert('test')">
+              <label for="footings_review_type"> Footings</label>
+              <br/>
+              <input type="checkbox" ng-model="vm.form.foundation_walls_review_type" id="foundation_walls_review_type">
+              <label for="foundation_walls_review_type"> Foundation Walls</label>
+              <br/>
+              <input type="checkbox" ng-model="vm.form.sheathing_review_type" id="sheathing_review_type">
+              <label for="sheathing_review_type"> Sheathing</label>
+              </br>
+            </div>
+            <div class="column">
+              <input type="checkbox" ng-model="vm.form.framing_review_type" id="framing_review_type">
+              <label for="framing_review_type"> Framing</label>
+              <br>
+              <input type="checkbox" ng-model="vm.form.other_review_type" id="other_review_type">
+              <label for="other_review_type"> Other:</label>
+              <input name="other_review_type" type="text" ng-model="vm.form.other_review_type_description" id="other" class="form-control" placeholder="Other Review Type">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-          <fieldset>
-            <legend>Type of Review:</legend>
 
-            <input type="checkbox" ng-model="vm.form.footings_review_type" id="footings_review_type" ng-click="alert('test')">
-            <label for="footings_review_type"> Footings</label>
+          <h3>
+            Concrete Review Information
+          </h3>
+          <hr>
 
-            <input type="checkbox" ng-model="vm.form.foundation_walls_review_type" id="foundation_walls_review_type">
-            <label for="foundation_walls_review_type"> Foundation Walls</label>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Rebar in correct position: </label>
+              <br/>
+              <input type="checkbox" ng-model="vm.form.rebar_pos_reviewed" id="rebar_pos_reviewed">
+              <label for="rebar_pos_reviewed">Reviewed</label>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.rebar_pos_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-            <input type="checkbox" ng-model="vm.form.sheathing_review_type" id="sheathing_review_type">
-            <label for="sheathing_review_type"> Sheathing</label>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Rebar is right size and spacing: </label>
+              <br />
+              <input type="checkbox" ng-model="vm.form.rebar_size_spacing_reviewed" id="rebar_size_spacing_reviewed">
+              <label for="rebar_size_spacing_reviewed">Reviewed</label>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.rebar_size_spacing_instructions"
+                placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-            <input type="checkbox" ng-model="vm.form.framing_review_type" id="framing_review_type">
-            <label for="framing_review_type"> Framing</label><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Hold down anchorage in place:</label>
+              <br />
+              <input type="checkbox" ng-model="vm.form.anchorage_reviewed" id="anchorage_reviewed">
+              <label for="anchorage_reviewed">Reviewed</label>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.anchorage_reviewed_instructions"
+                placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-            <input type="checkbox" ng-model="vm.form.other_review_type" id="other_review_type">
-            <label for="other_review_type"> Other:</label>
-            <input name="review_types_csv" type="text" id="other" class="form-control" placeholder="Other Review Type">
-          </fieldset><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Formwork generally as per plan:</label>
+              <br />
+              <input type="checkbox" ng-model="vm.form.form_plan_reviewed" id="form_plan_reviewed">
+              <label for="form_plan_reviewed">Reviewed</label>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.form_plan_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-          <fieldset>
-            <legend>Concrete:</legend>
-            <p>rebar in correct position: </p>
-            <input type="checkbox" ng-model="vm.form.rebar_pos_reviewed" id="rebar_pos_reviewed">
-            <label for="rebar_pos_reviewed">Reviewed</label>
-            <input class="form-control" type="text" ng-model="vm.form.rebar_pos_instructions" placeholder="Instructions"><br>
 
-            <p>rebar right size and spacing: </p>
-            <input type="checkbox" ng-model="vm.form.rebar_size_spacing_reviewed" id="rebar_size_spacing_reviewed">
-            <label for="rebar_size_spacing_reviewed">Reviewed</label>
-            <input class="form-control" type="text" ng-model="vm.form.rebar_size_spacing_instructions" placeholder="Instructions"><br>
+          <h3>
+            Framing Review Information
+          </h3>
+          <hr>
 
-            <p>hold down anchorage in place: </p>
-            <input type="checkbox" ng-model="vm.form.anchorage_reviewed" id="anchorage_reviewed">
-            <label for="anchorage_reviewed">Reviewed</label>
-            <input class="form-control" type="text" ng-model="vm.form.anchorage_reviewed_instructions" placeholder="Instructions"><br>
-
-            <p>formwork generally as per plan: </p>
-            <input type="checkbox" ng-model="vm.form.form_plan_reviewed" id="form_plan_reviewed">
-            <label for="form_plan_reviewed">Reviewed</label>
-            <input class="form-control" type="text" ng-model="vm.form.form_plan_instructions" placeholder="Instructions"><br>
-          </fieldset>
-
-          <fieldset>
-            <legend>Framing:</legend>
-              <p>conforming with truss spec: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Conforming with truss spec:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.conformance_spec_reviewed" id="conformance_spec_reviewed">
               <label for="conformance_spec_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.conformance_spec_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.conformance_spec_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>conformance with l-joist shop drawings: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Conformance with l-joist shop drawings:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.conformance_drawing_reviewed" id="conformance_drawing_reviewed">
               <label for="conformance_drawing_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.conformance_drawing_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.conformance_drawing_instructions"
+                  placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>beam and girder bearing: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Beam and girder bearing:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.beam_girder_bearing_reviewed" id="beam_girder_bearing_reviewed">
               <label for="beam_girder_bearing_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.beam_girder_bearing_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.beam_girder_bearing_instructions"
+              placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>continuity of top plates: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Continuity of top plates:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.continuity_top_plate_reviewed" id="continuity_top_plate_reviewed">
               <label for="continuity_top_plate_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.continuity_top_plate_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.continuity_top_plate_instructions"
+                placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>lintels/openings: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Lintels/openings:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.lintel_open_reviewed" id="lintel_open_reviewed">
               <label for="lintel_open_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.lintel_open_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.lintel_open_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>shearwalls/fastening/hold downs: </p>
-              <input type="checkbox" ng-model="vm.form.shearwalls_fastening_holddowns_reviewed" id="shearwalls_fastening_holddowns_reviewed">
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Shearwalls/fastening/hold downs:</label>
+              <br />
+              <input type="checkbox" ng-model="vm.form.shearwalls_fastening_holddowns_reviewed"
+                id="shearwalls_fastening_holddowns_reviewed">
               <label for="shearwalls_fastening_holddowns_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.shearwalls_fastening_holddowns_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.shearwalls_fastening_holddowns_instructions"
+              placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>continuity of tall walls: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Continuity of tall walls:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.continuity_tall_walls_reviewed" id="continuity_tall_walls_reviewed">
               <label for="continuity_tall_walls_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.continuity_tall_walls_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.continuity_tall_walls_instructions"
+                placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>blocking in floor system for point loads: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Blocking in floor system for point loads:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.blocking_floor_system_reviewed" id="blocking_floor_system_reviewed">
               <label for="blocking_floor_system_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.blocking_floor_system_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.blocking_floor_system_instructions"
+                placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>wall sheathing: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Wall sheathing:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.wall_sheathing_reviewed" id="wall_sheathing_reviewed">
               <label for="wall_sheathing_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.wall_sheathing_instructions" placeholder="Instructions"><br>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.wall_sheathing_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-              <p>wind girts: </p>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label>Wind girts:</label>
+              <br />
               <input type="checkbox" ng-model="vm.form.wind_girts_reviewed" id="wind_girts_reviewed">
               <label for="wind_girts_reviewed">Reviewed</label>
-              <input class="form-control" type="text" ng-model="vm.form.wind_girts_instructions" placeholder="Instructions"><br>
-          </fieldset>
+            </div>
+            <div class="column">
+              <label>Comments </label>
+              <input class="form-control" type="text" ng-model="vm.form.wind_girts_instructions" placeholder="Instructions">
+            </div>
+            <div class="column">
+            </div>
+          </div>
 
-          <label class="control-label" for="observation">Observation:</label>
-          <input type="text" ng-model="vm.form.observation" id="observation" class="form-control" placeholder="Observations"><br>
 
-          <label class="control-label" for="comments">Comments:</label>
-          <input type="text" ng-model="vm.form.comments" id="comments" class="form-control" placeholder="Comments"><br>
+          <h3>
+            Feedback Information
+          </h3>
+          <hr>
 
-          <label class="control-label" for="inspection_status">Inspection Status:</label>
-          <input type="radio" ng-model="vm.form.inspection_status" id="inspection_status" value="Approved"> Approved
-          <input type="radio" ng-model="vm.form.inspection_status" value="Not Approved"> Not Approved
-          <input type="radio" ng-model="vm.form.inspection_status" value="Reinspection Required"> Reinspection Required<br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="observation">Observation:</label>
+              <textarea type="textarea" ng-model="vm.form.observation" id="observation" class="form-control"
+                placeholder="Observations"  rows="10"></textarea>
+                <br>
+            </div>
+          </div>
 
-          <label class="control-label" for="inspector_name">Inspector Name:</label>
-          <input type="text" ng-model="vm.form.inspector_name" id="inspector_name" class="form-control" placeholder="Inspector Name" required>
-          <div ng-messages="vm.form.inspector_name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Form project id is required.</p>
-          </div><br>
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="comments">Comments:</label>
+              <textarea type="textarea" ng-model="vm.form.comments" id="comments" class="form-control" placeholder="Comments" rows="10"></textarea>
+              <br>
+            </div>
+          </div>
 
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="inspection_status">Inspection Status:</label>
+              <br/>
+              <input type="radio" ng-model="vm.form.inspection_status" id="inspection_status" value="Approved">Approved
+              <br />
+              <input type="radio" ng-model="vm.form.inspection_status" value="Not Approved">Not Approved
+              <br />
+              <input type="radio" ng-model="vm.form.inspection_status" value="Reinspection Required">Reinspection Required
+            </div>
+            <div class="column">
+            </div>
+            <div class="column">
+            </div>
+          </div>
+          <hr>
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
-          <button type="submit" class="btn btn-success">{{vm.form._id ? 'Save' : 'Create'}}</button>
-          <button type="button" class="btn btn-danger" ng-if="vm.form._id" ng-click="vm.remove()">Delete</button>
+            <button class="button is-link floatRight" type="submit">{{vm.form._id ? 'Save' : 'Create'}}</button>
+            <button class="button is-link is-light floatRight" type="button" ng-click="vm.cancel()">Cancel</button>
+            <button type="button" class="is-link is-light floatRight" ng-if="vm.form._id" ng-click="vm.remove()">Delete</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
