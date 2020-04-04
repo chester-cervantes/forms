@@ -8,8 +8,6 @@
 
   FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService', '$http' , 'Notification'];
 
-
-
   function FormsController ( $scope, $state, $window, Authentication, form, FormsService, $http , Notification ) {
     var vm = this;
 
@@ -20,6 +18,9 @@
     vm.save = save;
     vm.cancel = cancel;
     vm.user = Authentication.user;
+
+    console.log("id: " + form.form_id);
+    $scope.pdfUrl = "http://localhost:3000/api/forms/pdf/" + vm.form.form_id;
 
     function remove () {
       if ( vm.form._id === null ) {

@@ -107,6 +107,11 @@ exports.list = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      forms.forEach(e => {
+        if(!checkIfPdfExists('pdf/' + e.form_id + '.pdf')){
+          saveAsPDF(e);
+        }
+      });
       res.jsonp(forms);
     }
   });
@@ -117,10 +122,9 @@ exports.list = function(req, res) {
  */
 exports.getPdf = function (req, res, next) {
 
-  console.log("id: " + req.params.id);
   const path = 'pdf/' + req.params.id + '.pdf';
   if (fs.existsSync(path)) {
-    const data = fs.readFileSync('pdf/6.pdf');
+    const data = fs.readFileSync(path);
     res.contentType("application/pdf");
     res.send(data);
   }
@@ -164,20 +168,34 @@ exports.formByID = function(req, res, next, id) {
  */
 function parseData(form){
 
+  var index = form.project_location.indexOf(',');
+
   return {
     form: form,
+    addressLine1: form.project_location.slice(0, index),
+    addressLine2: form.project_location.slice(index + 1, form.project_location.length),
     date: form.report_date_time.getFullYear() + "-" + (form.report_date_time.getMonth() + 1) + "-" + form.report_date_time.getDate(),
     time: form.report_date_time.getTime(),
     approved: form.inspection_status === "Approved",
     not_approved: form.inspection_status === "Not Approved",
     reinspection_required: form.inspection_status === "Reinspection Required"
+
   }
 }
 
 /*
   Function to save a form as pdf
  */
+
+function checkIfPdfExists(path) {
+  return fs.existsSync(path);
+}
+
 function saveAsPDF(form){
+
+  if (!fs.existsSync('pdf')){
+    fs.mkdirSync('pdf');
+  }
 
   const pathToPDF = 'pdf/' + form.form_id + '.pdf';
 

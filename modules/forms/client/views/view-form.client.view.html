@@ -26,11 +26,13 @@
 
 
   <div style="padding: 10px">
-    <object data="http://localhost:3000/api/forms/pdf/6" type="application/pdf" width="100%" height="750px">
-      <p>Your web browser doesn't have a PDF plugin.
-        Instead you can <a href="pdf/6.pdf">click here to
-          download the PDF file.</a></p>
-    </object>
+<!--    <object data="http://localhost:3000/api/forms/pdf/6" type="application/pdf" width="100%" height="750px">-->
+<!--      <p>Your web browser doesn't have a PDF plugin.-->
+<!--        Instead you can <a href="pdf/6.pdf">click here to-->
+<!--          download the PDF file.</a></p>-->
+<!--    </object>-->
+    <iframe ng-src= "{{pdfUrl}}" width="100%" height="750px"></iframe>
+
   </div>
 
 </section>
