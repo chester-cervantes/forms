@@ -54,10 +54,6 @@ var FormSchema = new Schema({
     type: Boolean,
     default: false
   },
-  sheathing_review_type: {
-    type: Boolean,
-    default: false
-  },  
   framing_review_type: {
     type: Boolean,
     default: false
@@ -215,6 +211,10 @@ var FormSchema = new Schema({
   inspector_name: {
     type: String,
     //required: "Please fill inspector name",
+    trim: true
+  },
+  pdf_location: {
+    type: String,
     trim: true
   }
 });
