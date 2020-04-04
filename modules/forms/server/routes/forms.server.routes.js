@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   // app.route('/api/forms/pdf/:formId').all(formsPolicy.isAllowed).get(forms.getPdf);
 
-  app.use('/api/forms/pdf/:formId', forms.getPdf);
+  app.use('/api/forms/pdf/:id', forms.getPdf);
 
 
   // Finish by binding the Form middleware

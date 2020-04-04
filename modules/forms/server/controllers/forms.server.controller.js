@@ -11,7 +11,9 @@ var path = require('path'),
   fs = require('fs'),
   puppeteer = require('puppeteer'),
   hb = require('handlebars'),
-  utils = require('util')
+  utils = require('util'),
+  ObjectId = require('mongodb').ObjectID;
+
 ;
 
 
@@ -115,20 +117,27 @@ exports.list = function(req, res) {
  */
 exports.getPdf = function (req, res, next) {
 
-  const form = req.form;
+  console.log("id: " + req.params.id);
+  const path = 'pdf/' + req.params.id + '.pdf';
+  if (fs.existsSync(path)) {
+    const data = fs.readFileSync('pdf/6.pdf');
+    res.contentType("application/pdf");
+    res.send(data);
+  }
+  else{
+    return res.status(400).send({
+      message: 'Form is invalid'
+    });
+  }
 
-  const data = fs.readFileSync('pdf/6.pdf');
-  res.contentType("application/pdf");
-  res.send(data);
 };
 
 
 /**
  * Form middleware
  */
-exports.formByID = function(req, res, next, id) {
 
-  console.log("id " + id);
+exports.formByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
