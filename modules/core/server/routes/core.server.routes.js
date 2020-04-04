@@ -3,7 +3,7 @@
 module.exports = function (app) {
   // Root routing
   var core = require('../controllers/core.server.controller');
-  var email = require('../controllers/email.server.controller')
+  var email = require('../controllers/email.server.controller');
 
   // Define error pages
   app.route('/server-error').get(core.renderServerError);
@@ -13,7 +13,8 @@ module.exports = function (app) {
 
   // Define application route
   app.route('/*').get(core.renderIndex);
-  
-  app.route('/api/send-email').post(email.sendEmail)
+
+  app.route('/api/send-email').post(email.sendEmail);
+
 
 };

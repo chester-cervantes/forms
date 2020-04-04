@@ -7,13 +7,12 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Form = mongoose.model('Form'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash');
-
-
-const fs = require('fs');
-const puppeteer = require('puppeteer');
-const hb = require('handlebars');
-const utils = require('util');
+  _ = require('lodash'),
+  fs = require('fs'),
+  puppeteer = require('puppeteer'),
+  hb = require('handlebars'),
+  utils = require('util')
+;
 
 
 /**
@@ -29,6 +28,7 @@ exports.create = function(req, res) {
 
   form.save(function(err) {
     if (err) {
+      fs.unlinkSync('pdf/' + form.form_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -60,10 +60,12 @@ exports.update = function(req, res) {
   var form = req.form;
 
   form = _.extend(form, req.body);
+
   saveAsPDF(form);
 
   form.save(function(err) {
     if (err) {
+      fs.unlinkSync('pdf/' + form.form_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -74,11 +76,12 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Form
+ * Delete a Form
  */
 exports.delete = function(req, res) {
   var form = req.form;
 
+  // delete associated pdf file
   fs.unlinkSync('pdf/' + form.form_id + '.pdf');
 
   form.remove(function(err) {
@@ -108,9 +111,24 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Get a PDF file
+ */
+exports.getPdf = function (req, res, next) {
+
+  const form = req.form;
+
+  const data = fs.readFileSync('pdf/6.pdf');
+  res.contentType("application/pdf");
+  res.send(data);
+};
+
+
+/**
  * Form middleware
  */
 exports.formByID = function(req, res, next, id) {
+
+  console.log("id " + id);
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -132,37 +150,24 @@ exports.formByID = function(req, res, next, id) {
 };
 
 
+/*
+  Helper function for PDF
+ */
 function parseData(form){
 
   return {
     form: form,
     date: form.report_date_time.getFullYear() + "-" + (form.report_date_time.getMonth() + 1) + "-" + form.report_date_time.getDate(),
     time: form.report_date_time.getTime(),
-    footings_review_type: form.footings_review_type,
-    foundation_walls_review_type: form.foundation_walls_review_type,
-    sheathing_review_type: form.sheathing_review_type,
-    framing_review_type: form.framing_review_type,
-    other_review_type: form.other_review_type,
-    rebar_pos_reviewed: form.rebar_pos_reviewed,
-    rebar_size_spacing_reviewed: form.rebar_size_spacing_reviewed,
-    anchorage_reviewed: form.anchorage_reviewed,
-    form_plan_reviewed: form.form_plan_reviewed,
-    conformance_spec_reviewed: form.conformance_spec_reviewed,
-    beam_girder_bearing_reviewed: form.beam_girder_bearing_reviewed,
-    continuity_top_plate_reviewed: form.continuity_top_plate_reviewed,
-    lintel_open_reviewed: form.lintel_open_reviewed,
-    shearwalls_fastening_holddowns_reviewed: form.shearwalls_fastening_holddowns_reviewed,
-    continuity_tall_walls_reviewed: form.continuity_tall_walls_reviewed,
-    blocking_floor_system_reviewed: form.blocking_floor_system_reviewed,
-    wall_sheathing_reviewed: form.wall_sheathing_reviewed,
-    wind_girts_reviewed: form.wind_girts_reviewed,
     approved: form.inspection_status === "Approved",
     not_approved: form.inspection_status === "Not Approved",
     reinspection_required: form.inspection_status === "Reinspection Required"
-
   }
 }
 
+/*
+  Function to save a form as pdf
+ */
 function saveAsPDF(form){
 
   const pathToPDF = 'pdf/' + form.form_id + '.pdf';
@@ -194,7 +199,8 @@ function saveAsPDF(form){
       console.error(err)
     });
   }
-  generatePdf().then(r => form.pdf_url = pathToPDF);
-  console.log("path: " + form.pdf_url);
+  generatePdf();
+  form.pdf_location = pathToPDF;
+  console.log("path: " + form.pdf_location);
 
 }

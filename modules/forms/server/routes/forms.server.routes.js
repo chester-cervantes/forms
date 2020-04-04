@@ -17,7 +17,10 @@ module.exports = function(app) {
     .put(forms.update)
     .delete(forms.delete);
 
-  app.route('/api/forms/:formId/pdf').all(formsPolicy.isAllowed);
+  // app.route('/api/forms/pdf/:formId').all(formsPolicy.isAllowed).get(forms.getPdf);
+
+  app.use('/api/forms/pdf/:formId', forms.getPdf);
+
 
   // Finish by binding the Form middleware
   app.param('formId', forms.formByID);
