@@ -141,7 +141,7 @@
 			/* override modal size */
 			.google-map-modal {
 				min-height: 900px;
-				overflow-y: hidden;
+				overflow-y: auto;
 				overflow-x: hidden;
 			}
 
