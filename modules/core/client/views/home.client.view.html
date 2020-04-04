@@ -1,24 +1,24 @@
 
-<section class="hero is-large" style="background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('modules/core/client/img/shutterstock_110625482 - Copy.jpg');background-color: #f2f2f2; padding-bottom: 100px; clip-path: polygon(50% 0, 100% 0%, 100% 96%, 79% 100%, 10% 99%, 0 95%, 0 0);">
+<section class="hero is-large" style="/*background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('modules/core/client/img/shutterstock_110625482 - Copy.jpg');*/ background: #0072c6; background: linear-gradient(-20deg, #69befd 0%, #0072c6 50%); padding-bottom: 100px; clip-path: polygon(50% 0, 100% 0%, 100% 96%, 79% 100%, 10% 99%, 0 95%, 0 0);">
   <div class="hero-body">
     <div class="container">
       
       <div class="columns">
         <div class="column">
-          <h1 class="title" style="color: white; font-size: 80px; text-shadow: 2px 5px 5px #5a5a5a;">
+          <h1 class="title" style="color: white; font-size: 80px;">
             FIRMS
           </h1>
-          <p class="subtitle" style="color: white; font-size: 40px; margin-top: 30px; margin-bottom: 30px; text-shadow: 1px 5px 10px #5a5a5a;">
+          <p class="subtitle" style="color: white; font-size: 40px; margin-top: 30px; margin-bottom: 30px;">
             Automate & generate inspection forms.
             <br/>
             No more manually doing everything by hand.
           </p>
         </div>
         <div class="column has-text-centered" style="margin-top: 25px">
-          <!--
-          <i class="fas fa-desktop" style="font-size: 140px; color:#0061a9"></i>
-          <i class="fas fa-exchange-alt" style="font-size: 140px; margin-left: 40px; margin-right: 40px; color:#2f7fbb"></i>
-          <i class="fas fa-database" style="font-size: 140px; color:#0061a9"></i>-->
+          
+          <i class="fas fa-desktop" style="font-size: 140px; color:white"></i>
+          <i class="fas fa-exchange-alt" style="font-size: 140px; margin-left: 40px; margin-right: 40px; color:white"></i>
+          <i class="fas fa-database" style="font-size: 140px; color:white"></i>
         </div>
         </div>
       </div>
@@ -28,9 +28,8 @@
 
 <section style="background-color: white;
 margin-top: -250px;
-padding-bottom: 100px;
 padding-top: 200px;">
-<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+<div class="container" style="margin-top: 100px;">
   <div class="tile is-ancestor" style="margin-top:-165px">
     <div class="tile is-vertical is-12">
       <div class="tile has-text-centered">
@@ -41,14 +40,11 @@ padding-top: 200px;">
             margin-bottom: 20px;
             color: #3e81bb"></i>
             <p class="title">
-              What it is
+              What is it
             </p>
             <p class="subtitle">
-              <a href="https://www.mongodb.com/">MongoDB</a>
+              <a ng-click="scrollTo('section1')">Learn more about what it is</a>
             </p>
-            <div class="content">
-              explanation placeholder
-            </div>
           </div>
         </div>
         <div class="tile is-parent is-vertical">
@@ -58,14 +54,11 @@ padding-top: 200px;">
             margin-bottom: 20px;
             color: #2daf9c"></i>
             <p class="title">
-              How it works
+              How does it work
             </p>
             <p class="subtitle">
-              <a href="https://www.mongodb.com/">MongoDB</a>
+              <a ng-click="scrollTo('section2')">Learn how it works</a>
             </p>
-            <div class="content">
-              explanation placeholder
-            </div>
           </div>
         </div>
         <div class="tile is-parent is-vertical">
@@ -78,11 +71,8 @@ padding-top: 200px;">
               Meet the team
             </p>
             <p class="subtitle">
-              <a href="https://www.mongodb.com/">MongoDB</a>
+              <a ng-click="scrollTo('section3')">See who made this system</a>
             </p>
-            <div class="content">
-              explanation placeholder
-            </div>
           </div>
         </div>
       </div>
@@ -92,8 +82,8 @@ padding-top: 200px;">
 </div>
 </section>
 
-<section style="margin-bottom: 100px;">
-  <div class="container">
+<section id="section1" style="height: 100vh; padding-top: 200px">
+  <div class="container box" style="padding: 100px">
     <div class="columns">
       <div class="column is-3 has-text-centered">
       <h1 class="title" style="margin-top: 60px;
@@ -116,17 +106,19 @@ padding-top: 200px;">
 </div>
 </section>
 
-<section style="margin-bottom: 100px; background-color: #f2f2f2;
-padding-top: 150px;
-padding-bottom: 150px;">
-  <div class="container">
+<section id="section2" style="height:100vh; background-color: #f2f2f2;
+padding-top: 50px;">
+  <div class="" style="margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 100px;">
     
 
     <div class="columns">
       <div class="column is-9">
-        <div class=box>
+        <div class="box">
           <div class="columns">
-            <div class="column has-text-centered" style="padding-top: 50px; padding-bottom: 50px;">
+            <div class="column has-text-centered" style="padding: 50px;">
               <i class="fas fa-pencil-ruler" style="font-size: 40px;
               margin-bottom: 30px;
               color: #3292a2;"></i>
@@ -140,12 +132,14 @@ padding-bottom: 150px;">
                 <a href="http://meanjs.org/">MEAN.js</a>
               </p>
               <div class="content" style="font-size: 24px; margin-top: 50px;  line-height: 1.6;">
-                placeholder text blah blah
+                Bulma.io is a free and popular open source front-end framework based on Flexbox.
+                <br/><br/>
+                Mean.js is a full-stack MVC framework that helps produce robust and maintainable web applications using Angular, Express, AngularJS, and Node.js.
               </p>
             </div>
           </div>
           <div class="column has-text-centered" style="border-left: 0.5px solid #cac8c8;
-          border-right: 0.5px solid #cac8c8; padding-top: 50px; padding-bottom: 50px;">
+          border-right: 0.5px solid #cac8c8; padding: 50px;">
           <i class="fas fa-database" style="font-size: 40px;
           margin-bottom: 30px;
           color: #3292a2;"></i>
@@ -155,13 +149,17 @@ padding-bottom: 150px;">
             </p>
             <p class="subtitle">
               <a href="https://www.mongodb.com/">MongoDB</a>
+              <br/>
+              <br/>
             </p>
             <div class="content" style="font-size: 24px; margin-top: 50px;  line-height: 1.6;">
-              placeholder text blah blah
+              MongoDB is an document-oriented NoSQL database that uses JSON-like schemas. 
+              
+              <br/><br/>This application uses MongoAtlas, an engine of MongoDb hosted on the cloud platform.
             </p>
           </div>
         </div>
-        <div class="column has-text-centered" style="padding-top: 50px; padding-bottom: 50px;">
+        <div class="column has-text-centered" style="padding: 50px;">
           <i class="fas fa-book-open" style="font-size: 40px;
               margin-bottom: 30px;
               color: #3292a2;"></i>
@@ -172,11 +170,13 @@ padding-bottom: 150px;">
           <p class="subtitle">
             <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps API</a>
             <br/>
-            <a href="https://openweathermap.org/current?fbclid=IwAR3aR69M58IWJMNPHMfGtk5DuWBQTWecqFu-v49sdDbtrVYphTCrMXeJ15E">Weather API</a>
+            <a href="https://openweathermap.org/current?fbclid=IwAR3aR69M58IWJMNPHMfGtk5DuWBQTWecqFu-v49sdDbtrVYphTCrMXeJ15E">OpenWeatherMap</a>
   
           </p>
           <div class="content" style="font-size: 24px; margin-top: 50px;  line-height: 1.6;">
-            placeholder text blah blah
+            Google Maps API is a service developed by Google, offering imagery and visual representations of street maps.
+            <br/><br/>
+            OpenWeatherMap is an API that provides data on the current weather, hourly forecast, daily forecast, and historical weather data.
           </p>
         </div>
       </div>
@@ -185,73 +185,128 @@ padding-bottom: 150px;">
         </div>
       </div>
       <div class="column is-3 has-text-centered">
+        <!--
       <h1 class="title" style="
       font-size: 40px;">
         How it<br/>works
       </h1>
       <br/>
       <i class="fas fa-cogs" style="font-size: 80px;
-      "></i>
+      "></i>-->
+      <h1 class="title has-text-centered" style="
+  font-size: 40px;
+    margin-top: 250px;
+    margin-left: 90px; border-bottom: 1px solid black; padding-bottom: 30px">
+    How it works
+</h1>
     </div>
   </div>
 </div>
 </section>
 
-<section class="container">
-
-  <div class="box">
-  <h1>
-    FIRMS - Field Inspection Report Management System (For project Checkpoint only)
-  </h1>
-  <br/>
-  <h3>
-    Description:
-  </h3>
-  <p>
-    Our project idea was inspired from a coop experience at a structural engineering office, where the company needed an
-    automated method of writing/storing field reports submitted by their field inspectors. The field inspector would go out
-    to construction sites, inspect the quality of the work and ensure if the site is up to the engineer’s standards and
-    instructions.
-  </p>
-  <br/>
-  <p>
-    Inspection reports were initially written using paper forms and pen. The goal of our project will be to build a
-    client/server web application that will automate the form generation process, with auto-complete features, and form
-    management. Field inspectors will be able to login into a special website (client side), create a report, and have as
-    many fields and associated data auto-filled for a given construction project. Many of these fields have unique
-    relationships (e.g. contractors and developers working on project -- relational data in SQL database), while others are
-    to do with auto-generating location and weather/temperature info (API calls - Google Maps, etc.). The inspector can
-    either mark the status of their report as Passed, Failed, or Needs Re-Inspection.
-  </p>
 
 
-
-  <h3>
-    Frameworks used:
-  </h3>
-  <ul>
-    <li><a href="https://bulma.io/documentation/">Bulma - Frontend Framework</a></li>
-    <li><a href="http://meanjs.org/">MEAN.js - Fullstack Framework</a></li>
-  </ul>
-
-  <h3>
-    External APIs used:
-  </h3>
-  <ul>
-    <li><a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps API - Places, Geolocation, Geocoding, Javascript</a></li>
-    <li><a href="https://openweathermap.org/current?fbclid=IwAR3aR69M58IWJMNPHMfGtk5DuWBQTWecqFu-v49sdDbtrVYphTCrMXeJ15E">Weather API</a></li>
-  </ul>
-
-  <h3>
-    Deployment:
-  </h3>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker - Ubuntu Edition</a></li>
-    <li><a href="https://cloud.google.com/run">Google Cloud Run</a></li>
-  </ul>
+<section id="section3" style="height:100vh; background-color: white; padding-top:150px">
+    <div style="width:20%;    float: left;">
+  <h1 class="title has-text-centered" style="
+  font-size: 40px;
+    margin-top: 350px;
+    margin-left: 90px; border-bottom: 1px solid black; padding-bottom: 30px">
+    Meet the Team
+</h1>
 </div>
+<div style="width:80%; float:right">
+<div class="container" style="margin-top: 100px;">
+
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile has-text-centered">
+        <div class="tile is-parent is-vertical">
+          <div class="tile is-child box" style="padding-bottom: 50px;
+          padding-top: 50px;">
+            <i class="fas fa-user" style="font-size: 100px;
+            margin-bottom: 20px;
+            color: #324ca2;"></i>
+            <p class="title">
+              Duy Le
+            </p>
+            <div class="content" style="font-size:28px">
+              Code Monkey
+            </div>
+          </div>
+        </div>
+        <div class="tile is-parent is-vertical">
+          <div class="tile is-child box" style="padding-bottom: 50px;
+          padding-top: 50px;">
+            <i class="fas fa-user" style="font-size: 100px;
+            margin-bottom: 20px;
+            color: #3292a2;"></i>
+            <p class="title">
+              Nico Pucci
+            </p>
+            <div class="content" style="font-size:28px">
+              Product Manager
+            </div>
+          </div>
+        </div>
+        <div class="tile is-parent is-vertical">
+          <div class="tile is-child box" style="padding-bottom: 50px;
+          padding-top: 50px;">
+            <i class="fas fa-user" style="font-size: 100px;
+            margin-bottom: 20px;
+            color: #32a24a;"></i>
+            <p class="title">
+              Jordan Ho
+            </p>
+            <div class="content" style="font-size:28px">
+              Scrum Master
+            </div>
+          </div>
+        </div>
+      </div>
 
 
+      <div class="tile has-text-centered">
+        <div class="tile is-parent is-vertical">
+          <div class="tile is-child box" style="padding-bottom: 50px;
+          padding-top: 50px;">
+            <i class="fas fa-user" style="font-size: 100px;
+            margin-bottom: 20px;
+            color: #4732a2;"></i>
+            <p class="title">
+              Chester Cervantes
+            </p>
+            <div class="content" style="font-size:28px">
+              "Repo" Manager
+            </div>
+          </div>
+        </div>
+        <div class="tile is-parent is-vertical">
+          <div class="tile is-child box" style="padding-bottom: 50px;
+          padding-top: 50px;">
+            <i class="fas fa-user" style="font-size: 100px;
+            margin-bottom: 20px;
+            color: #8232a2;"></i>
+            <p class="title">
+              Mashuque Hasan
+            </p>
+            <div class="content" style="font-size:28px">
+              Some guy on the team
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</div>
+</div>
 </section>
+
+
+
+
+
+
 
 
