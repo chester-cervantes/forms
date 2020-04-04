@@ -8,6 +8,10 @@
 
         <div class="form-group" show-errors>
 
+          <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
+            <i class="fas fa-map-marker-alt"></i> Update Location
+          </button>
+
           <label class="control-label" for="form_id">Project ID:</label>
           <input type="number" ng-model="vm.form.form_id" id="form_id" class="form-control" placeholder="Form ID" required>
           <div ng-messages="vm.form.form_id.$error" role="alert">
@@ -33,36 +37,36 @@
           </div><br>
 
           <label class="control-label" for="report_date_time">Date/Time:</label>
-          <input 
-            type="text" 
-            ng-model="vm.form.report_date_time" 
-            id="report_date_time" 
-            class="form-control" 
-            placeholder="Report Date Time" 
+          <input
+            type="text"
+            ng-model="vm.form.report_date_time"
+            id="report_date_time"
+            class="form-control"
+            placeholder="Report Date Time"
             required>
           <div ng-messages="vm.form.report_date_time.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
           </div><br>
 
           <label class="control-label" for="weather">Weather:</label>
-          <input 
-            type="text" 
-            ng-model="vm.form.weather" 
-            id="name" 
-            class="form-control" 
-            placeholder="Weather" 
+          <input
+            type="text"
+            ng-model="vm.form.weather"
+            id="name"
+            class="form-control"
+            placeholder="Weather"
             required>
           <div ng-messages="vm.form.weather.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form weather is required.</p>
           </div><br>
 
           <label class="control-label" for="temperature">Temperature:</label>
-          <input  
-            type="text" 
-            ng-model="vm.form.temperature" 
-            id="name" 
-            class="form-control" 
-            placeholder="Temperature" 
+          <input
+            type="text"
+            ng-model="vm.form.temperature"
+            id="name"
+            class="form-control"
+            placeholder="Temperature"
             required>
           <div ng-messages="vm.form.temperature.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
@@ -169,7 +173,7 @@
 
           <label class="control-label" for="comments">Comments:</label>
           <input type="text" ng-model="vm.form.comments" id="comments" class="form-control" placeholder="Comments"><br>
-          
+
           <label class="control-label" for="inspection_status">Inspection Status:</label>
           <input type="radio" ng-model="vm.form.inspection_status" id="inspection_status" value="Approved"> Approved
           <input type="radio" ng-model="vm.form.inspection_status" value="Not Approved"> Not Approved
@@ -180,7 +184,7 @@
           <div ng-messages="vm.form.inspector_name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Form project id is required.</p>
           </div><br>
-          
+
         </div>
         <div class="form-group">
           <button type="button" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
@@ -190,7 +194,53 @@
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
         </div>
+
+        <div class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
       </fieldset>
     </form>
   </div>
+
+  <div id="googleMapModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-background"></div>
+      <div class="modal-content google-map-modal">
+        <div class="modal-header">
+          <h1 class="modal-title google-modal-title">Project Location:</h1>
+          <button type="button" class="close google-modal-close-btn" data-dismiss="modal" ng-click="vm.closeGoogleMapModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <span class="google-map-requires-permission display_none">*Google Map requires permission to get location*</span>
+          <!-- load scripts to load google maps API script on element load  -->
+          <div class="tile googlemap-panel">
+            <br />
+            <button id="curr-location-btn">
+              <i class="fas fa-location-arrow"></i>
+            </button>
+            <div id="map">
+            </div>
+            <input id="pac-input" class="controls" type="text" placeholder="Location Search">
+          </div>
+
+          <br/>
+          <label class="control-label">Selected location:</label>
+          <input id="selectedMapLocation" readonly="true" type="text" class="form-control"/>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button is-link is-light" ng-click="vm.closeGoogleMapModal()">Close</button>
+          <button type="button" class="button is-link" ng-click="vm.selectLocation()">Select Location</button>
+        </div>
+    </div>
+  </div>
+
 </section>
