@@ -9,9 +9,6 @@
 
         <div class="form-group" show-errors>
 
-          <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
-            <i class="fas fa-map-marker-alt"></i> Update Location
-          </button>
           <h3>
             Inspection Details
           </h3>
@@ -61,6 +58,9 @@
               <div ng-messages="vom.form.project_location.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Form project location is required.</p>
               </div>
+              <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
+                <i class="fas fa-map-marker-alt"></i>
+              </button>
             </div>
             <div class="column">
               <label class="control-label" for="project_id">Project ID:</label>
@@ -435,7 +435,7 @@
           <!-- load scripts to load google maps API script on element load  -->
           <div class="tile googlemap-panel">
             <br />
-            <button id="curr-location-btn">
+            <button id="curr-location-btn" ng-click="vm.recenterLocation()">
               <i class="fas fa-location-arrow"></i>
             </button>
             <div id="map">
