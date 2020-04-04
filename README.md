@@ -14,10 +14,15 @@ Below are the versions needed for our project:
 Node: v12.16.1
 NPM: 6.13.4
 MEAN: Master
+Python: 2.7 -> $ sudo apt-get install python3.7 && $ npm config set python python2.7
 ```
 
 ### Prerequisites
 Install MongoDB for your development platform: ```https://www.mongodb.com/download-center/community```
+And you will need the following:
+```
+sudo apt-get install build-essential
+```
 
 Then, install the required NPM Packages:
 
@@ -28,6 +33,7 @@ $ npm install -g yo
 $ npm install -g generator-meanjs
 $ npm install -g bower
 $ npm install -g gulp
+$ npm install -g node-gyp
 ```
 
 ### Installing
