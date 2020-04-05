@@ -13,21 +13,21 @@
       title: 'Forms',
       state: 'forms',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin', 'user']
     });
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'forms', {
       title: 'List Forms',
       state: 'forms.list',
-      roles: ['*']
+      roles: ['admin', 'user']
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'forms', {
       title: 'Create Form',
       state: 'forms.create',
-      roles: ['*']
+      roles: ['admin', 'user']
     });
   }
 }());
