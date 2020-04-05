@@ -116,6 +116,35 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Get most current form for project id
+ */
+exports.getRecentForm = function (req, res, next) {
+  console.log ( "req.params.projectId = " + req.params.projectId );
+  Form.findOne( {'project_id' : req.params.projectId }, 'project_location dev_company_name contractor_company', { sort: { 'created_at' : -1 } }, function(err, post) {
+    console.log( post );
+  });
+
+  Form.find( { 'project_id' : req.params.projectId } ).sort('-created').populate('user', 'displayName').exec(function(err, forms) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(forms[0]);
+    }
+  });
+}
+
+  // req.params.id
+  // const data = {
+  //   project_location: "Test Location",
+  //   dev_company_name: "Test Dev",
+  //   contractor_company: "Test Contractor", 
+  // };
+
+  // res.send(data);
+  
+/**
  * Get a PDF file
  */
 exports.getPdf = function (req, res, next) {

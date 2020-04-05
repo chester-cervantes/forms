@@ -6,9 +6,9 @@
     .module('forms')
     .controller('FormsController', FormsController);
 
-  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService', '$http' , 'Notification'];
+  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', '$http', 'Notification' ];
 
-  function FormsController ( $scope, $state, $window, Authentication, form, FormsService, $http , Notification ) {
+  function FormsController ( $scope, $state, $window, Authentication, form, $http , Notification ) {
     var vm = this;
 
     var googleMapAPIInit = false;
@@ -18,7 +18,12 @@
     vm.remove = remove;
     vm.save = save;
     vm.cancel = cancel;
+    vm.updateFormOnProjectID = updateFormOnProjectID;
     vm.user = Authentication.user;
+    vm.adminMode = false;
+    vm.dateTime;  // initialize in function onPageLoad (), not using form.report_date_time directly because it arrives as a string,
+                  // while the view is expecting a Date () object. So use temp dateTime var, and then assign form.report_date_time
+                  // to its value before saving form.
     vm.showEmailModal = false;
 
     $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
@@ -31,15 +36,9 @@
       if ( $window.confirm('Are you sure you want to delete this form?' ) ) {
         if ( form ) {
           form.$remove (  );
-          Notification.success ( 'User deleted successfully!' );
+          Notification.success ( 'Form deleted successfully!' );
           setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
 
-        }
-        else {
-          vm.user.$remove ( function () {
-            $state.go ( 'forms.list' );
-            Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> User deleted successfully!' });
-          });
         }
       }
     }
@@ -69,13 +68,40 @@
       }
 
       if ( vm.form._id ) {
+        vm.form.report_date_time = vm.dateTime;
         vm.form.$update ( successCallback (), function ( err ) {});
       }
       else {
+        vm.form.report_date_time = vm.dateTime;
         vm.form.$create ( successCallback (), function ( err ) {} );
       }
     }
 
+    function updateFormOnProjectID () {
+      if ( vm.form.project_id == null ) {
+        initMapWeatherTempInfo ();
+        return;
+      }
+
+      $http.get ( '/api/forms/autocomplete-data/' + form.project_id )
+      .success ( function (data, status, headers, config) {
+        if ( angular.equals ( data , {} ) ) {
+          if ( vm.form.project_location == null || vm.form.project_location === '' ) {
+            initMapWeatherTempInfo ();
+          }
+          return;
+        }
+
+        vm.form.project_location = data.project_location;
+        vm.form.dev_company_name = data.dev_company_name;
+        vm.form.contractor_company = data.contractor_company;
+
+      } )
+      .error ( function (data, status, headers, config) {
+          console.log ( "Autoupdate Fail Status: " + status );
+          // make no change to modal
+      } );
+    }
     /* ================= Email API  STUFF =============== */
 
     vm.openEmailModal = openEmailModal;
@@ -479,6 +505,20 @@
         });
       }
     }
-    initMapWeatherTempInfo();
+
+    function onPageLoad () {
+      vm.adminMode = vm.user.roles.includes ( 'admin' );
+
+      if ( vm.form._id == null ) {
+        initMapWeatherTempInfo ();
+        vm.form.inspector_name = vm.user.displayName;
+        vm.dateTime = new Date();
+      }
+      else {
+        vm.dateTime = new Date ( vm.form.report_date_time );
+      }
+    }
+
+    onPageLoad ();
   }
 }());
