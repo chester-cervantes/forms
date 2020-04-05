@@ -6,9 +6,9 @@
     .module('forms')
     .controller('FormsController', FormsController);
 
-  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', 'FormsService', '$http' , 'Notification'];
+  FormsController.$inject = [ '$scope', '$state', '$window', 'Authentication', 'formResolve', '$http', 'Notification' ];
 
-  function FormsController ( $scope, $state, $window, Authentication, form, FormsService, $http , Notification ) {
+  function FormsController ( $scope, $state, $window, Authentication, form, $http , Notification ) {
     var vm = this;
 
     var googleMapAPIInit = false;
@@ -26,7 +26,10 @@
 
     function onPageLoad () {
       vm.adminMode = vm.user.roles.includes ( 'admin' );
-      vm.form.inspector_name = vm.user.displayName;
+
+      if ( vm.form._id == null ) {
+        vm.form.inspector_name = vm.user.displayName;
+      }
     }
 
     function remove () {
@@ -83,14 +86,20 @@
 
     function updateFormOnProjectID () {
       if ( form.project_id == null ) {
+        initMapWeatherTempInfo ();
         return;
       }
 
       $http.get ( '/api/forms/autocomplete-data/' + form.project_id )
       .success ( function (data, status, headers, config) {
+        if ( angular.equals ( data , {} ) ) {
+          return;
+        }
+
         vm.form.project_location = data.project_location;
         vm.form.dev_company_name = data.dev_company_name;
         vm.form.contractor_company = data.contractor_company;
+
       } )
       .error ( function (data, status, headers, config) {
           console.log ( "Autoupdate Fail Status: " + status );
