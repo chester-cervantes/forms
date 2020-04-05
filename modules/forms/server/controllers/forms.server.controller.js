@@ -24,11 +24,8 @@ exports.create = function(req, res) {
   var form = new Form(req.body);
   form.user = req.user;
 
-  saveAsPDF(form);
-
   form.save(function(err) {
     if (err) {
-      fs.unlinkSync('pdf/' + form.project_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -61,11 +58,8 @@ exports.update = function(req, res) {
 
   form = _.extend(form, req.body);
 
-  saveAsPDF(form);
-
   form.save(function(err) {
     if (err) {
-      fs.unlinkSync('pdf/' + form.project_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -105,8 +99,9 @@ exports.list = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+
       forms.forEach(e => {
-        if(!checkIfPdfExists('pdf/' + e.project_id + '.pdf')){
+        if(!fs.existsSync('pdf/' + e.project_id + '.pdf')){
           saveAsPDF(e);
         }
       });
@@ -133,34 +128,27 @@ exports.getRecentForm = function (req, res, next) {
       res.jsonp(forms[0]);
     }
   });
-}
+};
 
-  // req.params.id
-  // const data = {
-  //   project_location: "Test Location",
-  //   dev_company_name: "Test Dev",
-  //   contractor_company: "Test Contractor", 
-  // };
-
-  // res.send(data);
-  
 /**
  * Get a PDF file
  */
 exports.getPdf = function (req, res, next) {
 
   const path = 'pdf/' + req.params.id + '.pdf';
-  if (fs.existsSync(path)) {
-    const data = fs.readFileSync(path);
-    res.contentType("application/pdf");
-    res.send(data);
-  }
-  else{
-    return res.status(400).send({
-      message: 'Form is invalid'
-    });
-  }
-
+  Form.findOne( {'project_id' : req.params.id }, function(err, post) {
+    if(err) {
+      return res.status(400).send({
+        message: 'Form is invalid'
+      });
+    }
+    else {
+      saveAsPDF(post);
+      const data = fs.readFileSync(path);
+      res.contentType("application/pdf");
+      res.send(data);
+    }
+  });
 };
 
 
@@ -213,10 +201,6 @@ function parseData(form){
   Function to save a form as pdf
  */
 
-function checkIfPdfExists(path) {
-  return fs.existsSync(path);
-}
-
 function saveAsPDF(form){
 
   if (!fs.existsSync('pdf')){
@@ -253,6 +237,6 @@ function saveAsPDF(form){
   }
   generatePdf();
   form.pdf_location = pathToPDF;
-  console.log("path: " + form.pdf_location);
 
+  return true;
 }
