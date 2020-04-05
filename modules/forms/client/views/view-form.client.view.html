@@ -5,12 +5,17 @@
   <div class="pull-right"
        ng-show="true">
     <a class="btn btn-primary"
-       ui-sref="forms.edit({ formId: vm.form._id })"> 
+       ui-sref="forms.edit({ formId: vm.form._id })">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
+    <button class="btn btn-primary" type="button" id="openEmailModalBtn" ng-click="vm.openEmailModal()">
+      <i class="glyphicon glyphicon-share"></i>
+    </button>
     <a class="btn btn-primary" ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
+
+
   </div>
   <small>
     <em class="text-muted">
@@ -23,4 +28,41 @@
     </em>
   </small>
   <p class="lead" ng-bind="vm.form.content"></p>
+
+
+  <div style="padding: 10px">
+    <iframe ng-src="{{pdfUrl}}" width="100%" height="750px"></iframe>
+  </div>
+
+
+  <div id="emailModal" class="modal" tabindex="-1" role="dialog">
+    <form name="email-form" data-ng-submit="postEmail()">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Send Email</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.closeEmailModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input required maxlength="100" type="email" class="form-control" ng-model="email" id="email" aria-describedby="email">
+              <div class="form-group" style="padding-top: 2%">
+                <label for="message">Message</label>
+                <textarea ng-model="$parent.message" class="form-control" id="message" rows="4" placeholder="Optional message"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="button is-link is-light" ng-click="vm.closeEmailModal()">Close</button>
+            <button type="submit" class="button is-link">Send</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
 </section>

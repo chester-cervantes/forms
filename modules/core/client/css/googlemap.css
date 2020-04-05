@@ -4,42 +4,143 @@
 			position: relative;
 		}
 
-		#curr-location-btn {
-			position: absolute;
-			bottom: 120px;
-			left: 645px;
-			z-index: 1;
-			padding: 15px;
-			border: black;
-			border-width: 2px;
-			border-radius: 50%;
-			background-color: rgb(255, 255, 255);
-			box-shadow: 0 2px 2px #888888;
-			transition: 0.5s;
+		@media only screen and (min-width: 360px) {
+			#map {
+				min-height: 330px;
+				min-width: 330px;
+				max-height: 500px;
+				max-width: 700px;
+				border: black;
+				border-width: 2px;
+				border-style: groove;
+			}
+
+			#curr-location-btn {
+				position: absolute;
+				bottom: 120px;
+				right: 15px;
+				z-index: 1;
+				padding: 15px;
+				border: black;
+				border-width: 2px;
+				border-radius: 50%;
+				background-color: rgb(255, 255, 255);
+				box-shadow: 0 2px 2px #888888;
+				transition: 0.5s;
+			}
+
+			 #btn-location {
+				float: left;
+				margin-right: 20px;
+				position: absolute;
+				left: 20px;
+				top: 20px;
+				z-index: 1;
+				padding: 20px;
+				border: black;
+				border-width: 2px;
+				border-radius: 4px;
+				background-color: rgba(67, 186, 255, 0.8);
+				transition: 0.5s;
+			}
+
+			/* override modal size */
+			.google-map-modal {
+				min-height: 100%;
+				overflow-x: hidden;
+			}
+
+			#pac-input {
+				left: 0px !important;
+				top: 10px !important;
+				z-index: 1150;
+				position: absolute;
+				margin-right: 20px;
+				background-color: #fff;
+				font-family: Roboto;
+				font-size: 15px;
+				font-weight: 300;
+				margin-left: 10px;
+				padding: 0 11px 0 13px;
+				text-overflow: ellipsis;
+				height: 40px;
+				width: 250px;
+				border-radius: 4px;
+				border-width: 2px;
+				box-shadow: inset 0 0 5px #000000;
+			}
+
 		}
 
-		#map {
-      height: 700px;
-      width: 700px;
-      border: black;
-      border-width: 2px;
-      border-style: groove;
-    }
+		@media only screen and (min-width: 768px) {
+			#map {
+				height: 500px !important;
+				width: 700px;
+				max-height: 700px;
+				max-width: 700px;
+				border: black;
+				border-width: 2px;
+				border-style: groove;
+			}
 
-    #btn-location {
-      float: left;
-      margin-right: 20px;
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      z-index: 1;
-      padding: 20px;
-      border: black;
-      border-width: 2px;
-      border-radius: 4px;
-      background-color: rgba(67, 186, 255, 0.8);
-      transition: 0.5s;
-    }
+			#curr-location-btn {
+				position: absolute;
+				bottom: 120px;
+				left: 554px;
+				z-index: 1;
+				padding: 15px;
+				border: black;
+				border-width: 2px;
+				border-radius: 50%;
+				background-color: rgb(255, 255, 255);
+				box-shadow: 0 2px 2px #888888;
+				transition: 0.5s;
+			}
+
+			 #btn-location {
+				float: left;
+				margin-right: 20px;
+				position: absolute;
+				left: 20px;
+				top: 20px;
+				z-index: 1;
+				padding: 20px;
+				border: black;
+				border-width: 2px;
+				border-radius: 4px;
+				background-color: rgba(67, 186, 255, 0.8);
+				transition: 0.5s;
+			}
+
+			#pac-input {
+				left: 0px !important;
+				top: 10px !important;
+				z-index: 1150;
+				position: absolute;
+				margin-right: 20px;
+				background-color: #fff;
+				font-family: Roboto;
+				font-size: 15px;
+				font-weight: 300;
+				margin-left: 10px;
+				padding: 0 11px 0 13px;
+				text-overflow: ellipsis;
+				height: 40px;
+				width: 250px;
+				border-radius: 4px;
+				border-width: 2px;
+				box-shadow: inset 0 0 5px #000000;
+			}
+
+
+			/* override modal size */
+			.google-map-modal {
+				min-height: auto;
+				overflow-y: auto;
+				overflow-x: hidden;
+			}
+
+		}
 
     #btn-location:hover {
       background-color: rgba(0, 0, 0, 1);
@@ -47,25 +148,6 @@
       cursor: pointer;
     }
 
-    #pac-input {
-      left: 0px !important;
-      top: 20px !important;
-      z-index: 1;
-      position: absolute;
-      margin-right: 20px;
-      background-color: #fff;
-      font-family: Roboto;
-      font-size: 15px;
-      font-weight: 300;
-      margin-left: 12px;
-      padding: 0 11px 0 13px;
-      text-overflow: ellipsis;
-      height: 50px;
-      width: 250px;
-      border-radius: 4px;
-			border-width: 2px;
-			box-shadow: inset 0 0 5px #000000;
-    }
 
     #pac-input:focus {
       border-color: #4d90fe;
@@ -127,3 +209,29 @@
       font-size: 13px;
       font-weight: 300;
     }
+
+		.google-map-requires-permission {
+			color: black;
+			font-weight: 700;
+		}
+
+		.google-modal-title {
+			display: inline-block;
+		}
+
+		.google-modal-close-btn {
+			font-size: 30px;
+		}
+
+
+		.pac-container {
+			background-color: #FFF;
+			z-index: 1100;
+			position: fixed;
+			display: inline-block;
+			float: left;
+	}
+
+	.openGoogleMapModalBtn {
+		display: block;
+	}
