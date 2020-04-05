@@ -28,7 +28,7 @@ exports.create = function(req, res) {
 
   form.save(function(err) {
     if (err) {
-      fs.unlinkSync('pdf/' + form.form_id + '.pdf');
+      fs.unlinkSync('pdf/' + form.project_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -65,7 +65,7 @@ exports.update = function(req, res) {
 
   form.save(function(err) {
     if (err) {
-      fs.unlinkSync('pdf/' + form.form_id + '.pdf');
+      fs.unlinkSync('pdf/' + form.project_id + '.pdf');
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -82,7 +82,7 @@ exports.delete = function(req, res) {
   var form = req.form;
 
   // delete associated pdf file
-  fs.unlinkSync('pdf/' + form.form_id + '.pdf');
+  fs.unlinkSync('pdf/' + form.project_id + '.pdf');
 
   form.remove(function(err) {
     if (err) {

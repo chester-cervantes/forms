@@ -102,6 +102,9 @@
     //   }
     // }
 
+    /* ================= Email API  STUFF =============== */
+
+
     vm.openEmailModal = openEmailModal;
     vm.closeEmailModal = closeEmailModal;
     function openEmailModal() {
