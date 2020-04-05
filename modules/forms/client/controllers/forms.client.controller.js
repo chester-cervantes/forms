@@ -415,7 +415,7 @@
                 //update weather infomration
                 $scope.getWeatherInfo(pos, (weather, temp) => {
                   updateSelectedWeatherTempInput(weather, temp);
-                });c
+                });
 
                 // Clear out the old markers.
                 markers.forEach(function (marker) {
