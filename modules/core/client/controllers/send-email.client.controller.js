@@ -22,7 +22,7 @@
           elem = element;
 
       if (visible)
-          $(elem).modal("show");                     
+          $(elem).modal("show");
       else
           $(elem).modal("hide");
         }
@@ -48,7 +48,7 @@
           setTimeout(function(){
             angular.element(document.getElementById('email-success')).css('display', 'none');
           }, delay);
-          
+
           console.log("success");
 
         }).
@@ -56,7 +56,7 @@
           console.log("email error");
           setDisplayLoad(false);
           alert("Unable to send email");
-          
+
         });
     }
 
@@ -66,7 +66,7 @@
       setDisplayLoad(true)
       angular.element(document.getElementById('load')).css('display', 'none')
       angular.element(document.getElementById('email-success')).css('display', 'none')
-    
+
     }
   }
 })();

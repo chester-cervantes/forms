@@ -20,6 +20,8 @@
     vm.cancel = cancel;
     vm.user = Authentication.user;
 
+    $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
+
     function remove () {
       if ( vm.form._id === null ) {
         return;
@@ -100,6 +102,50 @@
     //   }
     // }
 
+    vm.openEmailModal = openEmailModal;
+    vm.closeEmailModal = closeEmailModal;
+    function openEmailModal() {
+      let openEmailModal = document.getElementById("emailModal");
+      openEmailModal.classList.add("is-active", "is-clipped");
+    }
+
+    $scope.postEmail = function(){
+
+      closeEmailModal();
+
+      const data = {
+        "to": $scope.email,
+        "message": $scope.message,
+        "id": vm.form.project_id,
+        "pdf_location": vm.form.pdf_location
+      };
+
+      console.log(data);
+
+      $http.post('/api/send-email', data).
+      success(function(data, status, headers, config) {
+        console.log("email sent");
+
+        const delay = 1000;
+        setTimeout(function(){
+        }, delay);
+        Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> Email sent!' });
+      }).
+      error(function(data, status, headers, config) {
+        Notification.error ( { message: '<i class="glyphicon glyphicon-remove"></i> Unable to send email!' });
+      });
+    };
+
+    function closeEmailModal() {
+      let emailModal = document.getElementById("emailModal");
+      if (emailModal.classList.contains("is-active")) {
+        emailModal.classList.remove("is-active");
+      }
+      if (emailModal.classList.contains("is-clipped")) {
+        emailModal.classList.remove("is-clipped");
+      }
+    }
+
 
   /* ================= Weather API  STUFF =============== */
 
@@ -118,7 +164,8 @@
         error(function (data, status, headers, config) {
           alert("Error: failed to retrieve weather api data!");
         });
-    }
+    };
+
 
     function round(value, precision) {
       var multiplier = Math.pow(10, precision || 0);
@@ -133,6 +180,7 @@
         return (kelvin - 273.15);
       }
     }
+
 
     // Acknowledged from https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
     function timeConverter(UNIX_timestamp) {
