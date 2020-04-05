@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <style>
+
+    body {
+      font-size: large;
+    }
+
+    .large-hr {
+      position: relative;
+      top: -45px;
+      border: none;
+      height: 10px;
+      background: black;
+      margin-bottom: -50px;
+    }
+
+    .small-hr {
+      position: relative;
+      border: none;
+      height: 2px;
+      top: -15px;
+      background: black;
+      margin-bottom: -20px;
+    }
+
+    .underlined {
+      border-bottom: 1px solid black;
+    }
+
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+      border-top: none;
+      font-weight: normal;
+    }
+
+
+    .blank_row {
+      height: 10px !important;
+      background-color: #FFFFFF;
+    }
+
+    #leftbox {
+      float: left;
+    }
+
+    #rightbox {
+      position: relative;
+      float: left;
+    }
+
+  </style>
+
+  <title>Form Layout</title>
+</head>
+<body>
+<div class="container">
+
+  <div class="d-flex flex-row justify-content-center p-5">
+    <h1>{{form.dev_company_name}}</h1>
+  </div>
+  <hr style="border-width: 8px; border-color: black; margin-top: -8px;">
+
+  <div class="d-flex flex-row justify-content-center">
+    <table class="table table-borderless table-sm">
+      <tbody>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+
+      </tr>
+      <tr>
+        <td>PROJECT:</td>
+        <td class="underlined" colspan="4">
+          {{addressLine1}}
+        </td>
+        <td>
+          PROJECT NO:
+        </td>
+        <td class="underlined" colspan="12">
+          {{form.project_id}}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="underlined" colspan="4">
+          {{addressLine2}}
+        </td>
+        <td>
+          DATE (YYYY-MM-DD):
+        </td>
+        <td class="underlined" colspan="12">
+          {{date}}
+        </td>
+      </tr>
+      <tr>
+        <td>DEVELOPER:</td>
+        <td class="underlined" colspan="4">
+          {{form.dev_company_name}}
+        </td>
+        <td>
+          TIME (24-HR):
+        </td>
+        <td class="underlined" colspan="12">
+          {{time}}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="4"></td>
+        <td>
+          WEATHER
+        </td>
+        <td class="underlined" colspan="12">
+          {{form.weather}}
+        </td>
+      </tr>
+      <tr>
+        <td>CONTRACTOR:</td>
+        <td class="underlined" colspan="4">
+          {{form.contractor_company}}
+        </td>
+        <td>
+          TEMPERATURE (°C):
+        </td>
+        <td class="underlined" colspan="12">
+          {{form.temperature}}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="4">
+
+        </td>
+        <td>
+
+        </td>
+        <td colspan="12">
+
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <hr style="border-width: 5px; border-color: black;">
+
+  <div class="d-flex flex-row justify-content-center">
+    <table class="table table-sm table-borderless">
+      <tbody>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      <tr>
+        <th>
+          TYPE OF REVIEW:
+        </th>
+        <th>
+          {{#if form.footings_review_type }}
+          <input type="checkbox" id="footings" checked>
+          {{else}}
+          <input type="checkbox" id="footings">
+          {{/if}}
+          <label for="footings">FOOTINGS</label>
+        </th>
+        <th>
+          {{#if form.foundation_walls_review_type }}
+          <input type="checkbox" id="foundation_walls" checked>
+          {{else}}
+          <input type="checkbox" id="foundation_walls">
+          {{/if}}
+          <label for="foundation_walls">FOUNDATION WALLS</label>
+        </th>
+        <th>
+          {{#if form.sheathing_review_type }}
+          <input type="checkbox" id="sheathing" checked>
+          {{else}}
+          <input type="checkbox" id="sheathing">
+          {{/if}}
+          <label for="sheathing">SHEATHING</label>
+        </th>
+        <th>
+          {{#if form.framing_review_type }}
+          <input type="checkbox" id="framing" checked>
+          {{else}}
+          <input type="checkbox" id="framing">
+          {{/if}}
+          <label for="framing">FRAMING</label>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          {{#if form.other_review_type }}
+          <input type="checkbox" id="other" checked>
+          {{else}}
+          <input type="checkbox" id="other">
+          {{/if}}
+          <label for="other">OTHER: </label>
+        </th>
+        <th class="underlined" colspan="4">
+          {{form.other_review_type_description}}
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="d-flex flex-row justify-content-center">
+    <table class="table table-sm table-borderless">
+      <tbody>
+      <tr>
+        <th scope="col">CONCRETE:</th>
+        <th scope="col">RVD</th>
+        <th scope="col">N/A</th>
+        <th scope="col">INSTRUCTIONS:</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Rebar in correct position:
+        </th>
+        <th>
+          {{#if form.rebar_pos_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.rebar_pos_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Rebar right size and spacing:
+        </th>
+        <th>
+          {{#if form.rebar_size_spacing_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.rebar_size_spacing_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Hold down anchorage in place:
+        </th>
+        <th>
+          {{#if form.anchorage_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.anchorage_reviewed_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Formwork generally as per plan:
+        </th>
+        <th>
+          {{#if form.form_plan_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.form_plan_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th>
+          FRAMING:
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Conformance with truss spec:
+        </th>
+        <th>
+          {{#if form.conformance_spec_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.conformance_drawing_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Beam and girder bearing:
+        </th>
+        <th>
+          {{#if form.beam_girder_bearing_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.beam_girder_bearing_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Continuity of top plates:
+        </th>
+        <th>
+          {{#if form.continuity_top_plate_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.continuity_top_plate_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Lintels/Openings:
+        </th>
+        <th>
+          {{#if form.lintel_open_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.lintel_open_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Shearwalls/Fastenings/Hold Downs:
+        </th>
+        <th>
+          {{#if shearwalls_fastening_holddowns_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.shearwalls_fastening_holddowns_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Continuity of tall walls:
+        </th>
+        <th>
+          {{#if continuity_tall_walls_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.continuity_tall_walls_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Blocking in floor system for point loads:
+        </th>
+        <th>
+          {{#if blocking_floor_system_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.blocking_floor_system_instructions}}
+        </th>
+      </tr>
+      <tr>
+        <th class="text-right">
+          Wall sheathing:
+        </th>
+        <th>
+          {{#if wall_sheathing_reviewed }}
+          <input type="checkbox" checked>
+          {{else}}
+          <input type="checkbox">
+          {{/if}}
+        </th>
+        <th>
+          <input type="checkbox">
+        </th>
+        <th class="underlined" colspan="1000">
+          {{form.wall_sheathing_instructions}}
+        </th>
+      </tr>
+      <th class="text-right">
+        Wind girts:
+      </th>
+      <th>
+        {{#if form.wind_girts_reviewed }}
+        <input type="checkbox" checked>
+        {{else}}
+        <input type="checkbox">
+        {{/if}}
+      </th>
+      <th>
+        <input type="checkbox">
+      </th>
+      <th class="underlined" colspan="1000">
+        {{form.wind_girts_instructions}}
+      </th>
+      </tr>
+      <tr class="blank_row">
+        <td colspan="30"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="d-flex bd-highlight">
+    <div class="p-2 flex-fill bd-highlight">
+      <div class="leftbox">
+        <table class="table table-borderless table-sm">
+          <tbody>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+          </tr>
+          <tr>
+            <th colspan="1">
+              OBSERVATIONS:
+            </th>
+            <th colspan="0"></th>
+            <th class="underlined text-left" colspan="50">
+              {{form.observation}}
+            </th>
+          </tr>
+          <tr class="blank_row">
+            <td colspan="30"></td>
+          </tr>
+          <tr class="blank_row">
+            <td colspan="30"></td>
+          </tr>
+          <tr class="blank_row">
+            <td colspan="30"></td>
+          </tr>
+          <tr class="blank_row">
+            <td colspan="30"></td>
+          </tr>
+          <tr>
+            <th colspan="1">
+              COMMENTS:
+            </th>
+            <th colspan="0"></th>
+            <th class="underlined text-left" colspan="50">
+              {{form.comments}}
+            </th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="flex-fill bd-highlight">
+      <div class="rightbox">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-flex bd-highlight justify-content-around pt-3">
+    <div class="flex-shrink-1 bd-highlight pr-5">
+      {{#if approved }}
+      <input type="checkbox" id="approved" checked>
+      {{else}}
+      <input type="checkbox" id="approved">
+      {{/if}}
+      <label for="approved">APPROVED</label>
+    </div>
+    <div class="flex-shrink-1 bd-highlight pr-5">
+      {{#if not_approved}}
+      <input type="checkbox" id="not_approved" checked>
+      {{else}}
+      <input type="checkbox" id="not_approved">
+      {{/if}}
+      <label for="not_approved">NOT APPROVED</label>
+    </div>
+    <div class="flex-shrink-1 bd-highlight pr-5">
+      {{#if reinspection_required }}
+      <input type="checkbox" id="reinspection_required" checked>
+      {{else}}
+      <input type="checkbox" id="reinspection_required">
+      {{/if}}
+      <label for="reinspection_required">REINSPECTION REQUIRED</label>
+    </div>
+  </div>
+
+  <div class="row pb-2 pt-2">
+    <div class="col">INSPECTED BY:</div>
+    <div class="col-10 underlined">{{form.inspector_name}}</div>
+  </div>
+
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

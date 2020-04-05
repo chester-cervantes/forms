@@ -1,29 +1,29 @@
 <style>
   .loader-wrapper {
-    width: 100%; 
-    height: 100%; 
-    position: absolute; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: #242f3f;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
   }
 
   .loader-inner{
-    vertical-align: top; 
-    display: inline-block; 
-    width: 100%; 
-    background-color: #fff; 
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
     animation: loader-inner 2s infinite ease-in;
   }
 
   .loader {
-    display: inline-block; 
-    width: 30px; height: 30px; 
-    position: relative; 
-    border: 4px solid #Fff; 
+    display: inline-block;
+    width: 30px; height: 30px;
+    position: relative;
+    border: 4px solid #Fff;
     animation: loader 2s infinite ease
   }
 
@@ -42,7 +42,7 @@
     75% { height: 100%;}
     100% { height: 0%;}
   }
- 
+
   .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -116,7 +116,7 @@
 </style>
 
 
-<section">
+<section>
   <br>
   <form name="email-form" data-ng-submit="postEmail()">
     <fieldset>
@@ -154,14 +154,14 @@
     <span class="loader" hidden>
       <span class="loader-inner" hidden></span>
   </div>
-  
+
   <div class="loader-wrapper" id="email-success">
     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
       <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
       <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
     </svg>
   </div>
-  
+
   <div id="email_error_modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

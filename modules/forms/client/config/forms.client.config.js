@@ -20,14 +20,14 @@
     menuService.addSubMenuItem('topbar', 'forms', {
       title: 'List Forms',
       state: 'forms.list',
-      roles: ['user']
+      roles: ['*']
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'forms', {
       title: 'Create Form',
       state: 'forms.create',
-      roles: ['user']
+      roles: ['*']
     });
   }
 }());

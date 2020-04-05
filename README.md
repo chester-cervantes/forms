@@ -61,29 +61,40 @@ STEP 3:
 The server should now be up and running at localhost:3000.
 
 ## Deployment
+Go to https://console.cloud.google.com/compute/instances?project=cmpt470-firms&instancessize=50
+Turn on the “firms-vm”.
+Click on SSH into the vm when it is turned on
+Change to root user by:
+```
+$ sudo su
+```
 
-* TO DO
+Change your directory to the project by:
+```
+$ cd ..
+$ cd niccolocarminepucci
+$ cd project-470
+```
 
-## Built With
+Start the project in production mode that hosts in port 80 for http
+```
+$ gulp prod
+```
 
-* TO DO
+From the console compute engine page you can access the static external IP:
+Click on the link and to go http://[EXTERNAL_IP] to access the project
+or 
+go to http://34.83.174.42/
 
-## Contributing
-
-* TO DO
-
-## Versioning
-
-* TO DO
 
 ## Authors
+Chester Cervantes, ccervant
 
-* TO DO
+Jordan Ho, jhho
 
-## License
+Mashuque Hasan, hasan
 
-* TO DO
+Niccolo Pucci, npucci
 
-## Acknowledgments
+Duy Le, dtl11
 
-* TO DO

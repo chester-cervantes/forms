@@ -18,7 +18,10 @@ module.exports = function(app) {
     .delete(forms.delete);
 
 
-  app.use('/api/forms/autocomplete-data/:projectId' , forms.getRecentForm ); //.all(formsPolicy.isAllowed)
+  app.use('/api/forms/autocomplete-data/:projectId' , forms.getRecentForm );
+
+  app.use('/api/forms/pdf/:id', forms.getPdf);
+
 
   // Finish by binding the Form middleware
   app.param('formId', forms.formByID);
