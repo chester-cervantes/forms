@@ -78,10 +78,10 @@ Start the project
 $ gulp
 ```
 
-From the console compute engine page you can access the external IP:
+From the console compute engine page you can access the static external IP:
 Click on the link and to go http://[EXTERNAL_IP] to access the project
-or go to
-http://34.83.174.42/
+or 
+go to http://34.83.174.42/
 
 
 ## Authors
