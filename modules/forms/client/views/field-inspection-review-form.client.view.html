@@ -3,8 +3,7 @@
     <h1>{{vm.form._id ? 'Edit Field Inspection Report' : 'New Field Inspection Report'}}</h1>
   </div>
   <div class="col-md-12">
-    <form id="firms_form" name="vm.fieldInspectionReviewForm" class="form-horizontal {{vm.form._id ? '' : 'display_none'}}"
-      ng-submit="vm.save(vm.fieldInspectionReviewForm.$valid)" validate>
+    <form name="vm.fieldInspectionReviewForm" class="form-horizontal" ng-submit="vm.save(vm.fieldInspectionReviewForm.$valid)" validate>
       <fieldset>
 
         <div class="form-group" show-errors>
@@ -436,7 +435,7 @@
     </form>
   </div>
 
-  <div id="googleMapModal" class="modal" tabindex="-1" role="dialog">
+  <div id="googleMapModal" class="modal" ng-class="{ 'is-active is-clipped': vm.showGoogleMapModal }" tabindex="-1" role="dialog">
     <div class="modal-background"></div>
       <div class="modal-content google-map-modal">
         <div class="modal-header">
@@ -455,7 +454,7 @@
             </button>
             <div id="map">
             </div>
-            <input id="pac-input" class="controls" type="text" placeholder="Location Search">
+            <input id="pac-input" class="controls" type="text" placeholder="Location Search" ng-model="vm.pac_input">
           </div>
 
           <br/>
@@ -463,18 +462,18 @@
           <div class="columns is-desktop">
             <div class="column">
               <label class="control-label">Project location:</label>
-              <input id="selectedMapLocation" readonly="true" type="text" class="form-control" />
+              <input id="selectedMapLocation" readonly="true" type="text" class="form-control" ng-model="vm.selectedLocation"/>
             </div>
           </div>
 
           <div class="columns is-desktop">
             <div class="column">
               <label class="control-label">Location weather: </label>
-              <input id="selectedWeatherInformation" readonly="true" type="text" class="form-control" />
+              <input id="selectedWeatherInformation" readonly="true" type="text" class="form-control" ng-model="vm.selectedWeather"/>
             </div>
             <div class="column">
               <label class="control-label">Location Temperature(°C): </label>
-              <input id="selectedTemperatureInformation" readonly="true" type="text" class="form-control" />
+              <input id="selectedTemperatureInformation" readonly="true" type="text" class="form-control" ng-model="vm.selectedTemp"/>
             </div>
           </div>
         </div>
