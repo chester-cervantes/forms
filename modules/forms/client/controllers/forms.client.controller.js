@@ -25,8 +25,9 @@
                   // while the view is expecting a Date () object. So use temp dateTime var, and then assign form.report_date_time
                   // to its value before saving form.
     vm.showEmailModal = false;
-
+    vm.hidePdf = false;
     $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
+
 
     function remove () {
       if ( vm.form._id === null ) {
