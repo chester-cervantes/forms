@@ -76,9 +76,9 @@ $ cd niccolocarminepucci
 $ cd project-470
 ```
 
-Start the project
+Start the project in production mode that hosts in port 80 for http
 ```
-$ gulp
+$ gulp prod
 ```
 
 From the console compute engine page you can access the static external IP:
