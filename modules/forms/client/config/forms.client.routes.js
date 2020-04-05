@@ -20,6 +20,7 @@
         controller: 'FormsListController',
         controllerAs: 'vm',
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Forms List'
         }
       })
@@ -29,6 +30,7 @@
         controller: 'FormsListController',
         controllerAs: 'vm',
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Forms List Search {{ formResolve.name }}'
         }
       })
@@ -67,6 +69,7 @@
           formResolve: getForm
         },
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Form {{ formResolve.name }}'
         }
       });

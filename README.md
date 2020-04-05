@@ -83,9 +83,22 @@ $ gulp prod
 
 From the console compute engine page you can access the static external IP:
 Click on the link and to go http://[EXTERNAL_IP] to access the project
-or 
-go to http://34.83.174.42/
+or go to 
+```
+http://34.83.174.42/
+```
 
+NOTE: You will need to have Location Permissions to use the GeoLocation Feature
+
+For CHROME you can go type in the address bar:
+```
+chrome://flags/#unsafely-treat-insecure-origin-as-secure
+```
+And then you must input http://34.83.174.42/ into the field "Insecure origins treated as secure", and set it Enabled.
+Chrome will then ask to restart.
+The next time you open the page, there will now be an option to enable locations.'
+
+For EDGE, it doesn't seem to be as picky with security.
 
 ## Authors
 Chester Cervantes, ccervant
