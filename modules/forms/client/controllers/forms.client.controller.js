@@ -19,6 +19,7 @@
     vm.save = save;
     vm.cancel = cancel;
     vm.user = Authentication.user;
+    vm.showEmailModal = false;
 
     $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
 
@@ -75,42 +76,18 @@
       }
     }
 
-
-
-
-
-
-    // // Save Form
-    // function save(isValid) {
-
-
-    //   // TODO: move create/update logic to service
-    //   if (vm.form._id) {
-    //     vm.form.$update(successCallback, errorCallback);
-    //   } else {
-    //     vm.form.$save(successCallback, errorCallback);
-    //   }
-
-    //   function successCallback(res) {
-    //     $state.go('forms.view', {
-    //       formId: res._id
-    //     });
-    //   }
-
-    //   function errorCallback(res) {
-    //     vm.error = res.data.message;
-    //   }
-    // }
-
     /* ================= Email API  STUFF =============== */
-
 
     vm.openEmailModal = openEmailModal;
     vm.closeEmailModal = closeEmailModal;
     function openEmailModal() {
-      let openEmailModal = document.getElementById("emailModal");
-      openEmailModal.classList.add("is-active", "is-clipped");
+      vm.showEmailModal = true;
     }
+
+    function closeEmailModal() {
+      vm.showEmailModal = false;
+    }
+
 
     $scope.postEmail = function(){
 
@@ -137,16 +114,6 @@
         Notification.error ( { message: '<i class="glyphicon glyphicon-remove"></i> Unable to send email!' });
       });
     };
-
-    function closeEmailModal() {
-      let emailModal = document.getElementById("emailModal");
-      if (emailModal.classList.contains("is-active")) {
-        emailModal.classList.remove("is-active");
-      }
-      if (emailModal.classList.contains("is-clipped")) {
-        emailModal.classList.remove("is-clipped");
-      }
-    }
 
 
   /* ================= Weather API  STUFF =============== */
