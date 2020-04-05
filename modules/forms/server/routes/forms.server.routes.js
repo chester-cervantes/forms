@@ -8,7 +8,7 @@ var formsPolicy = require('../policies/forms.server.policy'),
 
 module.exports = function(app) {
   // Forms Routes
-  app.route('/api/forms') //.all(formsPolicy.isAllowed)
+  app.route('/api/forms').all(formsPolicy.isAllowed)
     .get(forms.list)
     .post(forms.create);
 
@@ -17,6 +17,10 @@ module.exports = function(app) {
     .put(forms.update)
     .delete(forms.delete);
 
+
+  app.use('/api/forms/autocomplete-data/:projectId' , forms.getRecentForm ); //.all(formsPolicy.isAllowed)
+
   // Finish by binding the Form middleware
   app.param('formId', forms.formByID);
+
 };

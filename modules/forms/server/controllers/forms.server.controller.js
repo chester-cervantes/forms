@@ -95,6 +95,21 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Get most current form for project id
+ */
+exports.getRecentForm = function (req, res, next) {
+  // req.params.id
+  const data = {
+    project_location: "Test Location",
+    dev_company_name: "Test Dev",
+    contractor_company: "Test Contractor", 
+  };
+  
+  res.send(data);
+};
+
+
+/**
  * Form middleware
  */
 exports.formByID = function(req, res, next, id) {
