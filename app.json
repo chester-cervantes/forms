@@ -1,8 +1,8 @@
 {
-  "name": "meanjs",
-  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-  "repository": "https://github.com/meanjs/mean",
-  "logo": "http://meanjs.org/img/logo-small.png",
+  "name": "FIRMS",
+  "description": "A Field Inspection Report Management System",
+  "repository": "https://csil-git1.cs.surrey.sfu.ca/project-470/project-470.git",
+  "logo": "",
   "keywords": [
     "mongodb",
     "express",
