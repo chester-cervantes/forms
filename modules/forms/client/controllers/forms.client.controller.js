@@ -26,7 +26,7 @@
                   // to its value before saving form.
     vm.showEmailModal = false;
     vm.hidePdf = false;
-    $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
+    vm.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
 
 
     function remove () {
