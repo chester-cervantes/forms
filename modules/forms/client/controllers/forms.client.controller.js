@@ -88,7 +88,6 @@
       vm.showEmailModal = false;
     }
 
-
     $scope.postEmail = function(){
 
       closeEmailModal();
