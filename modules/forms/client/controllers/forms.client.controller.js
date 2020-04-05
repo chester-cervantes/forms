@@ -355,7 +355,8 @@
 
       // under google maps object, after document.getElementById, can set settings
       if(!map) {
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        // map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        map = new google.maps.Map()
       }
 
       var markers = [];
