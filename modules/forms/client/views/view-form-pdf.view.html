@@ -86,6 +86,17 @@
         <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+
       </tr>
       <tr>
         <td>PROJECT:</td>
@@ -95,7 +106,7 @@
         <td>
           PROJECT NO:
         </td>
-        <td class="underlined" colspan="4">
+        <td class="underlined" colspan="12">
           {{form.project_id}}
         </td>
       </tr>
@@ -107,19 +118,19 @@
         <td>
           DATE (YYYY-MM-DD):
         </td>
-        <td class="underlined" colspan="4">
+        <td class="underlined" colspan="12">
           {{date}}
         </td>
       </tr>
       <tr>
         <td>DEVELOPER:</td>
-        <td class="underlined" colspan="4" ng-model="vm.form.dev_company_name" id="dev_company_name">
+        <td class="underlined" colspan="4">
           {{form.dev_company_name}}
         </td>
         <td>
           TIME (24-HR):
         </td>
-        <td class="underlined" colspan="4">
+        <td class="underlined" colspan="12">
           {{time}}
         </td>
       </tr>
@@ -129,7 +140,7 @@
         <td>
           WEATHER
         </td>
-        <td class="underlined" colspan="4">
+        <td class="underlined" colspan="12">
           {{form.weather}}
         </td>
       </tr>
@@ -141,10 +152,23 @@
         <td>
           TEMPERATURE (°C):
         </td>
-        <td class="underlined" colspan="4">
+        <td class="underlined" colspan="12">
           {{form.temperature}}
         </td>
       </tr>
+      <tr>
+        <td></td>
+        <td colspan="4">
+
+        </td>
+        <td>
+
+        </td>
+        <td colspan="12">
+
+        </td>
+      </tr>
+
       </tbody>
     </table>
   </div>
@@ -167,9 +191,9 @@
         </th>
         <th>
           {{#if form.footings_review_type }}
-            <input type="checkbox" id="footings" checked>
+          <input type="checkbox" id="footings" checked>
           {{else}}
-          <input type="checkbox" id="footings" >
+          <input type="checkbox" id="footings">
           {{/if}}
           <label for="footings">FOOTINGS</label>
         </th>
@@ -177,7 +201,7 @@
           {{#if form.foundation_walls_review_type }}
           <input type="checkbox" id="foundation_walls" checked>
           {{else}}
-          <input type="checkbox" id="foundation_walls" >
+          <input type="checkbox" id="foundation_walls">
           {{/if}}
           <label for="foundation_walls">FOUNDATION WALLS</label>
         </th>
@@ -185,7 +209,7 @@
           {{#if form.sheathing_review_type }}
           <input type="checkbox" id="sheathing" checked>
           {{else}}
-          <input type="checkbox" id="sheathing" >
+          <input type="checkbox" id="sheathing">
           {{/if}}
           <label for="sheathing">SHEATHING</label>
         </th>
@@ -193,7 +217,7 @@
           {{#if form.framing_review_type }}
           <input type="checkbox" id="framing" checked>
           {{else}}
-          <input type="checkbox" id="framing" >
+          <input type="checkbox" id="framing">
           {{/if}}
           <label for="framing">FRAMING</label>
         </th>
@@ -204,7 +228,7 @@
           {{#if form.other_review_type }}
           <input type="checkbox" id="other" checked>
           {{else}}
-          <input type="checkbox" id="other" >
+          <input type="checkbox" id="other">
           {{/if}}
           <label for="other">OTHER: </label>
         </th>
@@ -281,7 +305,7 @@
           {{#if form.rebar_pos_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -299,7 +323,7 @@
           {{#if form.rebar_size_spacing_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -317,7 +341,7 @@
           {{#if form.anchorage_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -335,7 +359,7 @@
           {{#if form.form_plan_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -358,7 +382,7 @@
           {{#if form.conformance_spec_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -376,7 +400,7 @@
           {{#if form.beam_girder_bearing_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -394,7 +418,7 @@
           {{#if form.continuity_top_plate_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -412,7 +436,7 @@
           {{#if form.lintel_open_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -430,7 +454,7 @@
           {{#if shearwalls_fastening_holddowns_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -448,7 +472,7 @@
           {{#if continuity_tall_walls_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -466,7 +490,7 @@
           {{#if blocking_floor_system_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -484,7 +508,7 @@
           {{#if wall_sheathing_reviewed }}
           <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" >
+          <input type="checkbox">
           {{/if}}
         </th>
         <th>
@@ -494,22 +518,22 @@
           {{form.wall_sheathing_instructions}}
         </th>
       </tr>
-        <th class="text-right">
-          Wind girts:
-        </th>
-        <th>
-          {{#if form.wind_girts_reviewed }}
-          <input type="checkbox" checked>
-          {{else}}
-          <input type="checkbox" >
-          {{/if}}
-        </th>
-        <th>
-          <input type="checkbox">
-        </th>
-        <th class="underlined" colspan="1000">
-          {{form.wind_girts_instructions}}
-        </th>
+      <th class="text-right">
+        Wind girts:
+      </th>
+      <th>
+        {{#if form.wind_girts_reviewed }}
+        <input type="checkbox" checked>
+        {{else}}
+        <input type="checkbox">
+        {{/if}}
+      </th>
+      <th>
+        <input type="checkbox">
+      </th>
+      <th class="underlined" colspan="1000">
+        {{form.wind_girts_instructions}}
+      </th>
       </tr>
       <tr class="blank_row">
         <td colspan="30"></td>

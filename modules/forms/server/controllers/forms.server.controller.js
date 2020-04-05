@@ -167,10 +167,11 @@ exports.formByID = function(req, res, next, id) {
 function parseData(form){
 
   const index = form.project_location.indexOf(',');
+
   return {
     form: form,
-    addressLine1: form.project_location.slice(0, index),
-    addressLine2: form.project_location.slice(index + 1, form.project_location.length),
+    addressLine1: index > 0 ? form.project_location.slice(0, index) : form.project_location,
+    addressLine2: index > 0 ? form.project_location.slice(index + 1, form.project_location.length) : "",
     date: form.report_date_time.getFullYear() + "-" + (form.report_date_time.getMonth() + 1) + "-" + form.report_date_time.getDate(),
     time: form.report_date_time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }),
     approved: form.inspection_status === "Approved",

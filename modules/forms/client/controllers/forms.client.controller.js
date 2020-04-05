@@ -120,7 +120,7 @@
         "pdf_location": vm.form.pdf_location
       };
 
-      console.log(data)
+      console.log(data);
 
       $http.post('/api/send-email', data).
       success(function(data, status, headers, config) {
