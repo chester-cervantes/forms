@@ -85,7 +85,7 @@
 
       
       //$http.get ( "/api/forms/autocomplete-data:" + form.project_id );
-      $http.get ( '/api/forms/autocomplete-data/:' + form.project_id )
+      $http.get ( '/api/forms/autocomplete-data/' + form.project_id )
       .success ( function (data, status, headers, config) {
         vm.form.project_location = data.project_location;
         vm.form.dev_company_name = data.dev_company_name;
