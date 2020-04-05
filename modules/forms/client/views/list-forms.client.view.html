@@ -84,7 +84,7 @@
         <tr ng-repeat="form in vm.forms">
           <td>{{ form.project_id }}</td>
           <td>{{ form.project_location }}</td>
-          <td>{{ form.report_date_time }}</td>
+          <td>{{ ConvertDate ( form.report_date_time ) }}</td>
           <td>{{ form.inspector_name }}</td>
           <td><a ui-sref="forms.view({ formId: form._id })">Details</a></td>
         </tr>

@@ -32,14 +32,27 @@
               </div><br>
             </div>
             <div class="column">
-                <label class="control-label" for="report_date_time">Date and Time:</label>
-                <input type="text" ng-model="vm.form.report_date_time" id="report_date_time" class="form-control input"
-                  placeholder="Report Date Time" required>
-                <div ng-messages="vm.form.report_date_time.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
-                </div><br>
             </div>
           </div>
+
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label" for="report_date_time">Date:</label>
+              <input type="date" ng-model="vm.dateTime" id="report_date" class="form-control input" required>
+              <div ng-messages="vm.form.report_date_time.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form report date is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="report_time">Time:</label>
+              <input type="time" ng-model="vm.dateTime" id="report_time" step="0.001" class="form-control input" required>
+              <div ng-messages="vm.form.report_date_time.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form report time is required.</p>
+              </div><br>
+            </div>
+            <div class="column">
+            </div>
+        </div>
 
           <div class="columns is-desktop">
             <div class="column">

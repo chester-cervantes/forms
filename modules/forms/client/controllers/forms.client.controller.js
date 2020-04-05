@@ -21,16 +21,9 @@
     vm.updateFormOnProjectID = updateFormOnProjectID;
     vm.user = Authentication.user;
     vm.adminMode = false;
-
-    onPageLoad ();
-
-    function onPageLoad () {
-      vm.adminMode = vm.user.roles.includes ( 'admin' );
-
-      if ( vm.form._id == null ) {
-        vm.form.inspector_name = vm.user.displayName;
-      }
-    }
+    vm.dateTime;  // initialize in function onPageLoad (), not using form.report_date_time directly because it arrives as a string,
+                  // while the view is expecting a Date () object. So use temp dateTime var, and then assign form.report_date_time
+                  // to its value before saving form.
     vm.showEmailModal = false;
 
     $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
@@ -75,15 +68,17 @@
       }
 
       if ( vm.form._id ) {
+        vm.form.report_date_time = vm.dateTime;
         vm.form.$update ( successCallback (), function ( err ) {});
       }
       else {
+        vm.form.report_date_time = vm.dateTime;
         vm.form.$create ( successCallback (), function ( err ) {} );
       }
     }
 
     function updateFormOnProjectID () {
-      if ( form.project_id == null ) {
+      if ( vm.form.project_id == null ) {
         initMapWeatherTempInfo ();
         return;
       }
@@ -91,6 +86,9 @@
       $http.get ( '/api/forms/autocomplete-data/' + form.project_id )
       .success ( function (data, status, headers, config) {
         if ( angular.equals ( data , {} ) ) {
+          if ( vm.form.project_location == null || vm.form.project_location === '' ) {
+            initMapWeatherTempInfo ();
+          }
           return;
         }
 
@@ -507,6 +505,20 @@
         });
       }
     }
-    initMapWeatherTempInfo();
+
+    function onPageLoad () {
+      vm.adminMode = vm.user.roles.includes ( 'admin' );
+
+      if ( vm.form._id == null ) {
+        initMapWeatherTempInfo ();
+        vm.form.inspector_name = vm.user.displayName;
+        vm.dateTime = new Date();
+      }
+      else {
+        vm.dateTime = new Date ( vm.form.report_date_time );
+      }
+    }
+
+    onPageLoad ();
   }
 }());
