@@ -5,36 +5,11 @@
  * Module dependencies.
  */
 const nodemailer = require('nodemailer');
-const path = require('path'),
-  _ = require('lodash'),
-  handlebars = require('handlebars'),
-  fs = require('fs');
-
-
-const readHTMLFile = function (path, callback) {
-  fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
-    if (err) {
-      callback(err);
-      throw err;
-    } else {
-      callback(null, html);
-    }
-  });
-};
 
 exports.sendEmail = function (req, res) {
 
-  readHTMLFile(path.resolve(__dirname, '..') + '/views/email.template.server.view.html', function(err, html) {
-
     const data = req.body;
-
-    const template = handlebars.compile(html);
-    const replacements = {
-      message: req.body.message,
-      name: req.user.displayName
-      // profile: req.user.profileImageURL
-    };
-    const htmlToSend = template(replacements);
+    console.log(data);
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -50,10 +25,15 @@ exports.sendEmail = function (req, res) {
     const mailOptions = {
       from: req.user.email,
       to: data.to,
-      subject: data.subject,
-      cc: data.cc,
-      bcc: data.bcc,
-      html: htmlToSend
+      subject: req.user.displayName + " shared a report",
+      text: data.message,
+      attachments: [
+        {
+          filename: data.id + '.pdf',
+          path: data.pdf_location,
+          contentType: 'application/pdf'
+        }
+      ],
     };
 
     transporter.sendMail(mailOptions, function (error, response) {
@@ -66,7 +46,6 @@ exports.sendEmail = function (req, res) {
           res.status(200).send("Email sent");
         }
     });
-  });
 
 };
 
