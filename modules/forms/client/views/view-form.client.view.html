@@ -35,7 +35,10 @@
   </div>
 
 
-  <div id="emailModal" class="modal" tabindex="-1" role="dialog">
+  <div id="emailModal" tabindex="-1" role="dialog"
+       ng-class="{
+        'is-active is-clipped modal': vm.showEmailModal == true,
+        'modal': vm.showEmailModal == false}">
     <form name="email-form" data-ng-submit="postEmail()">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
