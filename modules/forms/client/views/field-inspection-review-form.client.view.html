@@ -3,7 +3,7 @@
     <h1>{{vm.form._id ? 'Edit Field Inspection Report' : 'New Field Inspection Report'}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.fieldInspectionReviewForm" class="form-horizontal"
+    <form id="firms_form" name="vm.fieldInspectionReviewForm" class="form-horizontal {{vm.form._id ? '' : 'display_none'}}"
       ng-submit="vm.save(vm.fieldInspectionReviewForm.$valid)" validate>
       <fieldset>
 
@@ -16,6 +16,15 @@
 
           <div class="columns is-desktop">
             <div class="column">
+              <label class="control-label" for="project_id">Project ID:</label>
+              <input type="number" ng-model="vm.form.project_id" ng-change="vm.updateFormOnProjectID ()" id="project_id" class="form-control" placeholder="Project ID"
+                required>
+              <div ng-messages="vm.form.project_id.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Form project id is required.</p>
+              </div>
+              <br>
+            </div>
+            <div class="column">
               <label class="control-label" for="inspector_name">Inspector Name:</label>
               <input type="text" ng-model="vm.form.inspector_name"  ng-disabled="!vm.adminMode" id="inspector_name" class="form-control"
                 placeholder="Inspector Name" required>
@@ -23,6 +32,17 @@
                 <p class="help-block error-text" ng-message="required">Form project id is required.</p>
               </div><br>
             </div>
+            <div class="column">
+                <label class="control-label" for="report_date_time">Date and Time:</label>
+                <input type="text" ng-model="vm.form.report_date_time" id="report_date_time" class="form-control input"
+                  placeholder="Report Date Time" required>
+                <div ng-messages="vm.form.report_date_time.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
+                </div><br>
+            </div>
+          </div>
+
+          <div class="columns is-desktop">
             <div class="column">
               <label class="control-label" for="dev_company_name">Developer Company:</label>
               <input type="text" ng-model="vm.form.dev_company_name" id="dev_company_name" class="form-control input"
@@ -39,12 +59,14 @@
                 <p class="help-block error-text" ng-message="required">Form contractor company is required.</p>
               </div><br>
             </div>
+            <div class="column">
+            </div>
           </div>
 
 
           <!-- auto fill information -->
           <h3>
-            Site Information
+            Area Information
           </h3>
           <hr>
 
@@ -58,44 +80,37 @@
               <div ng-messages="vom.form.project_location.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Form project location is required.</p>
               </div>
-              <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="btn btn-info" type="button">
-                <i class="fas fa-map-marker-alt"></i>
-              </button>
-            </div>
-            <div class="column">
-              <label class="control-label" for="project_id">Project ID:</label>
-              <input type="number" ng-model="vm.form.project_id" ng-change="vm.updateFormOnProjectID ()" id="project_id" class="form-control" placeholder="Project ID" required>
-              <div ng-messages="vm.form.project_id.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Form project id is required.</p>
-              </div>
-              <br>
-            </div>
-            <div class="column">
-            </div>
-          </div>
-
-          <div class="columns is-desktop">
-            <div class="column">
-              <label class="control-label" for="report_date_time">Date and Time:</label>
-              <input type="text" ng-model="vm.form.report_date_time" id="report_date_time" class="form-control input"
-                placeholder="Report Date Time" required>
-              <div ng-messages="vm.form.report_date_time.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Form report date time is required.</p>
-              </div><br>
             </div>
             <div class="column">
               <label class="control-label" for="temperature">Temperature:</label>
-              <input type="text" ng-model="vm.form.temperature" id="name" class="form-control input" placeholder="Temperature" required>
+              <input type="text" ng-model="vm.form.temperature" id="temperature" class="form-control input" placeholder="Temperature"
+                required>
               <div ng-messages="vm.form.temperature.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Form temperature is required.</p>
               </div><br>
             </div>
             <div class="column">
+            </div>
+          </div>
+
+
+          <div class="columns is-desktop">
+            <div class="column">
               <label class="control-label" for="weather">Location's Weather:</label>
-              <input type="text" ng-model="vm.form.weather" id="name" class="form-control input" placeholder="Weather" required>
+              <input type="text" ng-model="vm.form.weather" id="weather" class="form-control input" placeholder="Weather" required>
               <div ng-messages="vm.form.weather.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Form weather is required.</p>
               </div><br>
+            </div>
+            <div class="column">
+              <label class="control-label" for="">Updates Area location, weather and temperature</label>
+              <button id="openGoogleMapModalBtn" ng-click="vm.openGoogleMapModal()" class="openGoogleMapModalBtn btn btn-info"
+                type="button">
+                <i class="fas fa-map-marker-alt"></i>
+                Update Area Information
+              </button>
+            </div>
+            <div class="column">
             </div>
           </div>
 
@@ -402,7 +417,7 @@
         <div class="form-group">
             <button class="button is-link floatRight" type="submit">{{vm.form._id ? 'Save' : 'Create'}}</button>
             <button class="button is-link is-light floatRight" type="button" ng-click="vm.cancel()">Cancel</button>
-            <button type="button" class="is-link is-light floatRight" ng-if="vm.form._id" ng-click="vm.remove()">Delete</button>
+            <button class="button is-link is-danger floatRight" type="button"  ng-if="vm.form._id" ng-click="vm.remove()">Delete</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
@@ -425,7 +440,7 @@
     <div class="modal-background"></div>
       <div class="modal-content google-map-modal">
         <div class="modal-header">
-          <h1 class="modal-title google-modal-title">Project Location:</h1>
+          <h1 class="modal-title google-modal-title">Project Area Information:</h1>
           <button type="button" class="close google-modal-close-btn" data-dismiss="modal" ng-click="vm.closeGoogleMapModal()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -444,16 +459,29 @@
           </div>
 
           <br/>
-          <label class="control-label">Selected location:</label>
-          <input id="selectedMapLocation" readonly="true" type="text" class="form-control"/>
 
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label">Project location:</label>
+              <input id="selectedMapLocation" readonly="true" type="text" class="form-control" />
+            </div>
+          </div>
 
+          <div class="columns is-desktop">
+            <div class="column">
+              <label class="control-label">Location weather: </label>
+              <input id="selectedWeatherInformation" readonly="true" type="text" class="form-control" />
+            </div>
+            <div class="column">
+              <label class="control-label">Location Temperature(°C): </label>
+              <input id="selectedTemperatureInformation" readonly="true" type="text" class="form-control" />
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="button is-link is-light" ng-click="vm.closeGoogleMapModal()">Close</button>
-          <button type="button" class="button is-link" ng-click="vm.selectLocation()">Select Location</button>
+          <button type="button" class="button is-link is-light" ng-click="vm.closeGoogleMapModal()">Cancel</button>
+          <button type="button" class="button is-link" ng-click="vm.selectLocation()">Update Area Information</button>
         </div>
     </div>
   </div>
-
 </section>

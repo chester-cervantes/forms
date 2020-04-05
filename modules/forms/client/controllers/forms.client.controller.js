@@ -37,10 +37,14 @@
       if ( $window.confirm('Are you sure you want to delete this form?' ) ) {
         if ( form ) {
           form.$remove (  );
-          Notification.success ( 'User deleted successfully!' );
-          console.log("if")
+          Notification.success ( 'Form deleted successfully!' );
           setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
 
+        }
+        else {
+          vm.user.$remove ( function () {
+            setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
+          });
         }
       }
     }
@@ -53,7 +57,6 @@
     }
 
     function successCallback () {
-      console.log ( "SUCCESS HERE CALLED" );
       setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
       Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> Form saved successfully!' });
     }
@@ -83,8 +86,6 @@
         return;
       }
 
-      
-      //$http.get ( "/api/forms/autocomplete-data:" + form.project_id );
       $http.get ( '/api/forms/autocomplete-data/' + form.project_id )
       .success ( function (data, status, headers, config) {
         vm.form.project_location = data.project_location;
@@ -97,26 +98,61 @@
       } );
     }
 
-    function getLatestFormWithID ( form_id ) {
-      if ( form_id == null ) {
-        return null;
-      }
-  
-      return 
+
+  /* ================= Weather API  STUFF =============== */
+
+
+    // we will be using lat, lng for weather location
+    $scope.getWeatherInfo = function (location, callback) {
+      var appid = "6a918a2e7455032b8e29775f764b46df";
+      // $http.post('http://api.openweathermap.org/data/2.5/weather?q=' + $scope.weather_location + '&appid=' + appid).
+      $http.post('http://api.openweathermap.org/data/2.5/weather?lat=' + location.lat + '&lon=' + location.lng + '&appid=' + appid).
+        success(function (data, status, headers, config) {
+          //add the weather information
+          let weather = data.weather[0].description;
+          let temp = round(convertKelvinToCelsius(data.main.temp), 2);
+          callback(weather, temp);
+        }).
+        error(function (data, status, headers, config) {
+          alert("Error: failed to retrieve weather api data!");
+        });
     }
 
+    function round(value, precision) {
+      var multiplier = Math.pow(10, precision || 0);
+      return Math.round(value * multiplier) / multiplier;
+    }
 
+    // Acknowledge from https://scottontechnology.com/temperature/kelvin-to-celsius-javascript-code/
+    function convertKelvinToCelsius(kelvin) {
+      if (kelvin < (0)) {
+        return 'below absolute zero (0 K)';
+      } else {
+        return (kelvin - 273.15);
+      }
+    }
 
+    // Acknowledged from https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+    function timeConverter(UNIX_timestamp) {
+      let date = new Date(UNIX_timestamp * 1000);
+      // Hours part from the timestamp
+      let hours = date.getHours();
+      // Minutes part from the timestamp
+      let minutes = "0" + date.getMinutes();
+      // Seconds part from the timestamp
+      let seconds = "0" + date.getSeconds();
 
+      // Will display time in 10:30:23 format
+      return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    }
 
-
-
-
-
-
-
-
-
+    /* ================= GOOGLE MAPS STUFF =============== */
+    function updateSelectedWeatherTempInput(weather, temp) {
+      let weatherInput = document.getElementById("selectedWeatherInformation");
+      let tempInput = document.getElementById("selectedTemperatureInformation");
+      weatherInput.value = weather;
+      tempInput.value = temp;
+    }
 
     vm.openGoogleMapModal = openGoogleMapModal;
     vm.selectLocation = selectLocation;
@@ -127,18 +163,33 @@
       let selectionMapInput = document.getElementById("selectedMapLocation")
       projectLocationInput.value = selectionMapInput.value;
 
+      //set the updated weather and temperature information
+      let SelectedWeatherInput = document.getElementById("selectedWeatherInformation");
+      let selectedTempInput = document.getElementById("selectedTemperatureInformation");
+
+      let weatherInput = document.getElementById("weather");
+      let temperatureInput = document.getElementById("temperature");
+      weatherInput.value = SelectedWeatherInput.value;
+      temperatureInput.value = selectedTempInput.value;
+
       //close modal
       closeGoogleMapModal();
     }
 
     function openGoogleMapModal() {
+
       //load previously set value
       let projectLocationInput = document.getElementById("project_location");
       let selectionMapInput = document.getElementById("selectedMapLocation");
       selectionMapInput.value = projectLocationInput.value;
 
       //load script for google map, load google maps scripts
-      $scope.loadScript(() => {
+      $scope.loadScript((pos, locationName) => {
+        $scope.getWeatherInfo(pos, (weather, temp) => {
+          updateSelectedWeatherTempInput(weather, temp);
+        });
+        let selectedLocation = document.getElementById("selectedMapLocation");
+        selectedLocation.value = locationName;
         let googleMapModal = document.getElementById("googleMapModal");
         googleMapModal.classList.add("is-active", "is-clipped");
       });
@@ -155,14 +206,23 @@
         googleMapModal.classList.remove("is-clipped");
       }
 
-      //clear modal
+      //clear modal data
       let selectedLocation = document.getElementById("selectedMapLocation");
+      let SelectedWeatherInput = document.getElementById("selectedWeatherInformation");
+      let selectedTempInput = document.getElementById("selectedTemperatureInformation");
       selectedLocation.value = "";
+      SelectedWeatherInput.value = "";
+      selectedTempInput.value = "";
+    }
+
+    vm.recenterLocation = recenterLocation;
+    function recenterLocation() {
+      $scope.goToMyLocation();
     }
 
 
     $scope.initGoogleMapApi = function (callback) {
-      if (!googleMapAPIInit) {
+      if (!googleMapAPIInit && typeof google === 'undefined') {
         let googleAPIKey = "AIzaSyDzJ-hVPlMpfSgk_VNIQJ0HYikoN1z5Dnk";
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -178,7 +238,6 @@
       }
     }
 
-
     //function for getting "current location"; TODO add to auto load data
     $scope.getCurrentLocation = function (callback) {
       $scope.initGoogleMapApi(() => {
@@ -191,13 +250,15 @@
             };
             //re center map to new current location and get reverse look up for location name
             $scope.getLocationNameFromGeocode(pos.lat, pos.lng, (locationName) => {
-              console.log("Re-centering to: " + locationName) //this is the location name that we will be added to the input later TODO
+              //set input of
+              callback(pos, locationName);
             })
           });
         }
         //location permission was not added
         else {
           alert("Permission for Google Maps was not granted, please enable it to get current location");
+          callback(null);
         }
       });
     }
@@ -205,7 +266,9 @@
     // load google maps view api
     $scope.loadScript = function (callback) {
       $scope.initGoogleMapApi(() => {
-        $scope.initMap(callback);
+        $scope.initMap((location, locationName) => {
+          callback(location, locationName);
+        });
       });
     }
 
@@ -213,13 +276,7 @@
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
-    var map, infoWindow, mapOptions, searchBox;
-
-    // Go to my location button
-    var currLocationBtn = document.getElementById("curr-location-btn");
-    currLocationBtn.addEventListener('click', function () {
-      $scope.goToMyLocation();
-    });
+    var map, mapOptions, searchBox, geocoder, latlng;
 
     // function to handle recentering of map to current location
     $scope.goToMyLocation = function () {
@@ -231,9 +288,6 @@
 
         //re center map to new current location and get reverse look up for location name
         map.setCenter(pos);
-        $scope.getLocationNameFromGeocode(pos.lat, pos.lng, (locationName) => {
-          console.log("Re-centering to: " + locationName)
-        })
       });
     }
 
@@ -252,15 +306,11 @@
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
       }
 
-      //set info window
-      infoWindow = new google.maps.InfoWindow;
-
       var markers = [];
 
       if (navigator.geolocation) {
 
         let googleMapsLoadedPromise = new Promise((resolve, reject) => {
-
           navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
               lat: position.coords.latitude,
@@ -279,15 +329,16 @@
             marker.setMap(map);
             markers.push(marker);
 
-            // console out current location name with reverse geo look up from lat long. Is async
-            // $scope.getLocationNameFromGeocode(pos.lat, pos.lng, (locationName) => {
-            //   console.log("I am currently at: " + locationName)
-            // });
-
-            resolve(true)
+            //current location name with reverse geo look up from lat long. Is async
+            $scope.getLocationNameFromGeocode(pos.lat, pos.lng, (locationName) => {
+              callback(pos, locationName);
+              resolve(true);
+            });
           }, function () {
-            $scope.handleLocationError(true, infoWindow, map.getCenter());
-            resolve(false)
+            $scope.handleLocationError(true, map.getCenter());
+              callback(null);
+            resolve(false);
+
           });
         })
 
@@ -310,8 +361,9 @@
             // more details for that place.
             searchBox.addListener('places_changed', function () {
               var places = searchBox.getPlaces();
-              let selectedLocation = document.getElementById("selectedMapLocation");
 
+
+              let selectedLocation = document.getElementById("selectedMapLocation");
               if (places.length == 0) {
                 selectedLocation.value = "";
                 return;
@@ -319,7 +371,6 @@
               else {
                 let currLocation = places[0];
                 let formattedAddress = currLocation.formatted_address;
-                console.log(currLocation);
                 let lat = currLocation.geometry.location.lat();
                 let lng = currLocation.geometry.location.lng();
 
@@ -330,6 +381,11 @@
 
                 //set selected location
                 selectedLocation.value = formattedAddress;
+
+                //update weather infomration
+                $scope.getWeatherInfo(pos, (weather, temp) => {
+                  updateSelectedWeatherTempInput(weather, temp);
+                });
 
                 // Clear out the old markers.
                 markers.forEach(function (marker) {
@@ -355,10 +411,8 @@
         })
       } else {
         // Browser doesn't support Geolocation
-        $scope.handleLocationError(false, infoWindow, map.getCenter());
+        $scope.handleLocationError(false, map.getCenter());
       }
-
-      callback();
     }
 
     // function for getting the location name of a geolocation
@@ -368,15 +422,19 @@
       }
 
       var locationName;
-      var geocoder = new google.maps.Geocoder();
-      var latlng = new google.maps.LatLng(latitude, longitude)
+      if (!geocoder) {
+        geocoder = new google.maps.Geocoder();
+      }
+
+      if (!latlng) {
+        latlng = new google.maps.LatLng(latitude, longitude)
+      }
 
       // Reverse Geocoding using google maps api.
       geocoder.geocode({ 'latLng': latlng }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[1]) {
             locationName = results[1].formatted_address;
-            console.log("Reverse long lat look up for location name: ", results[1]);
           }
           else {
             locationName = "Unknown";
@@ -390,13 +448,46 @@
     }
 
     //the user did not allow for location for browser
-    $scope.handleLocationError = function (browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-      infoWindow.open(map);
+    $scope.handleLocationError = function (browserHasGeolocation, pos) {
+      // infoWindow.setPosition(pos);
+      // infoWindow.setContent(browserHasGeolocation ?
+      //   'Error: The Geolocation service failed.' :
+      //   'Error: Your browser doesn\'t support geolocation.');
+      // infoWindow.open(map);
     }
 
+
+    /* ================= Init  map and weather details on page load for create form only =============== */
+    vm.initMapWeatherTempInfo = initMapWeatherTempInfo;
+    function initMapWeatherTempInfo() {
+      let form = document.getElementById("firms_form");
+
+      //only update information for "create forms"
+      if (!vm.form._id && form !== null) {
+        //get current location data
+        $scope.getCurrentLocation((pos, locationName) => {
+
+          //set location name
+          let projectLocationInput = document.getElementById("project_location");
+          projectLocationInput.value = locationName;
+
+          //get weather data
+          $scope.getWeatherInfo(pos, (weather, temp) => {
+            //set location, weather, temp
+            let weatherInput = document.getElementById("weather");
+            let temperatureInput = document.getElementById("temperature");
+            weatherInput.value = weather;
+            temperatureInput.value = temp;
+
+            //show form
+
+            if (form.classList.contains("display_none")) {
+              form.classList.remove("display_none");
+            }
+          });
+        });
+      }
+    }
+    initMapWeatherTempInfo();
   }
 }());
