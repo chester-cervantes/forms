@@ -74,7 +74,10 @@ Change your directory to the project by:
 $ cd ..
 $ cd niccolocarminepucci
 $ cd project-470
+```
+
 Start the project
+```
 $ gulp
 ```
 
