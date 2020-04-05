@@ -20,8 +20,7 @@
     vm.cancel = cancel;
     vm.user = Authentication.user;
 
-    console.log("id: " + form.form_id);
-    $scope.pdfUrl = "http://localhost:3000/api/forms/pdf/" + vm.form.form_id;
+    $scope.pdfUrl = window.location.origin + '/api/forms/pdf/' + vm.form.project_id;
 
     function remove () {
       if ( vm.form._id === null ) {
@@ -32,13 +31,13 @@
         if ( form ) {
           form.$remove (  );
           Notification.success ( 'User deleted successfully!' );
-          console.log("if")
+          console.log("if");
           setTimeout(() => { $state.go ( 'forms.list' ); }, 1000);
 
         }
         else {
           vm.user.$remove ( function () {
-            console.log("else")
+            console.log("else");
 
             $state.go ( 'forms.list' );
             Notification.success ( { message: '<i class="glyphicon glyphicon-ok"></i> User deleted successfully!' });
@@ -110,9 +109,22 @@
 
 
 
+    vm.openEmailModal = openEmailModal;
+    vm.closeEmailModal = closeEmailModal;
+    function openEmailModal() {
+      let openEmailModal = document.getElementById("emailModal");
+      openEmailModal.classList.add("is-active", "is-clipped");
+    }
 
-
-
+    function closeEmailModal() {
+      let emailModal = document.getElementById("emailModal");
+      if (emailModal.classList.contains("is-active")) {
+        emailModal.classList.remove("is-active");
+      }
+      if (emailModal.classList.contains("is-clipped")) {
+        emailModal.classList.remove("is-clipped");
+      }
+    }
 
 
 

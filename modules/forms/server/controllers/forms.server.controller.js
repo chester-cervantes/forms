@@ -1,5 +1,6 @@
 'use strict';
 
+require('mongodb').ObjectID;
 /**
  * Module dependencies.
  */
@@ -11,10 +12,7 @@ var path = require('path'),
   fs = require('fs'),
   puppeteer = require('puppeteer'),
   hb = require('handlebars'),
-  utils = require('util'),
-  ObjectId = require('mongodb').ObjectID;
-
-;
+  utils = require('util');
 
 
 /**
@@ -108,7 +106,7 @@ exports.list = function(req, res) {
       });
     } else {
       forms.forEach(e => {
-        if(!checkIfPdfExists('pdf/' + e.form_id + '.pdf')){
+        if(!checkIfPdfExists('pdf/' + e.project_id + '.pdf')){
           saveAsPDF(e);
         }
       });
@@ -168,18 +166,16 @@ exports.formByID = function(req, res, next, id) {
  */
 function parseData(form){
 
-  var index = form.project_location.indexOf(',');
-
+  const index = form.project_location.indexOf(',');
   return {
     form: form,
     addressLine1: form.project_location.slice(0, index),
     addressLine2: form.project_location.slice(index + 1, form.project_location.length),
     date: form.report_date_time.getFullYear() + "-" + (form.report_date_time.getMonth() + 1) + "-" + form.report_date_time.getDate(),
-    time: form.report_date_time.getTime(),
+    time: form.report_date_time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }),
     approved: form.inspection_status === "Approved",
     not_approved: form.inspection_status === "Not Approved",
     reinspection_required: form.inspection_status === "Reinspection Required"
-
   }
 }
 
@@ -197,7 +193,7 @@ function saveAsPDF(form){
     fs.mkdirSync('pdf');
   }
 
-  const pathToPDF = 'pdf/' + form.form_id + '.pdf';
+  const pathToPDF = 'pdf/' + form.project_id + '.pdf';
 
   const readFile = utils.promisify(fs.readFile);
   async function getTemplateHtml() {
@@ -214,8 +210,7 @@ function saveAsPDF(form){
     getTemplateHtml().then(async (res) => {
       console.log("Compiling the template with handlebars");
       const template = hb.compile(res, { strict: true });
-      const result = template(data);
-      const html = result;
+      const html = template(data);
       const browser = await puppeteer.launch({ignoreHTTPSErrors: true});
       const page = await browser.newPage();
       await page.setContent(html);
