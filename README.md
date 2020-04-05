@@ -14,7 +14,7 @@ Below are the versions needed for our project:
 Node: v12.16.1
 NPM: 6.13.4
 MEAN: Master
-Python: 2.7 -> $ sudo apt-get install python3.7 && $ npm config set python python2.7
+Python: 2.7 -> $ sudo apt-get install python2.7 && $ npm config set python python2.7
 ```
 
 ### Prerequisites
