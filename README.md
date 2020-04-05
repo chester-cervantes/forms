@@ -86,16 +86,12 @@ go to http://34.83.174.42/
 
 ## Authors
 Chester Cervantes, ccervant
+
 Jordan Ho, jhho
+
 Mashuque Hasan, hasan
+
 Niccolo Pucci, npucci
+
 Duy Le, dtl11
 
-
-## License
-
-* TO DO
-
-## Acknowledgments
-
-* TO DO
