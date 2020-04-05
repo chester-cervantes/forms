@@ -115,6 +115,17 @@
     };
 
 
+
+
+
+    //modal
+    vm.showGoogleMapModal = false;
+
+    vm.pac_input = "";
+    vm.selectedWeather = "";
+    vm.selectedTemp = "";
+    vm.selectedLocation = "";
+
   /* ================= Weather API  STUFF =============== */
 
 
@@ -166,71 +177,46 @@
 
     /* ================= GOOGLE MAPS STUFF =============== */
     function updateSelectedWeatherTempInput(weather, temp) {
-      let weatherInput = document.getElementById("selectedWeatherInformation");
-      let tempInput = document.getElementById("selectedTemperatureInformation");
-      weatherInput.value = weather;
-      tempInput.value = temp;
+      vm.selectedWeather = weather;
+      vm.selectedTemp = temp;
     }
 
     vm.openGoogleMapModal = openGoogleMapModal;
     vm.selectLocation = selectLocation;
 
     function selectLocation() {
-      //set the updated location
-      let projectLocationInput = document.getElementById("project_location");
-      let selectionMapInput = document.getElementById("selectedMapLocation")
-      projectLocationInput.value = selectionMapInput.value;
-
-      //set the updated weather and temperature information
-      let SelectedWeatherInput = document.getElementById("selectedWeatherInformation");
-      let selectedTempInput = document.getElementById("selectedTemperatureInformation");
-
-      let weatherInput = document.getElementById("weather");
-      let temperatureInput = document.getElementById("temperature");
-      weatherInput.value = SelectedWeatherInput.value;
-      temperatureInput.value = selectedTempInput.value;
+      vm.form.project_location = vm.selectedLocation;
+      vm.form.temperature = vm.selectedWeather;
+      vm.form.weather = vm.selectedTemp;
 
       //close modal
       closeGoogleMapModal();
     }
 
     function openGoogleMapModal() {
-
-      //load previously set value
-      let projectLocationInput = document.getElementById("project_location");
-      let selectionMapInput = document.getElementById("selectedMapLocation");
-      selectionMapInput.value = projectLocationInput.value;
+      vm.selectedLocation = vm.form.project_location;
 
       //load script for google map, load google maps scripts
       $scope.loadScript((pos, locationName) => {
         $scope.getWeatherInfo(pos, (weather, temp) => {
           updateSelectedWeatherTempInput(weather, temp);
         });
-        let selectedLocation = document.getElementById("selectedMapLocation");
-        selectedLocation.value = locationName;
-        let googleMapModal = document.getElementById("googleMapModal");
-        googleMapModal.classList.add("is-active", "is-clipped");
+
+        vm.selectedLocation = locationName;
+        vm.showGoogleMapModal = true;
       });
     }
 
     vm.closeGoogleMapModal = closeGoogleMapModal;
 
     function closeGoogleMapModal() {
-      let googleMapModal = document.getElementById("googleMapModal");
-      if (googleMapModal.classList.contains("is-active")) {
-        googleMapModal.classList.remove("is-active");
-      }
-      if (googleMapModal.classList.contains("is-clipped")) {
-        googleMapModal.classList.remove("is-clipped");
-      }
+      vm.showGoogleMapModal = false;
 
       //clear modal data
-      let selectedLocation = document.getElementById("selectedMapLocation");
-      let SelectedWeatherInput = document.getElementById("selectedWeatherInformation");
-      let selectedTempInput = document.getElementById("selectedTemperatureInformation");
-      selectedLocation.value = "";
-      SelectedWeatherInput.value = "";
-      selectedTempInput.value = "";
+      vm.pac_input = "";
+      vm.selectedWeather = "";
+      vm.selectedTemp = "";
+      vm.selectedLocation = "";
     }
 
     vm.recenterLocation = recenterLocation;
@@ -256,7 +242,7 @@
       }
     }
 
-    //function for getting "current location"; TODO add to auto load data
+    //function for getting "current location"; add to auto load data
     $scope.getCurrentLocation = function (callback) {
       $scope.initGoogleMapApi(() => {
         //permission granted
@@ -381,10 +367,8 @@
             searchBox.addListener('places_changed', function () {
               var places = searchBox.getPlaces();
 
-
-              let selectedLocation = document.getElementById("selectedMapLocation");
               if (places.length == 0) {
-                selectedLocation.value = "";
+                vm.selectedLocation = "";
                 return;
               }
               else {
@@ -399,12 +383,12 @@
                 };
 
                 //set selected location
-                selectedLocation.value = formattedAddress;
+                vm.selectedLocation = formattedAddress;
 
                 //update weather infomration
                 $scope.getWeatherInfo(pos, (weather, temp) => {
                   updateSelectedWeatherTempInput(weather, temp);
-                });
+                });c
 
                 // Clear out the old markers.
                 markers.forEach(function (marker) {
@@ -478,31 +462,19 @@
 
     /* ================= Init  map and weather details on page load for create form only =============== */
     vm.initMapWeatherTempInfo = initMapWeatherTempInfo;
-    function initMapWeatherTempInfo() {
-      let form = document.getElementById("firms_form");
 
+
+    function initMapWeatherTempInfo() {
       //only update information for "create forms"
-      if (!vm.form._id && form !== null) {
+      if (!vm.form._id) {
         //get current location data
         $scope.getCurrentLocation((pos, locationName) => {
-
-          //set location name
-          let projectLocationInput = document.getElementById("project_location");
-          projectLocationInput.value = locationName;
-
+          vm.form.project_location = locationName;
           //get weather data
           $scope.getWeatherInfo(pos, (weather, temp) => {
             //set location, weather, temp
-            let weatherInput = document.getElementById("weather");
-            let temperatureInput = document.getElementById("temperature");
-            weatherInput.value = weather;
-            temperatureInput.value = temp;
-
-            //show form
-
-            if (form.classList.contains("display_none")) {
-              form.classList.remove("display_none");
-            }
+            vm.form.weather = weather;
+            vm.form.temperature = temp;
           });
         });
       }
