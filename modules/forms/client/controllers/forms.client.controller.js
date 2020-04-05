@@ -120,7 +120,6 @@
         "to": $scope.email,
         "message": $scope.message,
         "id": vm.form.project_id,
-        "pdf_location": vm.form.pdf_location
       };
 
       console.log(data);

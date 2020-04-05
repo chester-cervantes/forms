@@ -30,7 +30,7 @@ exports.sendEmail = function (req, res) {
       attachments: [
         {
           filename: data.id + '.pdf',
-          path: data.pdf_location,
+          path: 'pdf/' + data.id + '.pdf',
           contentType: 'application/pdf'
         }
       ],
