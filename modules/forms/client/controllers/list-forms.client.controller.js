@@ -56,10 +56,13 @@
   }
 
   function comparatorDateAscending(a, b) {
-    if (parseFloat(a[2].innerText) < parseFloat(b[2].innerText)) {
+    var dateA = new Date ( a[2].innerText ).toISOString ();
+    var dateB = new Date ( b[2].innerText ).toISOString ();
+
+    if (dateA < dateB) {
       return -1;
     }
-    if (parseFloat(a[2].innerText) > parseFloat(b[2].innerText)) {
+    if (dateA > dateB) {
       return 1;
     }
     return 0;
@@ -86,10 +89,13 @@
   }
 
   function comparatorDateDescending(a, b) {
-    if (parseFloat(a[2].innerText) < parseFloat(b[2].innerText)) {
+    var dateA = new Date ( a[2].innerText ).toISOString ();
+    var dateB = new Date ( b[2].innerText ).toISOString ();
+
+    if (dateA < dateB) {
       return 1;
     }
-    if (parseFloat(a[2].innerText) > parseFloat(b[2].innerText)) {
+    if (dateA > dateB) {
       return -1;
     }
     return 0;
@@ -208,6 +214,10 @@
       let dropDownMenu = document.getElementById("dropdown1");
       dropDownMenu.classList.toggle("is-active");
     };
+
+    $scope.ConvertDate = function ( date ) {
+      return new Date ( date ).toLocaleString ();
+    }
 
     $scope.SearchForms = function () {
       let input = document.getElementById("searchString");
