@@ -213,8 +213,8 @@
 
     function selectLocation() {
       vm.form.project_location = vm.selectedLocation;
-      vm.form.temperature = vm.selectedWeather;
-      vm.form.weather = vm.selectedTemp;
+      vm.form.temperature = vm.selectedTemp;
+      vm.form.weather = vm.selectedWeather;
 
       //close modal
       closeGoogleMapModal();
