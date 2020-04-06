@@ -240,7 +240,6 @@ function saveAsPDF(form){
           ignoreHTTPSErrors: true,
           args: ['--no-sandbox']
         });
-
       const page = await browser.newPage();
       await page.setContent(html);
       await page.pdf({ path: pathToPDF, format: 'A4' });
