@@ -81,6 +81,7 @@ Start the project in production mode that hosts in port 80 for http
 $ gulp prod
 ```
 
+## Viewing Project
 From the console compute engine page you can access the static external IP:
 Click on the link and to go http://[EXTERNAL_IP] to access the project
 or go to 
