@@ -235,7 +235,7 @@ function saveAsPDF(form){
       console.log("Compiling the template with handlebars");
       const template = hb.compile(res, { strict: true });
       const html = template(data);
-      const browser = await puppeteer.launch({headless: false}); // default is true
+      const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
       const page = await browser.newPage();
       await page.setContent(html);
       await page.pdf({ path: pathToPDF, format: 'A4' });
