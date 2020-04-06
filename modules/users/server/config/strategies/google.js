@@ -37,6 +37,8 @@ module.exports = function (config) {
         providerData: providerData
       };
 
+      console.log("firstName " + providerUserProfile.firstName + "\tlastName: " + providerUserProfile.lastName + "\temail: " + providerUserProfile.email);
+
       // Save the user OAuth profile
       users.saveOAuthUserProfile(req, providerUserProfile, done);
     }));
