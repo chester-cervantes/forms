@@ -132,6 +132,9 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
   var searchMainProviderIdentifierField = 'providerData.' + providerUserProfile.providerIdentifierField;
   var searchAdditionalProviderIdentifierField = 'additionalProvidersData.' + providerUserProfile.provider + '.' + providerUserProfile.providerIdentifierField;
 
+  console.log("firstName: " + providerUserProfile.firstName + "\tlastName: " + providerUserProfile.lastName + "\temail: " + providerUserProfile.email);
+
+
   // Define main provider search query
   var mainProviderSearchQuery = {};
   mainProviderSearchQuery.provider = providerUserProfile.provider;
@@ -149,11 +152,13 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
   // Find existing user with this provider account
   User.findOne(searchQuery, function (err, existingUser) {
     if (err) {
+      console.log("user already exists");
       return done(err);
     }
 
     if (!req.user) {
       if (!existingUser) {
+        console.log("user does not exists");
         var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
 
         User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
@@ -167,6 +172,8 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
             providerData: providerUserProfile.providerData
           });
 
+          console.log("find unique user name");
+
           // Email intentionally added later to allow defaults (sparse settings) to be applid.
           // Handles case where no email is supplied.
           // See comment: https://github.com/meanjs/mean/pull/1495#issuecomment-246090193
@@ -178,18 +185,22 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
           });
         });
       } else {
+        console.log("error: " + err);
         return done(err, existingUser, info);
       }
     } else {
       // User is already logged in, join the provider data to the existing user
       user = req.user;
+      console.log("join user: " + user);
 
       // Check if an existing user was found for this provider account
       if (existingUser) {
         if (user.id !== existingUser.id) {
+          console.log("account already connected to another user");
           return done(new Error('Account is already connected to another user'), user, info);
         }
 
+        console.log("User is already connected using this provider");
         return done(new Error('User is already connected using this provider'), user, info);
       }
 
@@ -205,6 +216,7 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
 
       // And save the user
       user.save(function (err) {
+        console.log("err" + err);
         return done(err, user, info);
       });
     }
