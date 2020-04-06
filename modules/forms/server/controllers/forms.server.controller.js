@@ -248,5 +248,4 @@ function saveAsPDF(form){
   generatePdf();
   form.pdf_location = pathToPDF;
   console.log("path: " + form.pdf_location);
-
 }
