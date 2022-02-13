@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "acl": "^0.4.11",
-    "ajv": "^5.5.2",
+    "ajv": "^6.12.3",
     "amazon-s3-uri": "0.0.3",
     "angular": "^1.7.9",
     "async": "~2.5.0",
